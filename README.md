@@ -12,9 +12,7 @@
 
 ## 📌 Project Overview
 
-This project simulates a real-world Business Analytics platform used by modern e-commerce companies.
-
-It combines Data Engineering, Data Analytics, Business Intelligence, and Machine Learning into a single end-to-end system.
+This project simulates a real-world Business Analytics platform used by modern e-commerce companies. It combines Data Engineering, Data Analytics, Business Intelligence, and Machine Learning into a single end-to-end system.
 
 The platform enables businesses to:
 
@@ -211,7 +209,7 @@ This project is licensed under the MIT License.
 ## 👤 Author
 
 **Vaibhav Nhayade**
-
 B.Tech Artificial Intelligence & Data Science
+RC Patel Institute of Technology Shirpur
 
 GitHub: https://github.com/Vaibhav-nhayade
