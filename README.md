@@ -1,4 +1,4 @@
-# 📊 E-Commerce Business Analytics Dashboard
+# E-Commerce Business Analytics Dashboard
 
 > An end-to-end Business Intelligence & Analytics platform that transforms raw e-commerce data into actionable business insights through automated ETL pipelines, interactive dashboards, and machine learning.
 
