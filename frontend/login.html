@@ -1,195 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Enterprise Analytics Platform</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0fdfa',
-                            500: '#14b8a6', // Teal
-                            600: '#0d9488',
-                            900: '#134e4a',
-                        },
-                        accent: {
-                            500: '#ec4899', // Pink
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        .dark .glass-panel {
-            background: rgba(17, 24, 39, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .bg-gradient-radial {
-            background: radial-gradient(circle at top center, rgba(20, 184, 166, 0.1) 0%, rgba(249, 250, 251, 1) 70%);
-        }
-        .dark .bg-gradient-radial {
-            background: radial-gradient(circle at top center, rgba(20, 184, 166, 0.15) 0%, rgba(3, 7, 18, 1) 70%);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="CommerceIQ Analytics secure sign-in page">
+  <title>Sign in | CommerceIQ Analytics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:"class"}</script>
+  <style>
+    body{font-family:Inter,system-ui,sans-serif}
+    .grid{background-image:linear-gradient(#94a3b818 1px,transparent 1px),linear-gradient(90deg,#94a3b818 1px,transparent 1px);background-size:42px 42px}
+    .orb{filter:blur(75px);animation:float 8s ease-in-out infinite}
+    @keyframes float{50%{transform:translate(25px,-20px) scale(1.08)}}
+    @keyframes grow{from{transform:scaleY(.2)}to{transform:scaleY(1)}}
+    .bar{transform-origin:bottom;animation:grow .8s both}
+    .bar:nth-child(2){animation-delay:.1s}.bar:nth-child(3){animation-delay:.2s}.bar:nth-child(4){animation-delay:.3s}.bar:nth-child(5){animation-delay:.4s}.bar:nth-child(6){animation-delay:.5s}.bar:nth-child(7){animation-delay:.6s}
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-[#030712] dark:text-gray-100 antialiased min-h-screen flex items-center justify-center bg-gradient-radial relative overflow-hidden">
+<body class="min-h-screen bg-slate-50 text-slate-900 transition-colors dark:bg-slate-950 dark:text-white">
+  <main class="relative min-h-screen overflow-hidden lg:grid lg:grid-cols-2">
+    <div class="grid pointer-events-none absolute inset-0 opacity-50"></div>
+    <div class="orb pointer-events-none absolute -left-24 top-16 h-72 w-72 rounded-full bg-cyan-500/20"></div>
+    <div class="orb pointer-events-none absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-indigo-500/20" style="animation-delay:-4s"></div>
 
-    <!-- Background Ambient Glows -->
-    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[150px] opacity-30 dark:opacity-20 pointer-events-none z-0 animate-pulse"></div>
-    <div class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-accent-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[150px] opacity-30 dark:opacity-20 pointer-events-none z-0"></div>
+    <!-- Product preview -->
+    <section class="relative hidden min-h-screen flex-col justify-between border-r border-slate-200/10 px-12 py-10 lg:flex">
+      <a href="#" class="flex items-center gap-3">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 shadow-lg shadow-cyan-500/30">
+          <svg viewBox="0 0 24 24" class="h-6 w-6 fill-none stroke-white" stroke-width="2.5"><path d="M4 19V10m5 9V5m5 14v-7m5 7V3" stroke-linecap="round"/></svg>
+        </span>
+        <span><b class="block text-lg">CommerceIQ</b><small class="block tracking-widest text-slate-400">ANALYTICS PLATFORM</small></span>
+      </a>
 
-    <!-- Login Container -->
-    <div class="relative z-10 w-full max-w-md px-4 sm:px-0">
-        
-        <!-- Logo & Header -->
-        <div class="text-center mb-8">
-            <a href="index.html" class="inline-flex items-center gap-2 mb-6 hover:scale-105 transition-transform">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-400 to-accent-600 flex items-center justify-center font-bold text-white shadow-[0_0_20px_rgba(20,184,166,0.4)] text-xl">EA</div>
-            </a>
-            <h1 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Welcome back</h1>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Log in to access your analytics dashboard</p>
+      <div class="mx-auto w-full max-w-xl">
+        <p class="mb-3 text-sm font-bold tracking-[.2em] text-cyan-300">ECOMMERCE INTELLIGENCE</p>
+        <h1 class="max-w-lg text-5xl font-bold leading-tight">Turn every sale into your next smart decision.</h1>
+        <p class="mt-5 max-w-lg text-base leading-7 text-slate-300">Track revenue, customer behaviour and inventory performance in one focused view.</p>
+
+        <div class="mt-10 rounded-2xl border border-white/10 bg-slate-900/75 p-5 shadow-2xl backdrop-blur-xl">
+          <div class="mb-5 flex items-center justify-between">
+            <div><p class="text-xs text-slate-400">Overview</p><b>Performance dashboard</b></div>
+            <span class="rounded-lg bg-emerald-400/10 px-3 py-1 text-xs font-bold text-emerald-300">● Live data</span>
+          </div>
+          <div class="grid grid-cols-3 gap-3">
+            <div class="rounded-xl bg-white/5 p-3"><small class="text-slate-400">Revenue</small><b class="mt-1 block text-lg">$84.2k</b><small class="text-emerald-300">↑ 18.4%</small></div>
+            <div class="rounded-xl bg-white/5 p-3"><small class="text-slate-400">Orders</small><b class="mt-1 block text-lg">1,284</b><small class="text-emerald-300">↑ 12.8%</small></div>
+            <div class="rounded-xl bg-white/5 p-3"><small class="text-slate-400">Conversion</small><b class="mt-1 block text-lg">4.86%</b><small class="text-emerald-300">↑ 0.6%</small></div>
+          </div>
+          <div class="mt-4 rounded-xl bg-white/[.04] p-4">
+            <div class="mb-3 flex justify-between text-xs"><span>Revenue trend</span><span class="text-slate-500">Last 7 days</span></div>
+            <div class="flex h-24 items-end gap-2"><i class="bar h-[35%] flex-1 rounded-t bg-cyan-500"></i><i class="bar h-[52%] flex-1 rounded-t bg-cyan-500"></i><i class="bar h-[45%] flex-1 rounded-t bg-cyan-400"></i><i class="bar h-[70%] flex-1 rounded-t bg-cyan-400"></i><i class="bar h-[57%] flex-1 rounded-t bg-cyan-500"></i><i class="bar h-[84%] flex-1 rounded-t bg-cyan-300"></i><i class="bar h-[76%] flex-1 rounded-t bg-cyan-400"></i></div>
+          </div>
+        </div>
+      </div>
+      <p class="text-sm text-slate-500">© <span id="year"></span> CommerceIQ. Built for better business decisions.</p>
+    </section>
+
+    <!-- Login area -->
+    <section class="relative flex min-h-screen items-center justify-center px-5 py-10">
+      <div class="w-full max-w-md">
+        <div class="mb-8 flex items-center justify-between lg:justify-end">
+          <div class="flex items-center gap-2 lg:hidden"><span class="grid h-9 w-9 place-items-center rounded-lg bg-cyan-500">▥</span><b>CommerceIQ</b></div>
+          <button id="theme" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200" aria-label="Toggle theme">☀ Theme</button>
         </div>
 
-        <!-- Glass Card -->
-        <div class="glass-panel p-8 rounded-2xl shadow-2xl">
-            <form action="#" method="POST" class="space-y-6" id="loginForm">
-                
-                <!-- Email Field -->
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Work Email</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
-                        </div>
-                        <input type="email" name="email" id="email" required class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white/50 dark:bg-gray-900/50 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors sm:text-sm" placeholder="you@company.com">
-                    </div>
-                </div>
+        <div class="rounded-3xl border border-slate-200 bg-white/90 p-7 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/80 sm:p-9">
+          <p class="text-sm font-bold tracking-wider text-cyan-500">WELCOME BACK</p>
+          <h2 class="mt-2 text-3xl font-bold">Sign in to your workspace</h2>
+          <p class="mt-2 text-sm leading-6 text-slate-500">Enter your details to continue to CommerceIQ Analytics.</p>
 
-                <!-- Password Field -->
-                <div>
-                    <div class="flex items-center justify-between mb-1">
-                        <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
-                        <a href="#" class="text-xs font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-500 transition-colors">Forgot password?</a>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                        </div>
-                        <input type="password" name="password" id="password" required class="block w-full pl-10 pr-10 py-2.5 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white/50 dark:bg-gray-900/50 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors sm:text-sm" placeholder="••••••••">
-                        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-500 focus:outline-none">
-                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Remember Me -->
-                <div class="flex items-center">
-                    <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-brand-600 focus:ring-brand-500 border-gray-300 dark:border-gray-700 rounded bg-gray-50 dark:bg-gray-900">
-                    <label for="remember-me" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-                        Remember me for 30 days
-                    </label>
-                </div>
-
-                <!-- Submit Button -->
-                <div>
-                    <button type="submit" class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-brand-600 hover:bg-brand-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors shadow-lg shadow-brand-500/30">
-                        Sign In
-                    </button>
-                </div>
-            </form>
-
-            <div class="mt-6">
-                <div class="relative">
-                    <div class="absolute inset-0 flex items-center">
-                        <div class="w-full border-t border-gray-300 dark:border-gray-700"></div>
-                    </div>
-                    <div class="relative flex justify-center text-sm">
-                        <span class="px-2 bg-transparent text-gray-500 dark:text-gray-400 bg-white dark:bg-[#111827] rounded-full">Or continue with</span>
-                    </div>
-                </div>
-
-                <div class="mt-6 grid grid-cols-2 gap-3">
-                    <div>
-                        <a href="#" class="w-full inline-flex justify-center py-2.5 px-4 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm bg-white/50 dark:bg-gray-800/50 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                            <svg class="h-5 w-5 mr-2" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
-                            </svg>
-                            Google
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#" class="w-full inline-flex justify-center py-2.5 px-4 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm bg-white/50 dark:bg-gray-800/50 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                            <svg class="h-5 w-5 mr-2 text-gray-900 dark:text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-                            </svg>
-                            GitHub
-                        </a>
-                    </div>
-                </div>
+          <form id="form" class="mt-7 space-y-5" novalidate>
+            <div>
+              <label for="email" class="mb-2 block text-sm font-semibold">Work email</label>
+              <div class="relative"><span class="absolute left-4 top-3 text-slate-400">✉</span><input id="email" type="email" autocomplete="email" placeholder="you@company.com" class="w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pl-10 pr-4 text-sm outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 dark:border-slate-700 dark:bg-slate-950"></div>
+              <p id="emailError" class="mt-1 hidden text-xs text-rose-500" role="alert"></p>
             </div>
-            
-            <p class="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
-                Don't have an account? 
-                <a href="#" class="font-bold text-brand-600 dark:text-brand-400 hover:text-brand-500 transition-colors">Request access</a>
-            </p>
+            <div>
+              <div class="mb-2 flex justify-between"><label for="password" class="text-sm font-semibold">Password</label><a href="#" class="text-xs font-bold text-cyan-500">Forgot password?</a></div>
+              <div class="relative"><span class="absolute left-4 top-3 text-slate-400">🔒</span><input id="password" type="password" autocomplete="current-password" placeholder="Enter your password" class="w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pl-10 pr-12 text-sm outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 dark:border-slate-700 dark:bg-slate-950"><button id="show" type="button" class="absolute right-3 top-2 rounded p-1.5 text-slate-500" aria-label="Show password">◉</button></div>
+              <p id="passwordError" class="mt-1 hidden text-xs text-rose-500" role="alert"></p>
+            </div>
+
+            <label class="flex items-center gap-2 text-sm text-slate-500"><input type="checkbox" class="accent-cyan-500"> Remember me for 30 days</label>
+            <button id="submit" class="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-3.5 font-bold text-white shadow-lg shadow-cyan-500/25 transition hover:brightness-110 disabled:opacity-70">Sign in to dashboard <span>→</span></button>
+            <p id="status" class="hidden text-center text-sm text-cyan-500" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="my-7 flex items-center gap-3 text-xs text-slate-400"><i class="h-px flex-1 bg-slate-200 dark:bg-slate-700"></i>OR TRY THE DEMO<i class="h-px flex-1 bg-slate-200 dark:bg-slate-700"></i></div>
+          <div class="flex items-start justify-between rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4">
+            <p class="text-xs leading-5 text-slate-500"><b class="block text-sm text-slate-800 dark:text-slate-200">Demo workspace</b>admin@analytics.com<br>Password: Admin@123</p>
+            <button id="demo" type="button" class="rounded-lg bg-cyan-500/15 px-3 py-2 text-xs font-bold text-cyan-600 dark:text-cyan-300">Use demo</button>
+          </div>
         </div>
-        
-        <!-- Back to Home -->
-        <div class="mt-6 text-center">
-            <a href="index.html" class="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors flex items-center justify-center gap-2">
-                &larr; Back to homepage
-            </a>
-        </div>
-    </div>
+        <footer class="mt-6 text-center text-xs text-slate-500"><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Support</a></footer>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        // Check local storage for theme to match the main page
-        if (localStorage.getItem('color-theme') === 'light') {
-            document.documentElement.classList.remove('dark');
-        }
+  <script>
+    const $=id=>document.getElementById(id),email=$("email"),password=$("password");
+    $("year").textContent=new Date().getFullYear();
 
-        // Toggle Password Visibility
-        const togglePassword = document.getElementById('togglePassword');
-        const password = document.getElementById('password');
+    $("theme").onclick=()=>document.documentElement.classList.toggle("dark");
+    $("show").onclick=()=>{let shown=password.type==="text";password.type=shown?"password":"text";$("show").setAttribute("aria-label",shown?"Show password":"Hide password")};
+    $("demo").onclick=()=>{email.value="admin@analytics.com";password.value="Admin@123";password.focus()};
 
-        togglePassword.addEventListener('click', function () {
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-            
-            // Toggle icon (optional, right now it just keeps the eye icon, but you can swap SVG paths here if desired)
-            this.classList.toggle('text-brand-500');
-        });
+    function error(input,message){
+      let el=$(input.id+"Error");el.textContent=message;el.classList.remove("hidden");
+      input.classList.add("border-rose-500");input.setAttribute("aria-invalid","true");
+    }
+    function clear(input){
+      $(input.id+"Error").classList.add("hidden");input.classList.remove("border-rose-500");input.removeAttribute("aria-invalid");
+    }
+    [email,password].forEach(x=>x.oninput=()=>clear(x));
 
-        // Prevent form submission for demo purposes
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Simulate a login action
-            const btn = this.querySelector('button[type="submit"]');
-            const originalText = btn.innerText;
-            btn.innerHTML = '<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Authenticating...';
-            
-            setTimeout(() => {
-                alert("This is a demo frontend. In a real app, this would route to your dashboard.");
-                btn.innerText = originalText;
-            }, 1500);
-        });
-    </script>
+    $("form").onsubmit=e=>{
+      e.preventDefault();let ok=true;
+      if(!email.value.trim()){error(email,"Enter your work email address.");ok=false}
+      else if(!email.validity.valid){error(email,"Enter a valid email address.");ok=false}
+      if(!password.value){error(password,"Enter your password.");ok=false}
+      if(!ok)return;
+      let button=$("submit");button.disabled=true;button.innerHTML="Signing you in… <span class='animate-spin'>◌</span>";
+      $("status").textContent="Verifying your secure workspace…";$("status").classList.remove("hidden");
+      setTimeout(()=>location.href="dashboard.html",1000);
+    };
+  </script>
 </body>
 </html>
