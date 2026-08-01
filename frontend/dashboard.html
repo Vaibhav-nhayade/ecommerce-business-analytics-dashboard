@@ -1,11 +1,1380 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANIFEST — E-Commerce Operations Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --ink:#0A0E13;
+  --panel:#121821;
+  --panel-2:#161d28;
+  --line:#212a37;
+  --amber:#E8A33D;
+  --amber-dim:#8a662a;
+  --teal:#4FD1C5;
+  --red:#E8555C;
+  --text:#E7ECF2;
+  --muted:#8A94A6;
+  --faint:#525d70;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+::selection{background:var(--amber);color:#0A0E13;}
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-track{background:var(--panel);}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+
+.mono{font-family:'IBM Plex Mono',monospace;}
+.display{font-family:'Space Grotesk',sans-serif;}
+
+/* ===== Layout Shell ===== */
+.shell{display:grid;grid-template-columns:264px 1fr;min-height:100vh;}
+
+/* ===== Sidebar ===== */
+.sidebar{
+  background:var(--panel);
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;
+  position:sticky;top:0;height:100vh;
+  overflow-y:auto;
+}
+.brand{
+  padding:22px 20px 18px;
+  border-bottom:1px solid var(--line);
+}
+.brand-mark{
+  display:flex;align-items:baseline;gap:8px;
+}
+.brand-mark .sq{width:9px;height:9px;background:var(--amber);display:inline-block;flex-shrink:0;}
+.brand-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:0.5px;}
+.brand-sub{color:var(--faint);font-size:10.5px;margin-top:4px;letter-spacing:1.2px;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;}
+
+.nav-scroll{flex:1;padding:10px 0 20px;}
+.nav-group-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;color:var(--faint);letter-spacing:1.5px;
+  padding:16px 20px 6px;text-transform:uppercase;
+}
+.nav-item{
+  display:flex;align-items:center;gap:11px;
+  padding:9px 20px;
+  color:var(--muted);
+  font-size:13.5px;
+  border-left:2px solid transparent;
+  cursor:pointer;
+  transition:background .12s, color .12s;
+  position:relative;
+}
+.nav-item:hover{background:rgba(232,163,61,0.05);color:var(--text);}
+.nav-item.active{
+  background:rgba(232,163,61,0.08);
+  color:var(--amber);
+  border-left:2px solid var(--amber);
+}
+.nav-code{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;color:var(--faint);
+  width:34px;flex-shrink:0;
+}
+.nav-item.active .nav-code{color:var(--amber-dim);}
+.nav-item .badge{
+  margin-left:auto;background:var(--red);color:#fff;
+  font-size:9.5px;font-family:'IBM Plex Mono',monospace;
+  padding:1px 6px;border-radius:8px;
+}
+
+/* ===== Main ===== */
+.main{display:flex;flex-direction:column;min-width:0;}
+
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 28px;border-bottom:1px solid var(--line);
+  background:var(--ink);
+  position:sticky;top:0;z-index:20;
+}
+.topbar-title h1{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;}
+.topbar-title p{color:var(--muted);font-size:12px;margin-top:2px;}
+.topbar-right{display:flex;align-items:center;gap:18px;}
+.clock{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted);text-align:right;}
+.clock span{display:block;color:var(--text);font-size:14px;}
+.avatar{
+  width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,var(--amber),#c47a1f);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:#1a1206;
+}
+
+/* ===== Ticker (signature element) ===== */
+.ticker-wrap{
+  border-bottom:1px solid var(--line);
+  background:var(--panel);
+  overflow:hidden;
+  white-space:nowrap;
+  position:relative;
+}
+.ticker-wrap::before, .ticker-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none;
+}
+.ticker-wrap::before{left:0;background:linear-gradient(90deg,var(--panel),transparent);}
+.ticker-wrap::after{right:0;background:linear-gradient(270deg,var(--panel),transparent);}
+.ticker-track{
+  display:inline-flex;gap:0;
+  animation:scroll-left 45s linear infinite;
+}
+.ticker-wrap:hover .ticker-track{animation-play-state:paused;}
+@keyframes scroll-left{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 22px;border-right:1px solid var(--line);
+  font-family:'IBM Plex Mono',monospace;font-size:12px;
+}
+.ticker-item .lbl{color:var(--faint);}
+.ticker-item .val{color:var(--text);font-weight:600;}
+.up{color:var(--teal);}
+.down{color:var(--red);}
+
+/* ===== Content ===== */
+.content{padding:26px 28px 60px;}
+.page{display:none;}
+.page.active{display:block;animation:fadeIn .25s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+.page-head{margin-bottom:20px;}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber);
+  letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;
+}
+.page-head h2{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:600;}
+.page-head p{color:var(--muted);font-size:13px;margin-top:4px;max-width:640px;}
+
+/* ===== Grid / Cards ===== */
+.grid{display:grid;gap:16px;}
+.g4{grid-template-columns:repeat(4,1fr);}
+.g3{grid-template-columns:repeat(3,1fr);}
+.g2{grid-template-columns:repeat(2,1fr);}
+@media(max-width:1200px){.g4{grid-template-columns:repeat(2,1fr);}.g3{grid-template-columns:repeat(2,1fr);}}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:18px 20px;
+}
+.kpi .kpi-label{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;
+}
+.kpi .kpi-value{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;}
+.kpi .kpi-delta{font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:8px;display:flex;align-items:center;gap:5px;}
+
+.panel-title{
+  font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;margin-bottom:14px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.panel-title .tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--faint);font-weight:400;
+}
+.chart-box{position:relative;height:230px;}
+.chart-box.tall{height:290px;}
+
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{
+  text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--faint);
+  text-transform:uppercase;letter-spacing:0.8px;padding:8px 10px;border-bottom:1px solid var(--line);
+}
+td{padding:10px 10px;border-bottom:1px solid var(--line);color:var(--text);}
+tr:last-child td{border-bottom:none;}
+.pill{
+  display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;
+  font-family:'IBM Plex Mono',monospace;
+}
+.pill.ok{background:rgba(79,209,197,.12);color:var(--teal);}
+.pill.warn{background:rgba(232,163,61,.14);color:var(--amber);}
+.pill.bad{background:rgba(232,85,92,.14);color:var(--red);}
+
+/* AI insights */
+.insight-list{display:flex;flex-direction:column;gap:12px;}
+.insight{
+  display:flex;gap:12px;padding:12px 14px;background:var(--panel-2);
+  border:1px solid var(--line);border-radius:8px;font-size:13px;line-height:1.5;
+}
+.insight .ic{font-size:16px;flex-shrink:0;}
+.insight b{color:var(--amber);}
+
+/* Alerts */
+.alert-row{
+  display:flex;align-items:center;gap:12px;padding:12px 14px;
+  border:1px solid var(--line);border-radius:8px;margin-bottom:10px;background:var(--panel-2);
+}
+.alert-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.alert-dot.crit{background:var(--red);}
+.alert-dot.warn{background:var(--amber);}
+.alert-row .body{flex:1;}
+.alert-row .body .t{font-size:13.5px;}
+.alert-row .body .s{font-size:11.5px;color:var(--muted);font-family:'IBM Plex Mono',monospace;margin-top:2px;}
+
+/* Placeholder module list */
+.mod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media(max-width:1200px){.mod-grid{grid-template-columns:repeat(2,1fr);}}
+.mod-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;
+}
+.mod-card .m-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--faint);margin-bottom:6px;}
+.mod-card .m-value{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;}
+.mod-card .m-sub{font-size:11.5px;color:var(--muted);margin-top:4px;}
+
+.two-col{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;}
+@media(max-width:1100px){.two-col{grid-template-columns:1fr;}}
+
+footer.filecard{
+  margin-top:34px;padding-top:18px;border-top:1px solid var(--line);
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faint);
+  display:flex;justify-content:space-between;
+}
+
+@media(max-width:900px){
+  .shell{grid-template-columns:1fr;}
+  .sidebar{position:relative;height:auto;}
+  .g4,.g3,.g2,.mod-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+/* ===================== NEW: light theme ===================== */
+body[data-theme="light"]{
+  --ink:#F4F5F7; --panel:#FFFFFF; --panel-2:#F0F2F5; --line:#E1E5EA;
+  --text:#1B222C; --muted:#5B6474; --faint:#9AA3B2;
+}
+body[data-theme="light"] .avatar{color:#fff;}
+body[data-theme="light"] ::-webkit-scrollbar-track{background:#eee;}
+
+/* ===================== NEW: glass cards ===================== */
+.card, .mod-card{
+  background:color-mix(in srgb, var(--panel) 88%, transparent);
+  backdrop-filter:blur(10px);
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.card:hover, .mod-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 30px -14px rgba(0,0,0,.55);
+  border-color:#2c3646;
+}
+.card.clickable{cursor:pointer;}
+
+/* nav glow */
+.nav-item.active{box-shadow:inset 0 0 18px rgba(232,163,61,.08);}
+.page{transition:opacity .2s ease;}
+
+/* ===================== Topbar layout v2 ===================== */
+.topbar{gap:16px;flex-wrap:wrap;}
+.topbar-left{display:flex;align-items:center;gap:14px;}
+.hamburger{
+  display:none;background:transparent;border:1px solid var(--line);color:var(--text);
+  width:34px;height:34px;border-radius:8px;font-size:16px;
+}
+.search-box{
+  display:flex;align-items:center;gap:8px;background:var(--panel-2);
+  border:1px solid var(--line);border-radius:8px;padding:8px 12px;min-width:260px;
+  color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12.5px;
+}
+.search-box input{background:transparent;border:none;outline:none;color:var(--text);font:inherit;flex:1;}
+.kbd{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--faint);
+  border:1px solid var(--line);border-radius:4px;padding:1px 5px;
+}
+.topbar-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.tb-btn{
+  background:var(--panel-2);border:1px solid var(--line);color:var(--text);
+  border-radius:8px;padding:8px 12px;font-size:12.5px;font-family:'IBM Plex Mono',monospace;
+  display:flex;align-items:center;gap:6px;position:relative;
+}
+.tb-btn:hover{border-color:var(--amber);color:var(--amber);}
+select.tb-btn{-webkit-appearance:none;appearance:none;}
+.bell-dot{
+  position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;
+  font-size:9px;border-radius:8px;padding:0 4px;font-family:'IBM Plex Mono',monospace;
+}
+.avatar-wrap{position:relative;}
+.avatar{cursor:pointer;}
+.dropdown{
+  position:absolute;top:44px;right:0;background:var(--panel);border:1px solid var(--line);
+  border-radius:10px;min-width:250px;box-shadow:0 20px 40px -20px rgba(0,0,0,.6);
+  display:none;z-index:60;overflow:hidden;
+}
+.dropdown.open{display:block;}
+.dropdown-head{padding:12px 14px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted);font-family:'IBM Plex Mono',monospace;}
+.dropdown-item{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--line);cursor:pointer;}
+.dropdown-item:last-child{border-bottom:none;}
+.dropdown-item:hover{background:var(--panel-2);}
+.dropdown-item small{display:block;color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:10.5px;margin-top:2px;}
+
+/* ===================== Filters panel ===================== */
+.filters-panel{
+  display:none;flex-wrap:wrap;gap:10px;padding:14px 28px;
+  background:var(--panel);border-bottom:1px solid var(--line);
+}
+.filters-panel.open{display:flex;}
+.filters-panel select{
+  background:var(--panel-2);border:1px solid var(--line);color:var(--text);
+  border-radius:7px;padding:7px 10px;font-size:12px;font-family:'IBM Plex Mono',monospace;
+}
+
+/* ===================== Command palette ===================== */
+.cmdk-overlay{
+  position:fixed;inset:0;background:rgba(5,7,10,.6);backdrop-filter:blur(3px);
+  display:none;align-items:flex-start;justify-content:center;padding-top:12vh;z-index:100;
+}
+.cmdk-overlay.open{display:flex;}
+.cmdk-box{
+  width:560px;max-width:92vw;background:var(--panel);border:1px solid var(--line);
+  border-radius:12px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);
+}
+.cmdk-input{
+  width:100%;padding:16px 18px;background:transparent;border:none;outline:none;
+  border-bottom:1px solid var(--line);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:14px;
+}
+.cmdk-list{max-height:340px;overflow-y:auto;}
+.cmdk-item{padding:11px 18px;font-size:13.5px;cursor:pointer;display:flex;justify-content:space-between;}
+.cmdk-item .code{font-family:'IBM Plex Mono',monospace;color:var(--faint);font-size:11px;}
+.cmdk-item:hover, .cmdk-item.sel{background:rgba(232,163,61,.08);color:var(--amber);}
+
+/* ===================== AI Assistant ===================== */
+.ai-fab{
+  position:fixed;bottom:26px;right:26px;z-index:70;
+  background:linear-gradient(135deg,var(--amber),#c47a1f);color:#1a1206;
+  border:none;border-radius:30px;padding:13px 20px;font-family:'Space Grotesk',sans-serif;
+  font-weight:600;font-size:13.5px;box-shadow:0 12px 28px -10px rgba(232,163,61,.5);
+  display:flex;align-items:center;gap:8px;
+}
+.ai-panel{
+  position:fixed;bottom:0;right:0;top:0;width:360px;max-width:92vw;
+  background:var(--panel);border-left:1px solid var(--line);z-index:80;
+  transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column;
+}
+.ai-panel.open{transform:translateX(0);}
+.ai-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
+.ai-head h3{font-family:'Space Grotesk',sans-serif;font-size:15px;}
+.ai-close{background:none;border:none;color:var(--muted);font-size:18px;}
+.ai-body{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:12px;}
+.ai-msg{font-size:13px;line-height:1.55;padding:10px 12px;border-radius:9px;max-width:92%;}
+.ai-msg.bot{background:var(--panel-2);border:1px solid var(--line);align-self:flex-start;}
+.ai-msg.user{background:rgba(232,163,61,.14);color:var(--amber);align-self:flex-end;}
+.ai-quick{display:flex;flex-direction:column;gap:8px;padding:0 18px 14px;}
+.ai-quick button{
+  text-align:left;background:var(--panel-2);border:1px solid var(--line);color:var(--text);
+  padding:9px 12px;border-radius:8px;font-size:12.5px;
+}
+.ai-quick button:hover{border-color:var(--amber);color:var(--amber);}
+.ai-input-row{display:flex;gap:8px;padding:14px 18px;border-top:1px solid var(--line);}
+.ai-input-row input{flex:1;background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:9px 12px;color:var(--text);font:inherit;font-size:12.5px;}
+.ai-input-row button{background:var(--amber);border:none;border-radius:8px;padding:0 14px;color:#1a1206;font-weight:600;}
+
+/* ===================== Loading skeleton ===================== */
+.skeleton-overlay{
+  position:fixed;inset:0;background:var(--ink);z-index:200;
+  display:flex;flex-direction:column;gap:14px;padding:28px;
+  transition:opacity .35s ease;
+}
+.sk-row{display:flex;gap:14px;}
+.sk-block{
+  background:linear-gradient(90deg,#161d28 25%,#1d2531 37%,#161d28 63%);
+  background-size:400% 100%;animation:shimmer 1.3s ease infinite;border-radius:10px;
+}
+@keyframes shimmer{0%{background-position:100% 0;}100%{background-position:0 0;}}
+
+/* AI exec summary */
+.exec-summary{
+  border-left:3px solid var(--amber);padding:16px 18px;margin-bottom:18px;
+  background:var(--panel);border-radius:0 10px 10px 0;font-size:13.5px;line-height:1.65;
+}
+.exec-summary b{color:var(--amber);}
+
+/* sparkline */
+.spark-wrap{margin-top:10px;height:28px;}
+.spark-wrap svg{width:100%;height:100%;display:block;}
+
+/* mobile sidebar overlay */
+.sidebar-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:39;display:none;}
+.sidebar-backdrop.open{display:block;}
+
+@media(max-width:900px){
+  .hamburger{display:flex;align-items:center;justify-content:center;}
+  .sidebar{
+    position:fixed;left:0;top:0;bottom:0;z-index:40;width:264px;
+    transform:translateX(-100%);transition:transform .25s ease;
+  }
+  .sidebar.open{transform:translateX(0);}
+  .search-box{display:none;}
+  .filters-panel{padding:12px 16px;}
+}
+</style>
 </head>
 <body>
-    
+
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark"><span class="sq"></span><span class="brand-name">MANIFEST</span></div>
+      <div class="brand-sub">Commerce Ops Console</div>
+    </div>
+    <nav class="nav-scroll" id="navScroll">
+      <div class="nav-group-label">Overview</div>
+      <div class="nav-item active" data-page="exec"><span class="nav-code">EXE·01</span>Executive Summary</div>
+
+      <div class="nav-group-label">Revenue &amp; Growth</div>
+      <div class="nav-item" data-page="revenue"><span class="nav-code">REV·02</span>Revenue Intelligence</div>
+      <div class="nav-item" data-page="finance"><span class="nav-code">FIN·09</span>Financial Analytics</div>
+      <div class="nav-item" data-page="forecast"><span class="nav-code">AIF·10</span>AI Forecasting</div>
+
+      <div class="nav-group-label">Customer &amp; Growth</div>
+      <div class="nav-item" data-page="customer"><span class="nav-code">CUS·03</span>Customer Intelligence</div>
+      <div class="nav-item" data-page="sales"><span class="nav-code">SAL·04</span>Sales Analytics</div>
+      <div class="nav-item" data-page="marketing"><span class="nav-code">MKT·05</span>Marketing Analytics</div>
+      <div class="nav-item" data-page="support"><span class="nav-code">SUP·13</span>Customer Support</div>
+
+      <div class="nav-group-label">Product &amp; Supply</div>
+      <div class="nav-item" data-page="product"><span class="nav-code">PRD·06</span>Product Analytics</div>
+      <div class="nav-item" data-page="inventory"><span class="nav-code">INV·07</span>Inventory Intelligence</div>
+      <div class="nav-item" data-page="supply"><span class="nav-code">SUP·08</span>Supply Chain</div>
+      <div class="nav-item" data-page="ops"><span class="nav-code">OPS·12</span>Operations</div>
+
+      <div class="nav-group-label">Risk &amp; Trust</div>
+      <div class="nav-item" data-page="risk"><span class="nav-code">RSK·11</span>Risk &amp; Fraud<span class="badge">3</span></div>
+      <div class="nav-item" data-page="geo"><span class="nav-code">GEO·14</span>Geographic Intel</div>
+      <div class="nav-item" data-page="sustain"><span class="nav-code">SUS·15</span>Sustainability</div>
+
+      <div class="nav-group-label">System</div>
+      <div class="nav-item" data-page="recommend"><span class="nav-code">REC·16</span>AI Recommendations</div>
+      <div class="nav-item" data-page="alerts"><span class="nav-code">ALR·17</span>Alerts Center<span class="badge">6</span></div>
+      <div class="nav-item" data-page="reports"><span class="nav-code">RPT·18</span>Report Center</div>
+      <div class="nav-item" data-page="settings"><span class="nav-code">SET·19</span>Settings</div>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburgerBtn">☰</button>
+        <div class="topbar-title">
+          <h1 id="pageTitle">Executive Summary</h1>
+          <p id="pageSub">Morning brief · consolidated across all channels &amp; regions</p>
+        </div>
+      </div>
+
+      <div class="search-box" id="searchBox">
+        <span>🔍</span>
+        <input id="globalSearch" placeholder="Search orders, customers, SKUs, pages…" readonly>
+        <span class="kbd">⌘K</span>
+      </div>
+
+      <div class="topbar-right">
+        <select class="tb-btn" id="dateFilter">
+          <option>Last 7 Days</option>
+          <option selected>Last 30 Days</option>
+          <option>This Quarter</option>
+          <option>YTD</option>
+          <option>Custom Range</option>
+        </select>
+        <button class="tb-btn" id="filterToggleBtn">⚙ Filters</button>
+
+        <div class="avatar-wrap">
+          <button class="tb-btn" id="bellBtn">🔔<span class="bell-dot">3</span></button>
+          <div class="dropdown" id="bellDropdown">
+            <div class="dropdown-head">6 alerts · 3 critical, 3 warning</div>
+            <div class="dropdown-item">Mumbai warehouse inventory low<small>INVENTORY · 2 min ago</small></div>
+            <div class="dropdown-item">Payment failure rate up on EU checkout<small>FINANCE · 14 min ago</small></div>
+            <div class="dropdown-item">2 orders blocked for suspected fraud<small>RISK · 26 min ago</small></div>
+            <div class="dropdown-item">Supplier delay — Rotterdam DC<small>SUPPLY CHAIN · 1 hr ago</small></div>
+          </div>
+        </div>
+
+        <button class="tb-btn" id="themeBtn">🌙 Dark</button>
+
+        <div class="clock">Live console time<span id="clockVal" class="mono">--:--:--</span></div>
+
+        <div class="avatar-wrap">
+          <div class="avatar" id="avatarBtn">RK</div>
+          <div class="dropdown" id="avatarDropdown" style="min-width:190px;">
+            <div class="dropdown-item">Profile settings</div>
+            <div class="dropdown-item">Switch workspace</div>
+            <div class="dropdown-item">Sign out</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filters-panel" id="filtersPanel">
+      <select><option>Region: All</option><option>North America</option><option>West EU</option><option>APAC</option><option>LATAM</option></select>
+      <select><option>Category: All</option><option>Electronics</option><option>Home</option><option>Apparel</option><option>Outdoor</option></select>
+      <select><option>Warehouse: All</option><option>Mumbai</option><option>Rotterdam</option><option>Dallas</option></select>
+      <select><option>Salesperson: All</option><option>A. Fischer</option><option>M. Osei</option><option>R. Iyer</option></select>
+      <select><option>Device: All</option><option>Mobile</option><option>Desktop</option><option>Tablet</option></select>
+      <select><option>Payment: All</option><option>Card</option><option>Digital Wallet</option><option>BNPL</option></select>
+      <select><option>Segment: All</option><option>Champions</option><option>Loyal</option><option>At Risk</option></select>
+    </div>
+
+    <div class="ticker-wrap">
+      <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+
+    <div class="content" id="content">
+
+      <!-- ================= EXECUTIVE SUMMARY ================= -->
+      <section class="page active" id="page-exec">
+        <div class="page-head">
+          <div class="eyebrow">EXE·01 — Daily Brief</div>
+          <h2>Executive Summary</h2>
+          <p>What the CEO reads before the first coffee. Twelve numbers that describe the whole business right now.</p>
+        </div>
+
+        <div class="exec-summary">
+          🧠 <b>AI Executive Briefing —</b> Revenue increased <b>14.2%</b> this week, primarily driven by mobile purchases. Inventory risk exists in the <b>Mumbai warehouse</b>, projected to stock out in 5 days. Forecast suggests <b>12% growth</b> next month if current conversion trends continue. Premium customers now contribute <b>62%</b> of revenue on just 18% of order volume.
+        </div>
+
+        <div class="grid g4" style="margin-bottom:16px;">
+          <div class="card kpi clickable" data-nav="revenue"><div class="kpi-label">Revenue Today</div><div class="kpi-value">$184,920</div><div class="kpi-delta up">▲ 8.4% vs yesterday</div><div class="spark-wrap" data-spark="up"></div></div>
+          <div class="card kpi clickable" data-nav="revenue"><div class="kpi-label">Revenue MTD</div><div class="kpi-value">$3.92M</div><div class="kpi-delta up">▲ 11.2% vs last month</div><div class="spark-wrap" data-spark="up"></div></div>
+          <div class="card kpi clickable" data-nav="revenue"><div class="kpi-label">Revenue YTD</div><div class="kpi-value">$41.6M</div><div class="kpi-delta up">▲ 17.9% YoY</div><div class="spark-wrap" data-spark="up"></div></div>
+          <div class="card kpi clickable" data-nav="finance"><div class="kpi-label">Profit Margin</div><div class="kpi-value">24.3%</div><div class="kpi-delta down">▼ 0.6 pts</div><div class="spark-wrap" data-spark="down"></div></div>
+
+          <div class="card kpi clickable" data-nav="product"><div class="kpi-label">Top Category</div><div class="kpi-value" data-nocount style="font-size:19px;">Electronics</div><div class="kpi-delta up">$612K this week</div></div>
+          <div class="card kpi clickable" data-nav="customer"><div class="kpi-label">New Customers</div><div class="kpi-value">2,184</div><div class="kpi-delta up">▲ 6.1%</div><div class="spark-wrap" data-spark="up"></div></div>
+          <div class="card kpi clickable" data-nav="customer"><div class="kpi-label">Returning Customers</div><div class="kpi-value">61.8%</div><div class="kpi-delta up">▲ 2.3 pts</div><div class="spark-wrap" data-spark="up"></div></div>
+          <div class="card kpi clickable" data-nav="ops"><div class="kpi-label">Cancelled Orders</div><div class="kpi-value">142</div><div class="kpi-delta down">▲ 14 vs avg</div><div class="spark-wrap" data-spark="down"></div></div>
+
+          <div class="card kpi clickable" data-nav="sales"><div class="kpi-label">Avg Order Value</div><div class="kpi-value">$96.40</div><div class="kpi-delta up">▲ 3.1%</div><div class="spark-wrap" data-spark="up"></div></div>
+          <div class="card kpi clickable" data-nav="inventory"><div class="kpi-label">Inventory Health</div><div class="kpi-value">88 / 100</div><div class="kpi-delta warn" style="color:var(--amber)">▬ stable</div><div class="spark-wrap" data-spark="flat"></div></div>
+          <div class="card kpi clickable" data-nav="support"><div class="kpi-label">CSAT</div><div class="kpi-value">4.6 / 5</div><div class="kpi-delta up">▲ 0.1</div><div class="spark-wrap" data-spark="up"></div></div>
+          <div class="card kpi clickable" data-nav="forecast"><div class="kpi-label">Forecast Accuracy</div><div class="kpi-value">94.2%</div><div class="kpi-delta up">▲ 1.4 pts</div><div class="spark-wrap" data-spark="up"></div></div>
+        </div>
+
+        <div class="two-col">
+          <div class="card">
+            <div class="panel-title">Revenue — Last 30 Days <span class="tag">$ USD</span></div>
+            <div class="chart-box tall"><canvas id="chartExecRevenue"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="panel-title">AI Insights <span class="tag">auto-generated</span></div>
+            <div class="insight-list">
+              <div class="insight"><span class="ic">📈</span><span><b>Revenue</b> increased 14.2% compared to last week, led by mobile checkout.</span></div>
+              <div class="insight"><span class="ic">📦</span><span><b>Electronics</b> generated the highest gross profit of any category this month.</span></div>
+              <div class="insight"><span class="ic">⚠️</span><span><b>Mumbai warehouse</b> inventory is projected to run out in 5 days at current velocity.</span></div>
+              <div class="insight"><span class="ic">👥</span><span><b>Premium customers</b> contributed 62% of revenue this month on 18% of orders.</span></div>
+              <div class="insight"><span class="ic">🚚</span><span><b>Delivery time</b> improved 18% after the logistics route optimization rollout.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= REVENUE INTELLIGENCE ================= -->
+      <section class="page" id="page-revenue">
+        <div class="page-head">
+          <div class="eyebrow">REV·02 — Revenue Intelligence</div>
+          <h2>Revenue Intelligence</h2>
+          <p>Beyond a single line — growth, target attainment, and where every dollar is coming from.</p>
+        </div>
+        <div class="grid g4" style="margin-bottom:16px;">
+          <div class="card kpi"><div class="kpi-label">Revenue vs Target</div><div class="kpi-value">106%</div><div class="kpi-delta up">▲ ahead of plan</div></div>
+          <div class="card kpi"><div class="kpi-label">YoY Growth</div><div class="kpi-value">+17.9%</div><div class="kpi-delta up">accelerating</div></div>
+          <div class="card kpi"><div class="kpi-label">QoQ Growth</div><div class="kpi-value">+5.2%</div><div class="kpi-delta up">▲ steady</div></div>
+          <div class="card kpi"><div class="kpi-label">Best Region</div><div class="kpi-value" style="font-size:19px;">West EU</div><div class="kpi-delta up">$1.1M MTD</div></div>
+        </div>
+        <div class="grid g2" style="margin-bottom:16px;">
+          <div class="card"><div class="panel-title">Revenue by Category</div><div class="chart-box"><canvas id="chartRevByCategory"></canvas></div></div>
+          <div class="card"><div class="panel-title">Revenue by Payment Method</div><div class="chart-box"><canvas id="chartRevByPayment"></canvas></div></div>
+        </div>
+        <div class="grid g2">
+          <div class="card"><div class="panel-title">Monthly Revenue — 12mo</div><div class="chart-box"><canvas id="chartRevMonthly"></canvas></div></div>
+          <div class="card"><div class="panel-title">Revenue Waterfall — This Quarter</div><div class="chart-box"><canvas id="chartRevWaterfall"></canvas></div></div>
+        </div>
+      </section>
+
+      <!-- ================= CUSTOMER INTELLIGENCE ================= -->
+      <section class="page" id="page-customer">
+        <div class="page-head">
+          <div class="eyebrow">CUS·03 — Customer Intelligence</div>
+          <h2>Customer Intelligence</h2>
+          <p>Lifetime value, cohorts, and who is at risk of leaving.</p>
+        </div>
+        <div class="grid g4" style="margin-bottom:16px;">
+          <div class="card kpi"><div class="kpi-label">Customer LTV</div><div class="kpi-value">$412</div><div class="kpi-delta up">▲ 4.8%</div></div>
+          <div class="card kpi"><div class="kpi-label">Churn Rate</div><div class="kpi-value">3.9%</div><div class="kpi-delta down">▲ 0.4 pts</div></div>
+          <div class="card kpi"><div class="kpi-label">Repeat Purchase Rate</div><div class="kpi-value">58.1%</div><div class="kpi-delta up">▲ 1.9 pts</div></div>
+          <div class="card kpi"><div class="kpi-label">Acquisition Cost</div><div class="kpi-value">$28.60</div><div class="kpi-delta up" style="color:var(--teal)">▼ cheaper</div></div>
+        </div>
+        <div class="grid g2" style="margin-bottom:16px;">
+          <div class="card"><div class="panel-title">RFM Segmentation</div><div class="chart-box"><canvas id="chartRFM"></canvas></div></div>
+          <div class="card"><div class="panel-title">Customer Cohort Retention</div><div class="chart-box"><canvas id="chartCohort"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="panel-title">Customer Funnel</div>
+          <div class="chart-box"><canvas id="chartCustFunnel"></canvas></div>
+        </div>
+      </section>
+
+      <!-- ================= SALES ANALYTICS ================= -->
+      <section class="page" id="page-sales">
+        <div class="page-head">
+          <div class="eyebrow">SAL·04 — Sales Analytics</div>
+          <h2>Sales Analytics</h2>
+          <p>Trend, timing, and who on the team is closing the most.</p>
+        </div>
+        <div class="grid g2" style="margin-bottom:16px;">
+          <div class="card"><div class="panel-title">Hourly Sales Pattern</div><div class="chart-box"><canvas id="chartHourly"></canvas></div></div>
+          <div class="card"><div class="panel-title">Sales Conversion Funnel</div><div class="chart-box"><canvas id="chartSalesFunnel"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="panel-title">Top Salespeople <span class="tag">this month</span></div>
+          <table>
+            <thead><tr><th>Rep</th><th>Region</th><th>Closed</th><th>Revenue</th><th>Conv. Rate</th></tr></thead>
+            <tbody>
+              <tr><td>A. Fischer</td><td>West EU</td><td>318</td><td>$212,400</td><td><span class="pill ok">31.2%</span></td></tr>
+              <tr><td>M. Osei</td><td>North America</td><td>296</td><td>$198,100</td><td><span class="pill ok">29.8%</span></td></tr>
+              <tr><td>R. Iyer</td><td>APAC</td><td>271</td><td>$176,300</td><td><span class="pill warn">24.1%</span></td></tr>
+              <tr><td>L. Novak</td><td>LATAM</td><td>203</td><td>$121,900</td><td><span class="pill warn">21.5%</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= MARKETING ================= -->
+      <section class="page" id="page-marketing">
+        <div class="page-head">
+          <div class="eyebrow">MKT·05 — Marketing Analytics</div>
+          <h2>Marketing Analytics</h2>
+          <p>Spend efficiency across every channel — most dashboards skip this page.</p>
+        </div>
+        <div class="grid g4" style="margin-bottom:16px;">
+          <div class="card kpi"><div class="kpi-label">ROAS</div><div class="kpi-value">4.6x</div><div class="kpi-delta up">▲ 0.3x</div></div>
+          <div class="card kpi"><div class="kpi-label">CAC</div><div class="kpi-value">$28.60</div><div class="kpi-delta up" style="color:var(--teal)">▼ improving</div></div>
+          <div class="card kpi"><div class="kpi-label">CTR</div><div class="kpi-value">2.14%</div><div class="kpi-delta up">▲ 0.2 pts</div></div>
+          <div class="card kpi"><div class="kpi-label">Conversion Rate</div><div class="kpi-value">3.42%</div><div class="kpi-delta up">▲ 0.4 pts</div></div>
+        </div>
+        <div class="grid g2">
+          <div class="card"><div class="panel-title">Traffic Sources</div><div class="chart-box"><canvas id="chartTraffic"></canvas></div></div>
+          <div class="card"><div class="panel-title">Campaign ROI — Google vs Meta vs Email</div><div class="chart-box"><canvas id="chartCampaign"></canvas></div></div>
+        </div>
+      </section>
+
+      <!-- ================= PRODUCT ================= -->
+      <section class="page" id="page-product">
+        <div class="page-head">
+          <div class="eyebrow">PRD·06 — Product Analytics</div>
+          <h2>Product Analytics</h2>
+          <p>What sells, what sits, and what should be marked down.</p>
+        </div>
+        <div class="grid g2" style="margin-bottom:16px;">
+          <div class="card"><div class="panel-title">ABC Analysis <span class="tag">by revenue contribution</span></div><div class="chart-box"><canvas id="chartABC"></canvas></div></div>
+          <div class="card"><div class="panel-title">Category Performance</div><div class="chart-box"><canvas id="chartCategoryPerf"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="panel-title">Top &amp; Slow Movers</div>
+          <table>
+            <thead><tr><th>Product</th><th>Category</th><th>Units / wk</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Aria Wireless Earbuds</td><td>Electronics</td><td>1,842</td><td><span class="pill ok">Fast moving</span></td></tr>
+              <tr><td>Nordic Ceramic Mug Set</td><td>Home</td><td>1,204</td><td><span class="pill ok">Fast moving</span></td></tr>
+              <tr><td>Trailhead Hiking Poles</td><td>Outdoor</td><td>62</td><td><span class="pill warn">Slow moving</span></td></tr>
+              <tr><td>Retro Film Camera Kit</td><td>Electronics</td><td>9</td><td><span class="pill bad">Dead stock</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= INVENTORY ================= -->
+      <section class="page" id="page-inventory">
+        <div class="page-head">
+          <div class="eyebrow">INV·07 — Inventory Intelligence</div>
+          <h2>Inventory Intelligence</h2>
+          <p>Stock health across the network, and what needs reordering before it runs out.</p>
+        </div>
+        <div class="grid g4" style="margin-bottom:16px;">
+          <div class="card kpi"><div class="kpi-label">Stock Turnover</div><div class="kpi-value">6.2x</div><div class="kpi-delta up">▲ 0.4x</div></div>
+          <div class="card kpi"><div class="kpi-label">Avg Inventory Days</div><div class="kpi-value">41 days</div><div class="kpi-delta up" style="color:var(--teal)">▼ improving</div></div>
+          <div class="card kpi"><div class="kpi-label">Low Stock SKUs</div><div class="kpi-value">37</div><div class="kpi-delta down">▲ 12 vs last wk</div></div>
+          <div class="card kpi"><div class="kpi-label">Warehouse Utilization</div><div class="kpi-value">78%</div><div class="kpi-delta warn" style="color:var(--amber)">near capacity</div></div>
+        </div>
+        <div class="grid g2">
+          <div class="card"><div class="panel-title">Stock Aging Distribution</div><div class="chart-box"><canvas id="chartStockAge"></canvas></div></div>
+          <div class="card">
+            <div class="panel-title">Reorder Recommendations</div>
+            <table>
+              <thead><tr><th>SKU</th><th>Warehouse</th><th>Days Left</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>Aria Earbuds</td><td>Mumbai</td><td>5</td><td><span class="pill bad">Reorder now</span></td></tr>
+                <tr><td>Ceramic Mug Set</td><td>Rotterdam</td><td>11</td><td><span class="pill warn">Reorder soon</span></td></tr>
+                <tr><td>Yoga Mat Pro</td><td>Dallas</td><td>19</td><td><span class="pill ok">Healthy</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SUPPLY CHAIN ================= -->
+      <section class="page" id="page-supply">
+        <div class="page-head">
+          <div class="eyebrow">SUP·08 — Supply Chain Analytics</div>
+          <h2>Supply Chain Analytics</h2>
+          <p>Supplier reliability, lead time, and delivery performance.</p>
+        </div>
+        <div class="grid g4" style="margin-bottom:16px;">
+          <div class="card kpi"><div class="kpi-label">Avg Lead Time</div><div class="kpi-value">6.4 days</div><div class="kpi-delta up" style="color:var(--teal)">▼ 0.8 days</div></div>
+          <div class="card kpi"><div class="kpi-label">On-Time Delivery</div><div class="kpi-value">93.1%</div><div class="kpi-delta up">▲ 1.2 pts</div></div>
+          <div class="card kpi"><div class="kpi-label">Shipping Cost / Order</div><div class="kpi-value">$6.80</div><div class="kpi-delta down">▲ 0.30</div></div>
+          <div class="card kpi"><div class="kpi-label">Return Logistics Cost</div><div class="kpi-value">$41K</div><div class="kpi-delta down">▲ 8.4%</div></div>
+        </div>
+        <div class="card"><div class="panel-title">Supplier Performance</div><div class="chart-box"><canvas id="chartSupplier"></canvas></div></div>
+      </section>
+
+      <!-- ================= FINANCIAL ================= -->
+      <section class="page" id="page-finance">
+        <div class="page-head">
+          <div class="eyebrow">FIN·09 — Financial Analytics</div>
+          <h2>Financial Analytics</h2>
+          <p>Margin, cash flow, and where revenue is leaking.</p>
+        </div>
+        <div class="grid g4" style="margin-bottom:16px;">
+          <div class="card kpi"><div class="kpi-label">Gross Profit</div><div class="kpi-value">$9.8M</div><div class="kpi-delta up">▲ 12.1%</div></div>
+          <div class="card kpi"><div class="kpi-label">EBITDA</div><div class="kpi-value">$6.1M</div><div class="kpi-delta up">▲ 9.4%</div></div>
+          <div class="card kpi"><div class="kpi-label">Operating Margin</div><div class="kpi-value">21.7%</div><div class="kpi-delta down">▼ 0.3 pts</div></div>
+          <div class="card kpi"><div class="kpi-label">Revenue Leakage</div><div class="kpi-value">$184K</div><div class="kpi-delta down">▲ 6.2%</div></div>
+        </div>
+        <div class="card"><div class="panel-title">Cash Flow — 12mo</div><div class="chart-box"><canvas id="chartCashFlow"></canvas></div></div>
+      </section>
+
+      <!-- ================= AI FORECASTING ================= -->
+      <section class="page" id="page-forecast">
+        <div class="page-head">
+          <div class="eyebrow">AIF·10 — AI Forecasting</div>
+          <h2>AI Forecasting</h2>
+          <p>Model-projected revenue and demand, 90 days out.</p>
+        </div>
+        <div class="grid g4" style="margin-bottom:16px;">
+          <div class="card kpi"><div class="kpi-label">30-Day Revenue Forecast</div><div class="kpi-value">$4.3M</div><div class="kpi-delta up">▲ 9.8%</div></div>
+          <div class="card kpi"><div class="kpi-label">90-Day Revenue Forecast</div><div class="kpi-value">$13.1M</div><div class="kpi-delta up">▲ 12.4%</div></div>
+          <div class="card kpi"><div class="kpi-label">Model Confidence</div><div class="kpi-value">94.2%</div><div class="kpi-delta up">high confidence</div></div>
+          <div class="card kpi"><div class="kpi-label">Holiday Impact (proj.)</div><div class="kpi-value">+31%</div><div class="kpi-delta up">Nov–Dec surge</div></div>
+        </div>
+        <div class="card"><div class="panel-title">Revenue Forecast — Actual vs Predicted</div><div class="chart-box tall"><canvas id="chartForecast"></canvas></div></div>
+      </section>
+
+      <!-- ================= RISK & FRAUD ================= -->
+      <section class="page" id="page-risk">
+        <div class="page-head">
+          <div class="eyebrow">RSK·11 — Risk &amp; Fraud Analytics</div>
+          <h2>Risk &amp; Fraud Analytics</h2>
+          <p>Flagged transactions, chargebacks, and account risk scoring.</p>
+        </div>
+        <div class="grid g4" style="margin-bottom:16px;">
+          <div class="card kpi"><div class="kpi-label">High Risk Orders</div><div class="kpi-value">57</div><div class="kpi-delta down">▲ 9 today</div></div>
+          <div class="card kpi"><div class="kpi-label">Chargebacks</div><div class="kpi-value">0.34%</div><div class="kpi-delta up" style="color:var(--teal)">▼ 0.05 pts</div></div>
+          <div class="card kpi"><div class="kpi-label">Failed Payments</div><div class="kpi-value">2.1%</div><div class="kpi-delta down">▲ 0.3 pts</div></div>
+          <div class="card kpi"><div class="kpi-label">Avg Fraud Score</div><div class="kpi-value">18 / 100</div><div class="kpi-delta up" style="color:var(--teal)">low risk</div></div>
+        </div>
+        <div class="card">
+          <div class="panel-title">Flagged Transactions <span class="tag">last 24h</span></div>
+          <table>
+            <thead><tr><th>Order</th><th>Amount</th><th>Risk Signal</th><th>Score</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>#48213</td><td>$1,240</td><td>New device + high value</td><td>84</td><td><span class="pill bad">Blocked</span></td></tr>
+              <tr><td>#48219</td><td>$312</td><td>Mismatched billing/IP geo</td><td>61</td><td><span class="pill warn">Review</span></td></tr>
+              <tr><td>#48227</td><td>$88</td><td>Multiple cards, same address</td><td>52</td><td><span class="pill warn">Review</span></td></tr>
+              <tr><td>#48231</td><td>$1,900</td><td>Velocity spike on account</td><td>77</td><td><span class="pill bad">Blocked</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= OPERATIONS ================= -->
+      <section class="page" id="page-ops">
+        <div class="page-head">
+          <div class="eyebrow">OPS·12 — Operations Analytics</div>
+          <h2>Operations Analytics</h2>
+          <p>How fast orders move from click to doorstep.</p>
+        </div>
+        <div class="mod-grid" style="margin-bottom:16px;">
+          <div class="mod-card"><div class="m-label">ORDER PROCESSING TIME</div><div class="m-value">3.2 hrs</div><div class="m-sub">▼ 0.4 hrs vs last week</div></div>
+          <div class="mod-card"><div class="m-label">AVG PACKING TIME</div><div class="m-value">6.8 min</div><div class="m-sub">▲ steady</div></div>
+          <div class="mod-card"><div class="m-label">DELIVERY SLA</div><div class="m-value">96.4%</div><div class="m-sub">▲ 0.8 pts</div></div>
+          <div class="mod-card"><div class="m-label">ORDER CYCLE TIME</div><div class="m-value">2.1 days</div><div class="m-sub">▼ improving</div></div>
+          <div class="mod-card"><div class="m-label">PENDING ORDERS</div><div class="m-value">412</div><div class="m-sub">within normal range</div></div>
+          <div class="mod-card"><div class="m-label">DELAYED ORDERS</div><div class="m-value">28</div><div class="m-sub">▲ 6 vs avg</div></div>
+        </div>
+        <div class="card"><div class="panel-title">Order Cycle Time — Trend</div><div class="chart-box"><canvas id="chartOps"></canvas></div></div>
+      </section>
+
+      <!-- ================= SUPPORT ================= -->
+      <section class="page" id="page-support">
+        <div class="page-head">
+          <div class="eyebrow">SUP·13 — Customer Support Analytics</div>
+          <h2>Customer Support Analytics</h2>
+          <p>Ticket volume, resolution speed, and what people are complaining about.</p>
+        </div>
+        <div class="grid g4" style="margin-bottom:16px;">
+          <div class="card kpi"><div class="kpi-label">Open Tickets</div><div class="kpi-value">184</div><div class="kpi-delta down">▲ 12 today</div></div>
+          <div class="card kpi"><div class="kpi-label">Avg Resolution Time</div><div class="kpi-value">4.1 hrs</div><div class="kpi-delta up" style="color:var(--teal)">▼ improving</div></div>
+          <div class="card kpi"><div class="kpi-label">CSAT</div><div class="kpi-value">4.6 / 5</div><div class="kpi-delta up">▲ 0.1</div></div>
+          <div class="card kpi"><div class="kpi-label">Refund Requests</div><div class="kpi-value">96</div><div class="kpi-delta down">▲ 8.9%</div></div>
+        </div>
+        <div class="card"><div class="panel-title">Top Complaint Categories</div><div class="chart-box"><canvas id="chartComplaints"></canvas></div></div>
+      </section>
+
+      <!-- ================= GEOGRAPHIC ================= -->
+      <section class="page" id="page-geo">
+        <div class="page-head">
+          <div class="eyebrow">GEO·14 — Geographic Intelligence</div>
+          <h2>Geographic Intelligence</h2>
+          <p>Where the business is growing, region by region.</p>
+        </div>
+        <div class="grid g2">
+          <div class="card"><div class="panel-title">Revenue by Region</div><div class="chart-box"><canvas id="chartGeo"></canvas></div></div>
+          <div class="card">
+            <div class="panel-title">Top Cities</div>
+            <table>
+              <thead><tr><th>City</th><th>Revenue</th><th>Growth</th></tr></thead>
+              <tbody>
+                <tr><td>London</td><td>$612K</td><td><span class="pill ok">▲ 14%</span></td></tr>
+                <tr><td>New York</td><td>$588K</td><td><span class="pill ok">▲ 9%</span></td></tr>
+                <tr><td>Singapore</td><td>$401K</td><td><span class="pill ok">▲ 21%</span></td></tr>
+                <tr><td>São Paulo</td><td>$298K</td><td><span class="pill warn">▲ 3%</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SUSTAINABILITY ================= -->
+      <section class="page" id="page-sustain">
+        <div class="page-head">
+          <div class="eyebrow">SUS·15 — Sustainability Dashboard</div>
+          <h2>Sustainability Dashboard</h2>
+          <p>Emissions, packaging, and the ESG numbers leadership now tracks.</p>
+        </div>
+        <div class="mod-grid">
+          <div class="mod-card"><div class="m-label">CARBON EMISSIONS</div><div class="m-value">842 t CO₂</div><div class="m-sub">▼ 6.1% vs last month</div></div>
+          <div class="mod-card"><div class="m-label">PACKAGING WASTE</div><div class="m-value">14.2 t</div><div class="m-sub">▼ 3.4%</div></div>
+          <div class="mod-card"><div class="m-label">EV DELIVERY SHARE</div><div class="m-value">37%</div><div class="m-sub">▲ 5 pts</div></div>
+          <div class="mod-card"><div class="m-label">GREEN ORDERS</div><div class="m-value">28.4%</div><div class="m-sub">of total volume</div></div>
+          <div class="mod-card"><div class="m-label">PLASTIC REDUCTION</div><div class="m-value">-19%</div><div class="m-sub">vs baseline year</div></div>
+          <div class="mod-card"><div class="m-label">ESG SCORE</div><div class="m-value">B+</div><div class="m-sub">up from B last quarter</div></div>
+        </div>
+      </section>
+
+      <!-- ================= AI RECOMMENDATIONS ================= -->
+      <section class="page" id="page-recommend">
+        <div class="page-head">
+          <div class="eyebrow">REC·16 — AI Recommendation Center</div>
+          <h2>AI Recommendation Center</h2>
+          <p>Actions the model suggests, ranked by estimated impact.</p>
+        </div>
+        <div class="insight-list">
+          <div class="insight"><span class="ic">📦</span><span>Restock <b>Aria Wireless Earbuds</b> at the Mumbai warehouse — projected stockout in 5 days.</span></div>
+          <div class="insight"><span class="ic">👤</span><span>247 customers flagged <b>at risk of churn</b> — recommend a targeted win-back offer this week.</span></div>
+          <div class="insight"><span class="ic">🏷️</span><span>Discount <b>Retro Film Camera Kit</b> by 20% — inventory has aged past 90 days with minimal turnover.</span></div>
+          <div class="insight"><span class="ic">🔗</span><span>Cross-sell opportunity: customers buying <b>Aria Earbuds</b> frequently add a charging case within 7 days.</span></div>
+          <div class="insight"><span class="ic">💰</span><span>Increasing the price of <b>Nordic Ceramic Mug Set</b> by 3% is estimated to improve margin without meaningfully affecting demand.</span></div>
+        </div>
+      </section>
+
+      <!-- ================= ALERTS ================= -->
+      <section class="page" id="page-alerts">
+        <div class="page-head">
+          <div class="eyebrow">ALR·17 — Alerts Center</div>
+          <h2>Alerts Center</h2>
+          <p>Everything that needs attention right now, ranked by severity.</p>
+        </div>
+        <div class="alert-row"><div class="alert-dot crit"></div><div class="body"><div class="t">Mumbai warehouse inventory projected to run out in 5 days</div><div class="s">INVENTORY · 2 min ago</div></div></div>
+        <div class="alert-row"><div class="alert-dot crit"></div><div class="body"><div class="t">Payment failure rate up 0.3 pts on EU checkout</div><div class="s">FINANCE · 14 min ago</div></div></div>
+        <div class="alert-row"><div class="alert-dot crit"></div><div class="body"><div class="t">2 high-value orders blocked for suspected fraud</div><div class="s">RISK · 26 min ago</div></div></div>
+        <div class="alert-row"><div class="alert-dot warn"></div><div class="body"><div class="t">Supplier delay reported — Rotterdam distribution center</div><div class="s">SUPPLY CHAIN · 1 hr ago</div></div></div>
+        <div class="alert-row"><div class="alert-dot warn"></div><div class="body"><div class="t">Refund rate trending above target for third day</div><div class="s">SUPPORT · 3 hrs ago</div></div></div>
+        <div class="alert-row"><div class="alert-dot warn"></div><div class="body"><div class="t">Demand spike detected for Aria Wireless Earbuds</div><div class="s">DEMAND · 5 hrs ago</div></div></div>
+      </section>
+
+      <!-- ================= REPORTS ================= -->
+      <section class="page" id="page-reports">
+        <div class="page-head">
+          <div class="eyebrow">RPT·18 — Report Center</div>
+          <h2>Report Center</h2>
+          <p>Schedule, export, and share what leadership needs to see.</p>
+        </div>
+        <div class="mod-grid">
+          <div class="mod-card"><div class="m-label">WEEKLY REPORT</div><div class="m-value">Ready</div><div class="m-sub">Sent every Monday, 7:00 AM</div></div>
+          <div class="mod-card"><div class="m-label">MONTHLY REPORT</div><div class="m-value">Ready</div><div class="m-sub">Auto-generated on the 1st</div></div>
+          <div class="mod-card"><div class="m-label">KPI REPORT</div><div class="m-value">Ready</div><div class="m-sub">Executive Summary export</div></div>
+          <div class="mod-card"><div class="m-label">FINANCIAL REPORT</div><div class="m-value">Ready</div><div class="m-sub">P&amp;L + cash flow</div></div>
+          <div class="mod-card clickable" id="exportPdfBtn"><div class="m-label">EXPORT PDF</div><div class="m-value">↓</div><div class="m-sub">Print current page to PDF</div></div>
+          <div class="mod-card clickable" id="exportCsvBtn"><div class="m-label">EXPORT CSV</div><div class="m-value">↓</div><div class="m-sub">Download raw KPI data</div></div>
+        </div>
+      </section>
+
+      <!-- ================= SETTINGS ================= -->
+      <section class="page" id="page-settings">
+        <div class="page-head">
+          <div class="eyebrow">SET·19 — Settings</div>
+          <h2>Settings</h2>
+          <p>Console configuration, access, and system controls.</p>
+        </div>
+        <div class="mod-grid">
+          <div class="mod-card"><div class="m-label">PROFILE</div><div class="m-value">R. Kapoor</div><div class="m-sub">Director of Operations</div></div>
+          <div class="mod-card"><div class="m-label">ROLES &amp; PERMISSIONS</div><div class="m-value">Admin</div><div class="m-sub">Full console access</div></div>
+          <div class="mod-card"><div class="m-label">API KEYS</div><div class="m-value">3 active</div><div class="m-sub">Last rotated 12 days ago</div></div>
+          <div class="mod-card"><div class="m-label">NOTIFICATIONS</div><div class="m-value">On</div><div class="m-sub">Critical alerts via SMS + email</div></div>
+          <div class="mod-card"><div class="m-label">DATABASE</div><div class="m-value">Healthy</div><div class="m-sub">Last backup 3 hrs ago</div></div>
+          <div class="mod-card"><div class="m-label">AUDIT LOG</div><div class="m-value">1,204 events</div><div class="m-sub">Last 30 days</div></div>
+        </div>
+      </section>
+
+      <footer class="filecard">
+        <span>MANIFEST v2.4 — Commerce Ops Console</span>
+        <span>All figures simulated for demonstration</span>
+      </footer>
+
+    </div>
+  </div>
+</div>
+
+<!-- Loading skeleton -->
+<div class="skeleton-overlay" id="skeletonOverlay">
+  <div class="sk-row"><div class="sk-block" style="width:264px;height:100%;min-height:600px;"></div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;">
+      <div class="sk-block" style="height:48px;"></div>
+      <div class="sk-row">
+        <div class="sk-block" style="flex:1;height:90px;"></div><div class="sk-block" style="flex:1;height:90px;"></div>
+        <div class="sk-block" style="flex:1;height:90px;"></div><div class="sk-block" style="flex:1;height:90px;"></div>
+      </div>
+      <div class="sk-block" style="height:280px;"></div>
+    </div>
+  </div>
+</div>
+
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<!-- Command palette -->
+<div class="cmdk-overlay" id="cmdkOverlay">
+  <div class="cmdk-box">
+    <input class="cmdk-input" id="cmdkInput" placeholder="Jump to a module… (Revenue, Inventory, Forecast…)">
+    <div class="cmdk-list" id="cmdkList"></div>
+  </div>
+</div>
+
+<!-- AI Assistant -->
+<button class="ai-fab" id="aiFab">🤖 Ask AI</button>
+<div class="ai-panel" id="aiPanel">
+  <div class="ai-head"><h3>AI Assistant</h3><button class="ai-close" id="aiClose">✕</button></div>
+  <div class="ai-quick">
+    <button data-q="Why did revenue decrease?">Why did revenue decrease?</button>
+    <button data-q="Predict next month revenue.">Predict next month revenue.</button>
+    <button data-q="Which warehouse needs attention?">Which warehouse needs attention?</button>
+    <button data-q="Generate weekly report.">Generate weekly report.</button>
+  </div>
+  <div class="ai-body" id="aiBody">
+    <div class="ai-msg bot">Hi — I'm watching the console with you. Ask me about revenue, inventory, churn, or forecasts, or tap a suggestion above.</div>
+  </div>
+  <div class="ai-input-row">
+    <input id="aiInput" placeholder="Ask a question…">
+    <button id="aiSend">Send</button>
+  </div>
+</div>
+
+<script>
+/* ---------- Global chart defaults ---------- */
+Chart.defaults.color = '#8A94A6';
+Chart.defaults.font.family = "'IBM Plex Mono', monospace";
+Chart.defaults.font.size = 11;
+Chart.defaults.borderColor = '#212a37';
+const GRID = {color:'#1a2230'};
+const AMBER = '#E8A33D', TEAL = '#4FD1C5', RED='#E8555C', MUTED='#525d70';
+
+function fmtAxis(scaleOpts){ return Object.assign({grid:GRID, ticks:{color:'#8A94A6'}}, scaleOpts||{}); }
+
+/* ---------- Clock ---------- */
+function tickClock(){
+  const el = document.getElementById('clockVal');
+  const d = new Date();
+  el.textContent = d.toLocaleTimeString('en-US',{hour12:false});
+}
+tickClock(); setInterval(tickClock,1000);
+
+/* ---------- Nav switching ---------- */
+const titles = {
+  exec:['Executive Summary','Morning brief · consolidated across all channels & regions'],
+  revenue:['Revenue Intelligence','Growth, targets, and where every dollar comes from'],
+  customer:['Customer Intelligence','Lifetime value, cohorts, and churn risk'],
+  sales:['Sales Analytics','Trend, timing, and team performance'],
+  marketing:['Marketing Analytics','Spend efficiency across every channel'],
+  product:['Product Analytics','What sells, what sits, what to discount'],
+  inventory:['Inventory Intelligence','Stock health across the network'],
+  supply:['Supply Chain Analytics','Supplier reliability and delivery performance'],
+  finance:['Financial Analytics','Margin, cash flow, and leakage'],
+  forecast:['AI Forecasting','Model-projected revenue and demand'],
+  risk:['Risk & Fraud Analytics','Flagged transactions and account risk'],
+  ops:['Operations Analytics','Click-to-doorstep performance'],
+  support:['Customer Support Analytics','Ticket volume and resolution speed'],
+  geo:['Geographic Intelligence','Where the business is growing'],
+  sustain:['Sustainability Dashboard','Emissions, packaging, and ESG'],
+  recommend:['AI Recommendation Center','Actions ranked by estimated impact'],
+  alerts:['Alerts Center','Everything needing attention right now'],
+  reports:['Report Center','Schedule, export, and share'],
+  settings:['Settings','Console configuration and access']
+};
+/* nav click handling now lives in goToPage(), wired further below */
+
+/* ---------- Ticker ---------- */
+const tickerData = [
+  ['REV TODAY','$184,920','up'],['ORDERS','2,041','up'],['AOV','$96.40','up'],
+  ['CONV RATE','3.42%','up'],['CANCELLATIONS','142','down'],['FRAUD BLOCKS','2','down'],
+  ['INVENTORY HEALTH','88/100',''],['CSAT','4.6/5','up'],['SLA','96.4%','up'],
+  ['CHARGEBACKS','0.34%','up'],['FORECAST ACC.','94.2%','up'],['ACTIVE SESSIONS','14,208','up']
+];
+function buildTicker(){
+  const track = document.getElementById('tickerTrack');
+  let html='';
+  for(let r=0;r<2;r++){
+    tickerData.forEach(([lbl,val,dir])=>{
+      const arrow = dir==='up' ? '▲' : dir==='down' ? '▼' : '▬';
+      const cls = dir==='up' ? 'up' : dir==='down' ? 'down' : '';
+      html += `<span class="ticker-item"><span class="lbl">${lbl}</span><span class="val ${cls}">${arrow} ${val}</span></span>`;
+    });
+  }
+  track.innerHTML = html;
+}
+buildTicker();
+
+/* ---------- Chart helpers ---------- */
+function lineChart(ctx,labels,data,color,fill=true){
+  return new Chart(ctx,{type:'line',data:{labels,datasets:[{data,borderColor:color,backgroundColor:color+'22',fill,tension:.35,pointRadius:0,borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:fmtAxis(),y:fmtAxis()}}});
+}
+function barChart(ctx,labels,data,color){
+  return new Chart(ctx,{type:'bar',data:{labels,datasets:[{data,backgroundColor:color,borderRadius:4,maxBarThickness:34}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:fmtAxis(),y:fmtAxis()}}});
+}
+function doughnut(ctx,labels,data,colors){
+  return new Chart(ctx,{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderColor:'#121821',borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{boxWidth:10,padding:14,color:'#8A94A6'}}}}});
+}
+function horizBar(ctx,labels,data,color){
+  return new Chart(ctx,{type:'bar',data:{labels,datasets:[{data,backgroundColor:color,borderRadius:4}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:fmtAxis(),y:fmtAxis()}}});
+}
+
+const days30 = Array.from({length:30},(_,i)=>'D'+(i+1));
+const months12 = ['Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul'];
+
+/* Executive */
+lineChart(document.getElementById('chartExecRevenue'), days30,
+  days30.map((_,i)=>120000+Math.sin(i/3)*15000+i*2200+Math.random()*8000), AMBER);
+
+/* Revenue Intelligence */
+doughnut(document.getElementById('chartRevByCategory'),
+  ['Electronics','Home','Apparel','Outdoor','Beauty'],[34,22,19,14,11],[AMBER,TEAL,'#6b7cff','#c47a1f','#3a4658']);
+doughnut(document.getElementById('chartRevByPayment'),
+  ['Card','Digital Wallet','BNPL','Bank Transfer'],[48,29,15,8],[AMBER,TEAL,'#6b7cff','#3a4658']);
+barChart(document.getElementById('chartRevMonthly'), months12,
+  [2.8,3.0,3.3,3.6,4.4,3.1,2.9,3.2,3.5,3.7,3.8,3.92].map(v=>v*1e6), AMBER);
+new Chart(document.getElementById('chartRevWaterfall'),{
+  type:'bar',
+  data:{labels:['Start','New','Upsell','Churn','Refunds','End'],
+    datasets:[{data:[[0,3.6],[3.6,3.9],[3.9,4.15],[3.75,3.9],[3.62,3.75],[0,3.62]],
+      backgroundColor:[MUTED,TEAL,TEAL,RED,RED,AMBER],borderRadius:4}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:fmtAxis(),y:fmtAxis({title:{display:true,text:'$M'}})}}});
+
+/* Customer */
+new Chart(document.getElementById('chartRFM'),{type:'polarArea',
+  data:{labels:['Champions','Loyal','At Risk','New','Hibernating'],datasets:[{data:[28,24,14,20,14],
+    backgroundColor:[AMBER+'cc',TEAL+'cc','#6b7cffcc','#c47a1fcc','#3a4658cc']}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:10,color:'#8A94A6'}}},scales:{r:{grid:GRID,ticks:{display:false}}}}});
+lineChart(document.getElementById('chartCohort'), ['M0','M1','M2','M3','M4','M5'], [100,64,48,39,33,29], TEAL,false);
+horizBar(document.getElementById('chartCustFunnel'), ['Visited','Added to Cart','Checkout Started','Purchased'], [100000,38000,21000,14200], AMBER);
+
+/* Sales */
+barChart(document.getElementById('chartHourly'), ['6a','8a','10a','12p','2p','4p','6p','8p','10p'],
+  [12,28,44,61,58,52,71,84,49], AMBER);
+horizBar(document.getElementById('chartSalesFunnel'), ['Leads','Qualified','Proposal','Closed Won'], [4200,2600,1400,860], TEAL);
+
+/* Marketing */
+doughnut(document.getElementById('chartTraffic'), ['Organic','Paid','Referral','Direct','Email'], [36,27,14,15,8],
+  [TEAL,AMBER,'#6b7cff','#c47a1f','#3a4658']);
+barChart(document.getElementById('chartCampaign'), ['Google Ads','Meta','Email','TikTok'], [5.2,3.8,7.4,2.9], TEAL);
+
+/* Product */
+new Chart(document.getElementById('chartABC'),{type:'bar',
+  data:{labels:['A — Top 20%','B — Mid 30%','C — Bottom 50%'],datasets:[{data:[68,24,8],backgroundColor:[AMBER,TEAL,MUTED],borderRadius:4}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:fmtAxis(),y:fmtAxis({title:{display:true,text:'% of revenue'}})}}});
+horizBar(document.getElementById('chartCategoryPerf'), ['Electronics','Home','Apparel','Outdoor','Beauty'], [612,398,341,208,177], AMBER);
+
+/* Inventory */
+new Chart(document.getElementById('chartStockAge'),{type:'bar',
+  data:{labels:['0-30d','31-60d','61-90d','90d+'],datasets:[{data:[52,28,12,8],backgroundColor:[TEAL,AMBER,'#c47a1f',RED],borderRadius:4}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:fmtAxis(),y:fmtAxis({title:{display:true,text:'% of SKUs'}})}}});
+
+/* Supply chain */
+horizBar(document.getElementById('chartSupplier'), ['Aster Logistics','Pacific Freight','Nordic Supply Co','Delta Cargo'], [97,92,88,81], TEAL);
+
+/* Finance */
+new Chart(document.getElementById('chartCashFlow'),{type:'bar',
+  data:{labels:months12,datasets:[
+    {label:'Inflow',data:months12.map(()=>3+Math.random()*1.5),backgroundColor:TEAL,borderRadius:3},
+    {label:'Outflow',data:months12.map(()=>-(2+Math.random()*1.2)),backgroundColor:RED,borderRadius:3}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8A94A6',boxWidth:10}}},scales:{x:fmtAxis(),y:fmtAxis({title:{display:true,text:'$M'}})}}});
+
+/* Forecast */
+new Chart(document.getElementById('chartForecast'),{type:'line',
+  data:{labels:['-30','-20','-10','Now','+10','+20','+30','+60','+90'],
+    datasets:[
+      {label:'Actual',data:[3.2,3.4,3.7,3.92,null,null,null,null,null],borderColor:AMBER,backgroundColor:AMBER+'22',fill:true,tension:.3,pointRadius:0,borderWidth:2},
+      {label:'Forecast',data:[null,null,null,3.92,4.1,4.3,4.4,5.6,6.9],borderColor:TEAL,borderDash:[6,4],fill:false,tension:.3,pointRadius:0,borderWidth:2}
+    ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8A94A6',boxWidth:10}}},scales:{x:fmtAxis(),y:fmtAxis({title:{display:true,text:'$M'}})}}});
+
+/* Support */
+horizBar(document.getElementById('chartComplaints'), ['Late Delivery','Item Damaged','Wrong Item','Refund Delay','Sizing Issue'], [214,168,132,101,84], RED);
+
+/* Geo */
+doughnut(document.getElementById('chartGeo'), ['North America','West EU','APAC','LATAM','MEA'], [34,28,21,11,6],
+  [AMBER,TEAL,'#6b7cff','#c47a1f','#3a4658']);
+
+/* Operations */
+lineChart(document.getElementById('chartOps'), months12, [2.9,2.8,2.7,2.6,2.8,2.5,2.4,2.3,2.2,2.2,2.15,2.1], TEAL, false);
+
+/* ================= NEW FEATURES ================= */
+
+/* -- helper: switch to a page by key (reused by nav, cards, command palette) -- */
+function goToPage(key){
+  document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));
+  const navEl = document.querySelector('.nav-item[data-page="'+key+'"]');
+  if(navEl) navEl.classList.add('active');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg = document.getElementById('page-'+key);
+  if(pg) pg.classList.add('active');
+  if(titles[key]){
+    document.getElementById('pageTitle').textContent = titles[key][0];
+    document.getElementById('pageSub').textContent = titles[key][1];
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('sidebar')?.classList.remove('open');
+  document.getElementById('sidebarBackdrop')?.classList.remove('open');
+}
+document.querySelectorAll('.nav-item').forEach(item=>{
+  item.addEventListener('click',()=>goToPage(item.dataset.page));
+});
+
+/* -- loading skeleton -- */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+window.addEventListener('load',()=>{
+  const sk = document.getElementById('skeletonOverlay');
+  const delay = reduceMotion ? 0 : 900;
+  setTimeout(()=>{
+    sk.style.opacity='0';
+    setTimeout(()=>sk.style.display='none', 350);
+  }, delay);
+});
+
+/* -- mobile hamburger -- */
+document.getElementById('hamburgerBtn')?.addEventListener('click',()=>{
+  document.querySelector('.sidebar').classList.toggle('open');
+  document.getElementById('sidebarBackdrop').classList.toggle('open');
+});
+document.getElementById('sidebarBackdrop')?.addEventListener('click',()=>{
+  document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('sidebarBackdrop').classList.remove('open');
+});
+document.querySelector('.sidebar').id = 'sidebar';
+
+/* -- dropdowns (bell / avatar) -- */
+function toggleDropdown(btnId, ddId){
+  document.getElementById(btnId).addEventListener('click',(e)=>{
+    e.stopPropagation();
+    const dd = document.getElementById(ddId);
+    const wasOpen = dd.classList.contains('open');
+    document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
+    if(!wasOpen) dd.classList.add('open');
+  });
+}
+toggleDropdown('bellBtn','bellDropdown');
+toggleDropdown('avatarBtn','avatarDropdown');
+document.addEventListener('click',()=>document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open')));
+
+/* -- filters panel toggle -- */
+document.getElementById('filterToggleBtn').addEventListener('click',()=>{
+  document.getElementById('filtersPanel').classList.toggle('open');
+});
+
+/* -- date filter: lightly re-scales KPI values for demo realism -- */
+document.getElementById('dateFilter').addEventListener('change', (e)=>{
+  const scaleMap = {'Last 7 Days':0.24,'Last 30 Days':1,'This Quarter':2.9,'YTD':11.2,'Custom Range':1};
+  const scale = scaleMap[e.target.value] ?? 1;
+  document.querySelectorAll('.kpi-value[data-base]').forEach(el=>{
+    const base = parseFloat(el.dataset.base);
+    const scaled = base*scale;
+    el.textContent = formatLikeOriginal(el.dataset.template, scaled);
+  });
+});
+function formatLikeOriginal(tpl, n){
+  if(tpl.includes('$') && tpl.includes('M')) return '$'+n.toFixed(2)+'M';
+  if(tpl.includes('$')) return '$'+Math.round(n).toLocaleString();
+  if(tpl.includes('%')) return n.toFixed(1)+'%';
+  return Math.round(n).toLocaleString();
+}
+
+const themeBtn = document.getElementById('themeBtn');
+
+// Load saved theme (default = light)
+let theme = localStorage.getItem('theme') || 'light';
+
+applyTheme(theme);
+
+themeBtn.addEventListener('click', () => {
+    theme = (theme === 'light') ? 'dark' : 'light';
+    applyTheme(theme);
+});
+
+function applyTheme(theme) {
+
+    if (theme === 'light') {
+        document.body.setAttribute('data-theme', 'light');
+        themeBtn.textContent = '☀️ Light';
+    } else {
+        document.body.removeAttribute('data-theme');
+        themeBtn.textContent = '🌙 Dark';
+    }
+
+    localStorage.setItem('theme', theme);
+}
+
+/* -- command palette -- */
+const cmdkOverlay = document.getElementById('cmdkOverlay');
+const cmdkInput = document.getElementById('cmdkInput');
+const cmdkList = document.getElementById('cmdkList');
+const pageKeys = Object.keys(titles);
+function renderCmdk(filter=''){
+  const f = filter.toLowerCase();
+  cmdkList.innerHTML = pageKeys
+    .filter(k=>titles[k][0].toLowerCase().includes(f))
+    .map(k=>`<div class="cmdk-item" data-key="${k}"><span>${titles[k][0]}</span><span class="code">↵</span></div>`)
+    .join('') || '<div class="cmdk-item">No matches</div>';
+  cmdkList.querySelectorAll('.cmdk-item[data-key]').forEach(el=>{
+    el.addEventListener('click',()=>{ goToPage(el.dataset.key); closeCmdk(); });
+  });
+}
+function openCmdk(){ cmdkOverlay.classList.add('open'); cmdkInput.value=''; renderCmdk(); cmdkInput.focus(); }
+function closeCmdk(){ cmdkOverlay.classList.remove('open'); }
+document.addEventListener('keydown',(e)=>{
+  if((e.metaKey||e.ctrlKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmdk(); }
+  if(e.key==='Escape'){ closeCmdk(); document.getElementById('aiPanel').classList.remove('open'); }
+});
+cmdkInput?.addEventListener('input',()=>renderCmdk(cmdkInput.value));
+cmdkOverlay.addEventListener('click',(e)=>{ if(e.target===cmdkOverlay) closeCmdk(); });
+document.getElementById('searchBox').addEventListener('click', openCmdk);
+
+/* -- CSV / PDF export -- */
+document.getElementById('exportCsvBtn')?.addEventListener('click',()=>{
+  const rows = [['Metric','Value'],['Revenue Today','184920'],['Revenue MTD','3920000'],
+    ['Profit Margin','24.3%'],['New Customers','2184'],['AOV','96.40'],['Forecast Accuracy','94.2%']];
+  const csv = rows.map(r=>r.join(',')).join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'manifest_kpi_export.csv';
+  a.click();
+});
+document.getElementById('exportPdfBtn')?.addEventListener('click',()=>window.print());
+
+/* -- KPI cards: countup + sparkline + drill-down click -- */
+function animateCount(el, targetNum, decimals, tpl){
+  const dur = reduceMotion ? 0 : 900;
+  const start = performance.now();
+  function frame(now){
+    const p = dur===0 ? 1 : Math.min(1,(now-start)/dur);
+    const eased = 1-Math.pow(1-p,3);
+    const val = targetNum*eased;
+    el.textContent = formatLikeOriginal(tpl, decimals ? val : Math.round(val));
+    if(p<1) requestAnimationFrame(frame);
+    else el.textContent = tpl; // restore exact original formatting at the end
+  }
+  requestAnimationFrame(frame);
+}
+function buildSparkSVG(trend){
+  const pts = [];
+  let v = 50;
+  for(let i=0;i<14;i++){
+    if(trend==='up') v += (Math.random()*10-2);
+    else if(trend==='down') v -= (Math.random()*10-2);
+    else v += (Math.random()*6-3);
+    v = Math.max(8,Math.min(92,v));
+    pts.push(v);
+  }
+  const stepX = 100/(pts.length-1);
+  const path = pts.map((y,i)=>`${i*stepX},${100-y}`).join(' ');
+  const color = trend==='up' ? '#4FD1C5' : trend==='down' ? '#E8555C' : '#8A94A6';
+  return `<svg viewBox="0 0 100 100" preserveAspectRatio="none"><polyline points="${path}" fill="none" stroke="${color}" stroke-width="4" vector-effect="non-scaling-stroke"/></svg>`;
+}
+document.querySelectorAll('.kpi').forEach(card=>{
+  const valEl = card.querySelector('.kpi-value');
+  if(valEl && !valEl.hasAttribute('data-nocount')){
+    const raw = valEl.textContent.trim();
+    const num = parseFloat(raw.replace(/[^0-9.\-]/g,''));
+    if(!isNaN(num)){
+      valEl.dataset.base = num;
+      valEl.dataset.template = raw;
+      animateCount(valEl, num, /\./.test(raw), raw);
+    }
+  }
+  const spark = card.querySelector('.spark-wrap');
+  if(spark) spark.innerHTML = buildSparkSVG(spark.dataset.spark);
+  if(card.dataset.nav){
+    card.addEventListener('click',()=>goToPage(card.dataset.nav));
+  }
+});
+
+/* -- AI Assistant -- */
+const aiPanel = document.getElementById('aiPanel');
+document.getElementById('aiFab').addEventListener('click',()=>aiPanel.classList.add('open'));
+document.getElementById('aiClose').addEventListener('click',()=>aiPanel.classList.remove('open'));
+const aiAnswers = {
+  "Why did revenue decrease?": "Revenue is actually up 14.2% week-over-week — but margin dipped 0.6 pts, driven by a higher mix of discounted Electronics orders and a rise in EU payment-processing fees.",
+  "Predict next month revenue.": "The forecasting model projects $4.3M next month (94.2% confidence), assuming current conversion and traffic trends hold. Holiday seasonality could push this to +31% in Nov–Dec.",
+  "Which warehouse needs attention?": "Mumbai — inventory is projected to run out in 5 days for top SKUs like Aria Wireless Earbuds. Recommend an expedited reorder today.",
+  "Generate weekly report.": "Weekly report ready: Revenue $3.92M MTD (+11.2%), 2,184 new customers, CSAT 4.6/5, Mumbai inventory at risk, forecast accuracy holding at 94.2%. Full export available from Report Center."
+};
+function aiAddMsg(text, who){
+  const div = document.createElement('div');
+  div.className = 'ai-msg '+who;
+  div.textContent = text;
+  document.getElementById('aiBody').appendChild(div);
+  div.scrollIntoView({behavior:'smooth'});
+}
+function aiAsk(q){
+  aiAddMsg(q,'user');
+  const ans = aiAnswers[q] || "Here's what the data shows right now: metrics are within normal range across most modules, with the exceptions flagged in the Alerts Center. Try asking about revenue, inventory, or forecasts.";
+  setTimeout(()=>aiAddMsg(ans,'bot'), reduceMotion?0:450);
+}
+document.querySelectorAll('.ai-quick button').forEach(b=>b.addEventListener('click',()=>aiAsk(b.dataset.q)));
+document.getElementById('aiSend').addEventListener('click',()=>{
+  const inp = document.getElementById('aiInput');
+  if(inp.value.trim()){ aiAsk(inp.value.trim()); inp.value=''; }
+});
+document.getElementById('aiInput').addEventListener('keydown',(e)=>{
+  if(e.key==='Enter') document.getElementById('aiSend').click();
+});
+</script>
 </body>
 </html>
