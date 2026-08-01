@@ -63,8 +63,8 @@ button{font-family:inherit;cursor:pointer;}
 
 .nav-scroll{flex:1;padding:10px 0 20px;}
 .nav-group-label{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:10px;color:var(--faint);letter-spacing:1.5px;
+  font-family:'IBM Plex Mono',monospace;font-weight:600;
+  font-size:10px;color:var(--faint);letter-spacing:1.6px;
   padding:16px 20px 6px;text-transform:uppercase;
 }
 .nav-item{
@@ -79,8 +79,9 @@ button{font-family:inherit;cursor:pointer;}
 }
 .nav-item:hover{background:rgba(232,163,61,0.05);color:var(--text);}
 .nav-item.active{
-  background:rgba(232,163,61,0.08);
+  background:rgba(232,163,61,0.1);
   color:var(--amber);
+  font-weight:600;
   border-left:2px solid var(--amber);
 }
 .nav-code{
@@ -104,7 +105,7 @@ button{font-family:inherit;cursor:pointer;}
   background:var(--ink);
   position:sticky;top:0;z-index:20;
 }
-.topbar-title h1{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;}
+.topbar-title h1{font-family:'Space Grotesk',sans-serif;font-size:21px;font-weight:700;letter-spacing:-0.2px;}
 .topbar-title p{color:var(--muted);font-size:12px;margin-top:2px;}
 .topbar-right{display:flex;align-items:center;gap:18px;}
 .clock{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted);text-align:right;}
@@ -156,11 +157,17 @@ button{font-family:inherit;cursor:pointer;}
 
 .page-head{margin-bottom:20px;}
 .eyebrow{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber);
-  letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--amber);
+  letter-spacing:1.8px;text-transform:uppercase;margin-bottom:6px;
 }
-.page-head h2{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:600;}
-.page-head p{color:var(--muted);font-size:13px;margin-top:4px;max-width:640px;}
+.page-head h2{
+  font-family:'Space Grotesk',sans-serif;font-size:27px;font-weight:700;
+  letter-spacing:-0.3px;position:relative;padding-bottom:12px;
+}
+.page-head h2::after{
+  content:'';position:absolute;left:0;bottom:0;width:46px;height:3px;background:var(--amber);border-radius:2px;
+}
+.page-head p{color:var(--muted);font-size:13px;margin-top:10px;max-width:640px;}
 
 /* ===== Grid / Cards ===== */
 .grid{display:grid;gap:16px;}
@@ -183,8 +190,8 @@ button{font-family:inherit;cursor:pointer;}
 .kpi .kpi-delta{font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:8px;display:flex;align-items:center;gap:5px;}
 
 .panel-title{
-  font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;margin-bottom:14px;
-  display:flex;align-items:center;justify-content:space-between;
+  font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:700;margin-bottom:14px;
+  display:flex;align-items:center;justify-content:space-between;letter-spacing:-0.1px;
 }
 .panel-title .tag{
   font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--faint);font-weight:400;
@@ -256,11 +263,17 @@ footer.filecard{
 
 /* ===================== NEW: light theme ===================== */
 body[data-theme="light"]{
-  --ink:#F4F5F7; --panel:#FFFFFF; --panel-2:#F0F2F5; --line:#E1E5EA;
-  --text:#1B222C; --muted:#5B6474; --faint:#9AA3B2;
+  --ink:#F3F1EC; --panel:#FFFFFF; --panel-2:#F7F5F0; --line:#E4DFD3;
+  --text:#1B1A17; --muted:#6B6455; --faint:#A39C8B;
+  --amber:#B5651D; --amber-dim:#8a4a12;
 }
 body[data-theme="light"] .avatar{color:#fff;}
 body[data-theme="light"] ::-webkit-scrollbar-track{background:#eee;}
+body[data-theme="light"] .card:hover, body[data-theme="light"] .mod-card:hover{
+  box-shadow:0 14px 30px -18px rgba(30,20,5,.28);
+}
+body[data-theme="light"] .exec-summary{background:#FFFBF3;}
+body[data-theme="light"] .cmdk-overlay{background:rgba(30,26,20,.35);}
 
 /* ===================== NEW: glass cards ===================== */
 .card, .mod-card{
@@ -423,7 +436,7 @@ select.tb-btn{-webkit-appearance:none;appearance:none;}
 }
 </style>
 </head>
-<body>
+<body data-theme="light">
 
 <div class="shell">
 
@@ -549,17 +562,17 @@ select.tb-btn{-webkit-appearance:none;appearance:none;}
         </div>
 
         <div class="grid g4" style="margin-bottom:16px;">
-          <div class="card kpi clickable" data-nav="revenue"><div class="kpi-label">Revenue Today</div><div class="kpi-value">$184,920</div><div class="kpi-delta up">▲ 8.4% vs yesterday</div><div class="spark-wrap" data-spark="up"></div></div>
-          <div class="card kpi clickable" data-nav="revenue"><div class="kpi-label">Revenue MTD</div><div class="kpi-value">$3.92M</div><div class="kpi-delta up">▲ 11.2% vs last month</div><div class="spark-wrap" data-spark="up"></div></div>
-          <div class="card kpi clickable" data-nav="revenue"><div class="kpi-label">Revenue YTD</div><div class="kpi-value">$41.6M</div><div class="kpi-delta up">▲ 17.9% YoY</div><div class="spark-wrap" data-spark="up"></div></div>
+          <div class="card kpi clickable" data-nav="revenue"><div class="kpi-label">Revenue Today</div><div class="kpi-value">₹1,84,920</div><div class="kpi-delta up">▲ 8.4% vs yesterday</div><div class="spark-wrap" data-spark="up"></div></div>
+          <div class="card kpi clickable" data-nav="revenue"><div class="kpi-label">Revenue MTD</div><div class="kpi-value">₹39.2 L</div><div class="kpi-delta up">▲ 11.2% vs last month</div><div class="spark-wrap" data-spark="up"></div></div>
+          <div class="card kpi clickable" data-nav="revenue"><div class="kpi-label">Revenue YTD</div><div class="kpi-value">₹4.16 Cr</div><div class="kpi-delta up">▲ 17.9% YoY</div><div class="spark-wrap" data-spark="up"></div></div>
           <div class="card kpi clickable" data-nav="finance"><div class="kpi-label">Profit Margin</div><div class="kpi-value">24.3%</div><div class="kpi-delta down">▼ 0.6 pts</div><div class="spark-wrap" data-spark="down"></div></div>
 
-          <div class="card kpi clickable" data-nav="product"><div class="kpi-label">Top Category</div><div class="kpi-value" data-nocount style="font-size:19px;">Electronics</div><div class="kpi-delta up">$612K this week</div></div>
+          <div class="card kpi clickable" data-nav="product"><div class="kpi-label">Top Category</div><div class="kpi-value" data-nocount style="font-size:19px;">Electronics</div><div class="kpi-delta up">₹6.12 L this week</div></div>
           <div class="card kpi clickable" data-nav="customer"><div class="kpi-label">New Customers</div><div class="kpi-value">2,184</div><div class="kpi-delta up">▲ 6.1%</div><div class="spark-wrap" data-spark="up"></div></div>
           <div class="card kpi clickable" data-nav="customer"><div class="kpi-label">Returning Customers</div><div class="kpi-value">61.8%</div><div class="kpi-delta up">▲ 2.3 pts</div><div class="spark-wrap" data-spark="up"></div></div>
           <div class="card kpi clickable" data-nav="ops"><div class="kpi-label">Cancelled Orders</div><div class="kpi-value">142</div><div class="kpi-delta down">▲ 14 vs avg</div><div class="spark-wrap" data-spark="down"></div></div>
 
-          <div class="card kpi clickable" data-nav="sales"><div class="kpi-label">Avg Order Value</div><div class="kpi-value">$96.40</div><div class="kpi-delta up">▲ 3.1%</div><div class="spark-wrap" data-spark="up"></div></div>
+          <div class="card kpi clickable" data-nav="sales"><div class="kpi-label">Avg Order Value</div><div class="kpi-value">₹96.40</div><div class="kpi-delta up">▲ 3.1%</div><div class="spark-wrap" data-spark="up"></div></div>
           <div class="card kpi clickable" data-nav="inventory"><div class="kpi-label">Inventory Health</div><div class="kpi-value">88 / 100</div><div class="kpi-delta warn" style="color:var(--amber)">▬ stable</div><div class="spark-wrap" data-spark="flat"></div></div>
           <div class="card kpi clickable" data-nav="support"><div class="kpi-label">CSAT</div><div class="kpi-value">4.6 / 5</div><div class="kpi-delta up">▲ 0.1</div><div class="spark-wrap" data-spark="up"></div></div>
           <div class="card kpi clickable" data-nav="forecast"><div class="kpi-label">Forecast Accuracy</div><div class="kpi-value">94.2%</div><div class="kpi-delta up">▲ 1.4 pts</div><div class="spark-wrap" data-spark="up"></div></div>
@@ -567,7 +580,7 @@ select.tb-btn{-webkit-appearance:none;appearance:none;}
 
         <div class="two-col">
           <div class="card">
-            <div class="panel-title">Revenue — Last 30 Days <span class="tag">$ USD</span></div>
+            <div class="panel-title">Revenue — Last 30 Days <span class="tag">₹ INR</span></div>
             <div class="chart-box tall"><canvas id="chartExecRevenue"></canvas></div>
           </div>
           <div class="card">
@@ -594,7 +607,7 @@ select.tb-btn{-webkit-appearance:none;appearance:none;}
           <div class="card kpi"><div class="kpi-label">Revenue vs Target</div><div class="kpi-value">106%</div><div class="kpi-delta up">▲ ahead of plan</div></div>
           <div class="card kpi"><div class="kpi-label">YoY Growth</div><div class="kpi-value">+17.9%</div><div class="kpi-delta up">accelerating</div></div>
           <div class="card kpi"><div class="kpi-label">QoQ Growth</div><div class="kpi-value">+5.2%</div><div class="kpi-delta up">▲ steady</div></div>
-          <div class="card kpi"><div class="kpi-label">Best Region</div><div class="kpi-value" style="font-size:19px;">West EU</div><div class="kpi-delta up">$1.1M MTD</div></div>
+          <div class="card kpi"><div class="kpi-label">Best Region</div><div class="kpi-value" style="font-size:19px;">West EU</div><div class="kpi-delta up">₹11 L MTD</div></div>
         </div>
         <div class="grid g2" style="margin-bottom:16px;">
           <div class="card"><div class="panel-title">Revenue by Category</div><div class="chart-box"><canvas id="chartRevByCategory"></canvas></div></div>
@@ -614,10 +627,10 @@ select.tb-btn{-webkit-appearance:none;appearance:none;}
           <p>Lifetime value, cohorts, and who is at risk of leaving.</p>
         </div>
         <div class="grid g4" style="margin-bottom:16px;">
-          <div class="card kpi"><div class="kpi-label">Customer LTV</div><div class="kpi-value">$412</div><div class="kpi-delta up">▲ 4.8%</div></div>
+          <div class="card kpi"><div class="kpi-label">Customer LTV</div><div class="kpi-value">₹412</div><div class="kpi-delta up">▲ 4.8%</div></div>
           <div class="card kpi"><div class="kpi-label">Churn Rate</div><div class="kpi-value">3.9%</div><div class="kpi-delta down">▲ 0.4 pts</div></div>
           <div class="card kpi"><div class="kpi-label">Repeat Purchase Rate</div><div class="kpi-value">58.1%</div><div class="kpi-delta up">▲ 1.9 pts</div></div>
-          <div class="card kpi"><div class="kpi-label">Acquisition Cost</div><div class="kpi-value">$28.60</div><div class="kpi-delta up" style="color:var(--teal)">▼ cheaper</div></div>
+          <div class="card kpi"><div class="kpi-label">Acquisition Cost</div><div class="kpi-value">₹28.60</div><div class="kpi-delta up" style="color:var(--teal)">▼ cheaper</div></div>
         </div>
         <div class="grid g2" style="margin-bottom:16px;">
           <div class="card"><div class="panel-title">RFM Segmentation</div><div class="chart-box"><canvas id="chartRFM"></canvas></div></div>
@@ -645,10 +658,10 @@ select.tb-btn{-webkit-appearance:none;appearance:none;}
           <table>
             <thead><tr><th>Rep</th><th>Region</th><th>Closed</th><th>Revenue</th><th>Conv. Rate</th></tr></thead>
             <tbody>
-              <tr><td>A. Fischer</td><td>West EU</td><td>318</td><td>$212,400</td><td><span class="pill ok">31.2%</span></td></tr>
-              <tr><td>M. Osei</td><td>North America</td><td>296</td><td>$198,100</td><td><span class="pill ok">29.8%</span></td></tr>
-              <tr><td>R. Iyer</td><td>APAC</td><td>271</td><td>$176,300</td><td><span class="pill warn">24.1%</span></td></tr>
-              <tr><td>L. Novak</td><td>LATAM</td><td>203</td><td>$121,900</td><td><span class="pill warn">21.5%</span></td></tr>
+              <tr><td>A. Fischer</td><td>West EU</td><td>318</td><td>₹2,12,400</td><td><span class="pill ok">31.2%</span></td></tr>
+              <tr><td>M. Osei</td><td>North America</td><td>296</td><td>₹1,98,100</td><td><span class="pill ok">29.8%</span></td></tr>
+              <tr><td>R. Iyer</td><td>APAC</td><td>271</td><td>₹1,76,300</td><td><span class="pill warn">24.1%</span></td></tr>
+              <tr><td>L. Novak</td><td>LATAM</td><td>203</td><td>₹1,21,900</td><td><span class="pill warn">21.5%</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -663,7 +676,7 @@ select.tb-btn{-webkit-appearance:none;appearance:none;}
         </div>
         <div class="grid g4" style="margin-bottom:16px;">
           <div class="card kpi"><div class="kpi-label">ROAS</div><div class="kpi-value">4.6x</div><div class="kpi-delta up">▲ 0.3x</div></div>
-          <div class="card kpi"><div class="kpi-label">CAC</div><div class="kpi-value">$28.60</div><div class="kpi-delta up" style="color:var(--teal)">▼ improving</div></div>
+          <div class="card kpi"><div class="kpi-label">CAC</div><div class="kpi-value">₹28.60</div><div class="kpi-delta up" style="color:var(--teal)">▼ improving</div></div>
           <div class="card kpi"><div class="kpi-label">CTR</div><div class="kpi-value">2.14%</div><div class="kpi-delta up">▲ 0.2 pts</div></div>
           <div class="card kpi"><div class="kpi-label">Conversion Rate</div><div class="kpi-value">3.42%</div><div class="kpi-delta up">▲ 0.4 pts</div></div>
         </div>
@@ -737,8 +750,8 @@ select.tb-btn{-webkit-appearance:none;appearance:none;}
         <div class="grid g4" style="margin-bottom:16px;">
           <div class="card kpi"><div class="kpi-label">Avg Lead Time</div><div class="kpi-value">6.4 days</div><div class="kpi-delta up" style="color:var(--teal)">▼ 0.8 days</div></div>
           <div class="card kpi"><div class="kpi-label">On-Time Delivery</div><div class="kpi-value">93.1%</div><div class="kpi-delta up">▲ 1.2 pts</div></div>
-          <div class="card kpi"><div class="kpi-label">Shipping Cost / Order</div><div class="kpi-value">$6.80</div><div class="kpi-delta down">▲ 0.30</div></div>
-          <div class="card kpi"><div class="kpi-label">Return Logistics Cost</div><div class="kpi-value">$41K</div><div class="kpi-delta down">▲ 8.4%</div></div>
+          <div class="card kpi"><div class="kpi-label">Shipping Cost / Order</div><div class="kpi-value">₹6.80</div><div class="kpi-delta down">▲ 0.30</div></div>
+          <div class="card kpi"><div class="kpi-label">Return Logistics Cost</div><div class="kpi-value">₹41,000</div><div class="kpi-delta down">▲ 8.4%</div></div>
         </div>
         <div class="card"><div class="panel-title">Supplier Performance</div><div class="chart-box"><canvas id="chartSupplier"></canvas></div></div>
       </section>
@@ -751,10 +764,10 @@ select.tb-btn{-webkit-appearance:none;appearance:none;}
           <p>Margin, cash flow, and where revenue is leaking.</p>
         </div>
         <div class="grid g4" style="margin-bottom:16px;">
-          <div class="card kpi"><div class="kpi-label">Gross Profit</div><div class="kpi-value">$9.8M</div><div class="kpi-delta up">▲ 12.1%</div></div>
-          <div class="card kpi"><div class="kpi-label">EBITDA</div><div class="kpi-value">$6.1M</div><div class="kpi-delta up">▲ 9.4%</div></div>
+          <div class="card kpi"><div class="kpi-label">Gross Profit</div><div class="kpi-value">₹98 L</div><div class="kpi-delta up">▲ 12.1%</div></div>
+          <div class="card kpi"><div class="kpi-label">EBITDA</div><div class="kpi-value">₹61 L</div><div class="kpi-delta up">▲ 9.4%</div></div>
           <div class="card kpi"><div class="kpi-label">Operating Margin</div><div class="kpi-value">21.7%</div><div class="kpi-delta down">▼ 0.3 pts</div></div>
-          <div class="card kpi"><div class="kpi-label">Revenue Leakage</div><div class="kpi-value">$184K</div><div class="kpi-delta down">▲ 6.2%</div></div>
+          <div class="card kpi"><div class="kpi-label">Revenue Leakage</div><div class="kpi-value">₹1.84 L</div><div class="kpi-delta down">▲ 6.2%</div></div>
         </div>
         <div class="card"><div class="panel-title">Cash Flow — 12mo</div><div class="chart-box"><canvas id="chartCashFlow"></canvas></div></div>
       </section>
@@ -767,8 +780,8 @@ select.tb-btn{-webkit-appearance:none;appearance:none;}
           <p>Model-projected revenue and demand, 90 days out.</p>
         </div>
         <div class="grid g4" style="margin-bottom:16px;">
-          <div class="card kpi"><div class="kpi-label">30-Day Revenue Forecast</div><div class="kpi-value">$4.3M</div><div class="kpi-delta up">▲ 9.8%</div></div>
-          <div class="card kpi"><div class="kpi-label">90-Day Revenue Forecast</div><div class="kpi-value">$13.1M</div><div class="kpi-delta up">▲ 12.4%</div></div>
+          <div class="card kpi"><div class="kpi-label">30-Day Revenue Forecast</div><div class="kpi-value">₹43 L</div><div class="kpi-delta up">▲ 9.8%</div></div>
+          <div class="card kpi"><div class="kpi-label">90-Day Revenue Forecast</div><div class="kpi-value">₹1.31 Cr</div><div class="kpi-delta up">▲ 12.4%</div></div>
           <div class="card kpi"><div class="kpi-label">Model Confidence</div><div class="kpi-value">94.2%</div><div class="kpi-delta up">high confidence</div></div>
           <div class="card kpi"><div class="kpi-label">Holiday Impact (proj.)</div><div class="kpi-value">+31%</div><div class="kpi-delta up">Nov–Dec surge</div></div>
         </div>
@@ -793,10 +806,10 @@ select.tb-btn{-webkit-appearance:none;appearance:none;}
           <table>
             <thead><tr><th>Order</th><th>Amount</th><th>Risk Signal</th><th>Score</th><th>Status</th></tr></thead>
             <tbody>
-              <tr><td>#48213</td><td>$1,240</td><td>New device + high value</td><td>84</td><td><span class="pill bad">Blocked</span></td></tr>
-              <tr><td>#48219</td><td>$312</td><td>Mismatched billing/IP geo</td><td>61</td><td><span class="pill warn">Review</span></td></tr>
-              <tr><td>#48227</td><td>$88</td><td>Multiple cards, same address</td><td>52</td><td><span class="pill warn">Review</span></td></tr>
-              <tr><td>#48231</td><td>$1,900</td><td>Velocity spike on account</td><td>77</td><td><span class="pill bad">Blocked</span></td></tr>
+              <tr><td>#48213</td><td>₹1,240</td><td>New device + high value</td><td>84</td><td><span class="pill bad">Blocked</span></td></tr>
+              <tr><td>#48219</td><td>₹312</td><td>Mismatched billing/IP geo</td><td>61</td><td><span class="pill warn">Review</span></td></tr>
+              <tr><td>#48227</td><td>₹88</td><td>Multiple cards, same address</td><td>52</td><td><span class="pill warn">Review</span></td></tr>
+              <tr><td>#48231</td><td>₹1,900</td><td>Velocity spike on account</td><td>77</td><td><span class="pill bad">Blocked</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -850,10 +863,10 @@ select.tb-btn{-webkit-appearance:none;appearance:none;}
             <table>
               <thead><tr><th>City</th><th>Revenue</th><th>Growth</th></tr></thead>
               <tbody>
-                <tr><td>London</td><td>$612K</td><td><span class="pill ok">▲ 14%</span></td></tr>
-                <tr><td>New York</td><td>$588K</td><td><span class="pill ok">▲ 9%</span></td></tr>
-                <tr><td>Singapore</td><td>$401K</td><td><span class="pill ok">▲ 21%</span></td></tr>
-                <tr><td>São Paulo</td><td>$298K</td><td><span class="pill warn">▲ 3%</span></td></tr>
+                <tr><td>London</td><td>₹6.12 L</td><td><span class="pill ok">▲ 14%</span></td></tr>
+                <tr><td>New York</td><td>₹5.88 L</td><td><span class="pill ok">▲ 9%</span></td></tr>
+                <tr><td>Singapore</td><td>₹4.01 L</td><td><span class="pill ok">▲ 21%</span></td></tr>
+                <tr><td>São Paulo</td><td>₹2.98 L</td><td><span class="pill warn">▲ 3%</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -1000,7 +1013,7 @@ Chart.defaults.color = '#8A94A6';
 Chart.defaults.font.family = "'IBM Plex Mono', monospace";
 Chart.defaults.font.size = 11;
 Chart.defaults.borderColor = '#212a37';
-const GRID = {color:'#1a2230'};
+const GRID = {color:'rgba(120,132,150,0.16)'};
 const AMBER = '#E8A33D', TEAL = '#4FD1C5', RED='#E8555C', MUTED='#525d70';
 
 function fmtAxis(scaleOpts){ return Object.assign({grid:GRID, ticks:{color:'#8A94A6'}}, scaleOpts||{}); }
@@ -1039,7 +1052,7 @@ const titles = {
 
 /* ---------- Ticker ---------- */
 const tickerData = [
-  ['REV TODAY','$184,920','up'],['ORDERS','2,041','up'],['AOV','$96.40','up'],
+  ['REV TODAY','₹1,84,920','up'],['ORDERS','2,041','up'],['AOV','₹96.40','up'],
   ['CONV RATE','3.42%','up'],['CANCELLATIONS','142','down'],['FRAUD BLOCKS','2','down'],
   ['INVENTORY HEALTH','88/100',''],['CSAT','4.6/5','up'],['SLA','96.4%','up'],
   ['CHARGEBACKS','0.34%','up'],['FORECAST ACC.','94.2%','up'],['ACTIVE SESSIONS','14,208','up']
@@ -1089,13 +1102,13 @@ doughnut(document.getElementById('chartRevByCategory'),
 doughnut(document.getElementById('chartRevByPayment'),
   ['Card','Digital Wallet','BNPL','Bank Transfer'],[48,29,15,8],[AMBER,TEAL,'#6b7cff','#3a4658']);
 barChart(document.getElementById('chartRevMonthly'), months12,
-  [2.8,3.0,3.3,3.6,4.4,3.1,2.9,3.2,3.5,3.7,3.8,3.92].map(v=>v*1e6), AMBER);
+  [2.8,3.0,3.3,3.6,4.4,3.1,2.9,3.2,3.5,3.7,3.8,3.92], AMBER);
 new Chart(document.getElementById('chartRevWaterfall'),{
   type:'bar',
   data:{labels:['Start','New','Upsell','Churn','Refunds','End'],
     datasets:[{data:[[0,3.6],[3.6,3.9],[3.9,4.15],[3.75,3.9],[3.62,3.75],[0,3.62]],
       backgroundColor:[MUTED,TEAL,TEAL,RED,RED,AMBER],borderRadius:4}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:fmtAxis(),y:fmtAxis({title:{display:true,text:'$M'}})}}});
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:fmtAxis(),y:fmtAxis({title:{display:true,text:'₹ Cr'}})}}});
 
 /* Customer */
 new Chart(document.getElementById('chartRFM'),{type:'polarArea',
@@ -1134,7 +1147,7 @@ new Chart(document.getElementById('chartCashFlow'),{type:'bar',
   data:{labels:months12,datasets:[
     {label:'Inflow',data:months12.map(()=>3+Math.random()*1.5),backgroundColor:TEAL,borderRadius:3},
     {label:'Outflow',data:months12.map(()=>-(2+Math.random()*1.2)),backgroundColor:RED,borderRadius:3}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8A94A6',boxWidth:10}}},scales:{x:fmtAxis(),y:fmtAxis({title:{display:true,text:'$M'}})}}});
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8A94A6',boxWidth:10}}},scales:{x:fmtAxis(),y:fmtAxis({title:{display:true,text:'₹ Cr'}})}}});
 
 /* Forecast */
 new Chart(document.getElementById('chartForecast'),{type:'line',
@@ -1143,7 +1156,7 @@ new Chart(document.getElementById('chartForecast'),{type:'line',
       {label:'Actual',data:[3.2,3.4,3.7,3.92,null,null,null,null,null],borderColor:AMBER,backgroundColor:AMBER+'22',fill:true,tension:.3,pointRadius:0,borderWidth:2},
       {label:'Forecast',data:[null,null,null,3.92,4.1,4.3,4.4,5.6,6.9],borderColor:TEAL,borderDash:[6,4],fill:false,tension:.3,pointRadius:0,borderWidth:2}
     ]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8A94A6',boxWidth:10}}},scales:{x:fmtAxis(),y:fmtAxis({title:{display:true,text:'$M'}})}}});
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8A94A6',boxWidth:10}}},scales:{x:fmtAxis(),y:fmtAxis({title:{display:true,text:'₹ Cr'}})}}});
 
 /* Support */
 horizBar(document.getElementById('chartComplaints'), ['Late Delivery','Item Damaged','Wrong Item','Refund Delay','Sizing Issue'], [214,168,132,101,84], RED);
@@ -1229,36 +1242,20 @@ document.getElementById('dateFilter').addEventListener('change', (e)=>{
   });
 });
 function formatLikeOriginal(tpl, n){
-  if(tpl.includes('$') && tpl.includes('M')) return '$'+n.toFixed(2)+'M';
-  if(tpl.includes('$')) return '$'+Math.round(n).toLocaleString();
+  if(tpl.includes('₹') && tpl.includes('Cr')) return '₹'+n.toFixed(2)+' Cr';
+  if(tpl.includes('₹') && tpl.includes(' L')) return '₹'+n.toFixed(2)+' L';
+  if(tpl.includes('₹')) return '₹'+Math.round(n).toLocaleString('en-IN');
   if(tpl.includes('%')) return n.toFixed(1)+'%';
-  return Math.round(n).toLocaleString();
+  return Math.round(n).toLocaleString('en-IN');
 }
 
-const themeBtn = document.getElementById('themeBtn');
-
-// Load saved theme (default = light)
-let theme = localStorage.getItem('theme') || 'light';
-
-applyTheme(theme);
-
-themeBtn.addEventListener('click', () => {
-    theme = (theme === 'light') ? 'dark' : 'light';
-    applyTheme(theme);
+/* -- theme switch (cycles dark -> light) -- */
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const body = document.body;
+  const isLight = body.getAttribute('data-theme')==='light';
+  body.setAttribute('data-theme', isLight ? '' : 'light');
+  document.getElementById('themeBtn').textContent = isLight ? '🌙 Dark' : '☀️ Light';
 });
-
-function applyTheme(theme) {
-
-    if (theme === 'light') {
-        document.body.setAttribute('data-theme', 'light');
-        themeBtn.textContent = '☀️ Light';
-    } else {
-        document.body.removeAttribute('data-theme');
-        themeBtn.textContent = '🌙 Dark';
-    }
-
-    localStorage.setItem('theme', theme);
-}
 
 /* -- command palette -- */
 const cmdkOverlay = document.getElementById('cmdkOverlay');
@@ -1287,7 +1284,7 @@ document.getElementById('searchBox').addEventListener('click', openCmdk);
 
 /* -- CSV / PDF export -- */
 document.getElementById('exportCsvBtn')?.addEventListener('click',()=>{
-  const rows = [['Metric','Value'],['Revenue Today','184920'],['Revenue MTD','3920000'],
+  const rows = [['Metric','Value (INR)'],['Revenue Today','184920'],['Revenue MTD','3920000'],
     ['Profit Margin','24.3%'],['New Customers','2184'],['AOV','96.40'],['Forecast Accuracy','94.2%']];
   const csv = rows.map(r=>r.join(',')).join('\n');
   const blob = new Blob([csv],{type:'text/csv'});
@@ -1351,9 +1348,9 @@ document.getElementById('aiFab').addEventListener('click',()=>aiPanel.classList.
 document.getElementById('aiClose').addEventListener('click',()=>aiPanel.classList.remove('open'));
 const aiAnswers = {
   "Why did revenue decrease?": "Revenue is actually up 14.2% week-over-week — but margin dipped 0.6 pts, driven by a higher mix of discounted Electronics orders and a rise in EU payment-processing fees.",
-  "Predict next month revenue.": "The forecasting model projects $4.3M next month (94.2% confidence), assuming current conversion and traffic trends hold. Holiday seasonality could push this to +31% in Nov–Dec.",
+  "Predict next month revenue.": "The forecasting model projects ₹43 L next month (94.2% confidence), assuming current conversion and traffic trends hold. Holiday seasonality could push this to +31% in Nov–Dec.",
   "Which warehouse needs attention?": "Mumbai — inventory is projected to run out in 5 days for top SKUs like Aria Wireless Earbuds. Recommend an expedited reorder today.",
-  "Generate weekly report.": "Weekly report ready: Revenue $3.92M MTD (+11.2%), 2,184 new customers, CSAT 4.6/5, Mumbai inventory at risk, forecast accuracy holding at 94.2%. Full export available from Report Center."
+  "Generate weekly report.": "Weekly report ready: Revenue ₹39.2 L MTD (+11.2%), 2,184 new customers, CSAT 4.6/5, Mumbai inventory at risk, forecast accuracy holding at 94.2%. Full export available from Report Center."
 };
 function aiAddMsg(text, who){
   const div = document.createElement('div');
