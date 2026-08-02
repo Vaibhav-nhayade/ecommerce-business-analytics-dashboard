@@ -200,7 +200,7 @@ Contributions, suggestions, and improvements are welcome.
 
 ---
 
-## 📜 ok
+## 📜 License
 
 This project is licensed under the MIT License.
 
