@@ -1,0 +1,60 @@
+/* ==========================================================
+   InsightIQ Enterprise Design System
+   Alerts Component
+========================================================== */
+
+.alert{
+    display:flex;
+    align-items:flex-start;
+    gap:16px;
+    padding:18px;
+    border-radius:var(--radius-lg);
+    border-left:5px solid;
+    margin-bottom:16px;
+}
+
+.alert__icon{
+    font-size:1.2rem;
+}
+
+.alert__title{
+    font-weight:700;
+    margin-bottom:4px;
+}
+
+.alert__message{
+    color:var(--text-secondary);
+    line-height:1.6;
+}
+
+/* Success */
+
+.alert--success{
+    background:#ECFDF5;
+    border-color:var(--success);
+    color:#166534;
+}
+
+/* Info */
+
+.alert--info{
+    background:#EFF6FF;
+    border-color:var(--info);
+    color:#1D4ED8;
+}
+
+/* Warning */
+
+.alert--warning{
+    background:#FEFCE8;
+    border-color:var(--warning);
+    color:#92400E;
+}
+
+/* Danger */
+
+.alert--danger{
+    background:#FEF2F2;
+    border-color:var(--danger);
+    color:#991B1B;
+}
