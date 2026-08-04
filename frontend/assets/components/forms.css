@@ -1,0 +1,337 @@
+/* ==========================================================
+   InsightIQ Enterprise Design System
+   Forms Component
+   Version: 1.0
+========================================================== */
+
+/* ==========================================================
+   Form Container
+========================================================== */
+
+.form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+.form--inline{
+
+    flex-direction:row;
+
+    align-items:flex-end;
+
+    flex-wrap:wrap;
+
+}
+
+.form--compact{
+
+    gap:16px;
+
+}
+
+/* ==========================================================
+   Form Group
+========================================================== */
+
+.form__group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    width:100%;
+
+}
+
+.form__row{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:24px;
+
+}
+
+.form__row--3{
+
+    grid-template-columns:repeat(3,1fr);
+
+}
+
+.form__row--4{
+
+    grid-template-columns:repeat(4,1fr);
+
+}
+
+/* ==========================================================
+   Labels
+========================================================== */
+
+.form__label{
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    color:var(--text-primary);
+
+}
+
+.form__required{
+
+    color:var(--danger);
+
+    margin-left:4px;
+
+}
+
+/* ==========================================================
+   Help Text
+========================================================== */
+
+.form__help{
+
+    font-size:.82rem;
+
+    color:var(--text-secondary);
+
+}
+
+/* ==========================================================
+   Error Message
+========================================================== */
+
+.form__error{
+
+    font-size:.82rem;
+
+    color:var(--danger);
+
+    display:none;
+
+}
+
+.form__error.is-visible{
+
+    display:block;
+
+}
+
+/* ==========================================================
+   Success Message
+========================================================== */
+
+.form__success{
+
+    font-size:.82rem;
+
+    color:var(--success);
+
+    display:none;
+
+}
+
+.form__success.is-visible{
+
+    display:block;
+
+}
+
+/* ==========================================================
+   Checkbox
+========================================================== */
+
+.checkbox{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    cursor:pointer;
+
+}
+
+.checkbox input{
+
+    accent-color:var(--primary);
+
+    width:18px;
+
+    height:18px;
+
+}
+
+/* ==========================================================
+   Radio
+========================================================== */
+
+.radio{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.radio input{
+
+    accent-color:var(--primary);
+
+}
+
+/* ==========================================================
+   Switch
+========================================================== */
+
+.switch{
+
+    position:relative;
+
+    width:52px;
+
+    height:28px;
+
+}
+
+.switch input{
+
+    display:none;
+
+}
+
+.switch__slider{
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:999px;
+
+    background:var(--border);
+
+    transition:.3s;
+
+}
+
+.switch__slider::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:4px;
+
+    top:4px;
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    transition:.3s;
+
+}
+
+.switch input:checked + .switch__slider{
+
+    background:var(--primary);
+
+}
+
+.switch input:checked + .switch__slider::before{
+
+    transform:translateX(24px);
+
+}
+
+/* ==========================================================
+   Divider
+========================================================== */
+
+.form__divider{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    color:var(--text-light);
+
+    font-size:.85rem;
+
+}
+
+.form__divider::before,
+
+.form__divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:var(--border);
+
+}
+
+/* ==========================================================
+   Footer
+========================================================== */
+
+.form__footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:16px;
+
+    flex-wrap:wrap;
+
+}
+
+/* ==========================================================
+   Responsive
+========================================================== */
+
+@media(max-width:768px){
+
+    .form__row,
+
+    .form__row--3,
+
+    .form__row--4{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .form__footer{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+}

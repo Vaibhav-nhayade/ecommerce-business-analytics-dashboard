@@ -1,0 +1,479 @@
+/* ==========================================================
+   InsightIQ Enterprise Design System
+   Cards Component
+   Version: 1.0
+========================================================== */
+
+/* ==========================================================
+   Base Card
+========================================================== */
+
+.card{
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius-lg);
+
+    padding:24px;
+
+    box-shadow:var(--shadow-sm);
+
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+/* ==========================================================
+   Glass Card
+========================================================== */
+
+.card-glass{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+}
+
+/* ==========================================================
+   Compact Card
+========================================================== */
+
+.card-sm{
+
+    padding:16px;
+
+}
+
+/* ==========================================================
+   Large Card
+========================================================== */
+
+.card-lg{
+
+    padding:36px;
+
+}
+
+/* ==========================================================
+   Card Header
+========================================================== */
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.card-title{
+
+    font-family:var(--font-heading);
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+}
+
+.card-subtitle{
+
+    color:var(--text-secondary);
+
+    font-size:.9rem;
+
+    margin-top:4px;
+
+}
+
+/* ==========================================================
+   Card Body
+========================================================== */
+
+.card-body{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/* ==========================================================
+   Card Footer
+========================================================== */
+
+.card-footer{
+
+    margin-top:24px;
+
+    padding-top:20px;
+
+    border-top:1px solid var(--border);
+
+}
+
+/* ==========================================================
+   KPI Card
+========================================================== */
+
+.kpi-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+}
+
+.kpi-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.kpi-label{
+
+    font-size:.9rem;
+
+    color:var(--text-secondary);
+
+}
+
+.kpi-value{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    font-family:var(--font-heading);
+
+}
+
+.kpi-growth{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+}
+
+.kpi-growth.up{
+
+    color:var(--success);
+
+}
+
+.kpi-growth.down{
+
+    color:var(--danger);
+
+}
+
+.kpi-icon{
+
+    width:60px;
+
+    height:60px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:18px;
+
+    background:rgba(37,99,235,.1);
+
+    color:var(--primary);
+
+    font-size:1.5rem;
+
+}
+
+/* ==========================================================
+   Statistics Card
+========================================================== */
+
+.stats-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.stats-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.stats-value{
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+   AI Insight Card
+========================================================== */
+
+.ai-card{
+
+    border-left:4px solid var(--primary);
+
+}
+
+.ai-card .card-body{
+
+    line-height:1.7;
+
+}
+
+/* ==========================================================
+   Forecast Card
+========================================================== */
+
+.forecast-card{
+
+    background:linear-gradient(
+        135deg,
+        rgba(37,99,235,.08),
+        rgba(6,182,212,.08)
+    );
+
+}
+
+/* ==========================================================
+   Notification Card
+========================================================== */
+
+.notification-card{
+
+    display:flex;
+
+    gap:16px;
+
+    align-items:flex-start;
+
+}
+
+.notification-icon{
+
+    width:46px;
+
+    height:46px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:14px;
+
+    background:rgba(245,158,11,.15);
+
+}
+
+/* ==========================================================
+   Card Grid
+========================================================== */
+
+.card-grid{
+
+    display:grid;
+
+    gap:24px;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+}
+
+/* ==========================================================
+   Loading Card
+========================================================== */
+
+.card-loading{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.card-loading::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.15),
+
+        transparent
+
+    );
+
+    transform:translateX(-100%);
+
+    animation:loading 1.4s infinite;
+
+}
+
+@keyframes loading{
+
+    to{
+
+        transform:translateX(100%);
+
+    }
+
+}
+
+/* ==========================================================
+   Expandable Card
+========================================================== */
+
+.card-expand{
+
+    cursor:pointer;
+
+}
+
+.card-expand .card-body{
+
+    transition:max-height .35s ease;
+
+}
+
+/* ==========================================================
+   Chart Card
+========================================================== */
+
+.chart-card{
+
+    min-height:420px;
+
+}
+
+.chart-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.chart-container{
+
+    width:100%;
+
+    height:320px;
+
+}
+
+/* ==========================================================
+   Hover Border
+========================================================== */
+
+.card-hover-primary:hover{
+
+    border-color:var(--primary);
+
+}
+
+.card-hover-success:hover{
+
+    border-color:var(--success);
+
+}
+
+.card-hover-danger:hover{
+
+    border-color:var(--danger);
+
+}
+
+/* ==========================================================
+   Responsive
+========================================================== */
+
+@media(max-width:768px){
+
+    .kpi-card{
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+    .chart-card{
+
+        min-height:auto;
+
+    }
+
+    .chart-container{
+
+        height:260px;
+
+    }
+
+    .card{
+
+        padding:18px;
+
+    }
+
+}
