@@ -1,0 +1,60 @@
+/* ==========================================
+   CSS Reset
+========================================== */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    -webkit-text-size-adjust:100%;
+}
+
+body{
+    min-height:100vh;
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+img,
+picture,
+svg,
+video,
+canvas{
+    display:block;
+    max-width:100%;
+}
+
+input,
+button,
+textarea,
+select{
+    font:inherit;
+}
+
+button{
+    border:none;
+    background:none;
+    cursor:pointer;
+}
+
+ul,
+ol{
+    list-style:none;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+table{
+    border-collapse:collapse;
+    border-spacing:0;
+}
