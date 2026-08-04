@@ -1,0 +1,59 @@
+/* ==========================================
+   DASHBOARD LAYOUT
+========================================== */
+
+.app{
+
+    display:flex;
+
+}
+
+.main-content{
+
+    margin-left:var(--sidebar-width);
+
+    margin-top:var(--topbar-height);
+
+    width:calc(100% - var(--sidebar-width));
+
+    min-height:100vh;
+
+    background:var(--background);
+
+    padding:32px;
+
+}
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:32px;
+
+}
+
+.page-title{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+}
+
+.page-description{
+
+    margin-top:6px;
+
+    color:var(--text-secondary);
+
+}
+
+.content-section{
+
+    margin-top:32px;
+
+}
