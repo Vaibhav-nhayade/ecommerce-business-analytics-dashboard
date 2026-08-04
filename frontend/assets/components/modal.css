@@ -1,0 +1,86 @@
+/* ==========================================================
+   InsightIQ Enterprise Design System
+   Modal Component
+========================================================== */
+
+.modal{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(15,23,42,.65);
+    backdrop-filter:blur(5px);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:var(--z-modal);
+}
+
+.modal--open{
+    opacity:1;
+    visibility:visible;
+}
+
+.modal__dialog{
+    width:min(90%,650px);
+    background:var(--surface);
+    border-radius:var(--radius-xl);
+    box-shadow:var(--shadow-xl);
+    overflow:hidden;
+    animation:modalIn .3s ease;
+}
+
+.modal__header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 24px;
+    border-bottom:1px solid var(--border);
+}
+
+.modal__title{
+    font-size:1.3rem;
+    font-weight:700;
+}
+
+.modal__close{
+    width:42px;
+    height:42px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.modal__close:hover{
+    background:rgba(239,68,68,.1);
+    color:var(--danger);
+}
+
+.modal__body{
+    padding:24px;
+}
+
+.modal__footer{
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+    padding:20px 24px;
+    border-top:1px solid var(--border);
+}
+
+@keyframes modalIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}

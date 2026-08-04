@@ -1,0 +1,65 @@
+/* ==========================================================
+   InsightIQ Enterprise Design System
+   Dropdown Component
+========================================================== */
+
+.dropdown{
+    position:relative;
+    display:inline-block;
+}
+
+.dropdown__toggle{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    cursor:pointer;
+}
+
+.dropdown__menu{
+    position:absolute;
+    top:110%;
+    right:0;
+    min-width:220px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-lg);
+    padding:8px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(8px);
+    transition:all .25s ease;
+    z-index:var(--z-dropdown);
+}
+
+.dropdown--open .dropdown__menu{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.dropdown__item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.dropdown__item:hover{
+    background:rgba(37,99,235,.08);
+    color:var(--primary);
+}
+
+.dropdown__divider{
+    height:1px;
+    background:var(--border);
+    margin:8px 0;
+}
+
+.dropdown__danger{
+    color:var(--danger);
+}
