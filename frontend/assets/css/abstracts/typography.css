@@ -1,0 +1,47 @@
+/* ==========================================
+   Typography Scale
+========================================== */
+
+:root{
+
+    --font-primary:'Inter',sans-serif;
+
+    --font-heading:'Space Grotesk',sans-serif;
+
+    --font-code:'IBM Plex Mono',monospace;
+
+    --fs-xs:.75rem;
+
+    --fs-sm:.875rem;
+
+    --fs-md:1rem;
+
+    --fs-lg:1.125rem;
+
+    --fs-xl:1.25rem;
+
+    --fs-2xl:1.5rem;
+
+    --fs-3xl:2rem;
+
+    --fs-4xl:2.5rem;
+
+    --fs-5xl:3rem;
+
+    --fw-light:300;
+
+    --fw-normal:400;
+
+    --fw-medium:500;
+
+    --fw-semibold:600;
+
+    --fw-bold:700;
+
+    --line-tight:1.2;
+
+    --line-normal:1.5;
+
+    --line-relaxed:1.8;
+
+}

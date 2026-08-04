@@ -1,0 +1,69 @@
+/* ==========================================
+   Color System
+========================================== */
+
+:root{
+
+    /* Brand */
+
+    --primary:#2563EB;
+    --primary-light:#3B82F6;
+    --primary-dark:#1D4ED8;
+
+    /* Secondary */
+
+    --secondary:#0F172A;
+
+    --accent:#06B6D4;
+
+    /* Background */
+
+    --background:#F8FAFC;
+
+    --surface:#FFFFFF;
+
+    --surface-2:#F1F5F9;
+
+    /* Text */
+
+    --text-primary:#0F172A;
+
+    --text-secondary:#475569;
+
+    --text-light:#94A3B8;
+
+    /* Status */
+
+    --success:#22C55E;
+
+    --warning:#F59E0B;
+
+    --danger:#EF4444;
+
+    --info:#0EA5E9;
+
+    /* Border */
+
+    --border:#E2E8F0;
+
+}
+
+/* Dark Theme */
+
+[data-theme="dark"]{
+
+    --background:#020617;
+
+    --surface:#0F172A;
+
+    --surface-2:#1E293B;
+
+    --text-primary:#F8FAFC;
+
+    --text-secondary:#CBD5E1;
+
+    --text-light:#64748B;
+
+    --border:#334155;
+
+}
