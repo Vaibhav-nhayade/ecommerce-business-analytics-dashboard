@@ -524,3 +524,32 @@
 
 }
 
+/* ==========================================================
+   OPERATIONS CENTER
+========================================================== */
+
+.operations{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:24px;
+
+}
+
+
+/* ==========================================================
+   NOTIFICATION CENTER
+========================================================== */
+
+.notification-center{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
