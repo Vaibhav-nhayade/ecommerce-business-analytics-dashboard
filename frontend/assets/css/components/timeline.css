@@ -1,0 +1,77 @@
+/* ==========================================================
+   Timeline
+========================================================== */
+
+.timeline{
+
+    position:relative;
+
+    padding-left:32px;
+
+}
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:10px;
+
+    top:0;
+
+    width:2px;
+
+    height:100%;
+
+    background:var(--border);
+
+}
+
+.timeline__item{
+
+    position:relative;
+
+    margin-bottom:30px;
+
+}
+
+.timeline__item::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-26px;
+
+    top:4px;
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+}
+
+.timeline__title{
+
+    font-weight:700;
+
+}
+
+.timeline__time{
+
+    font-size:.8rem;
+
+    color:var(--text-secondary);
+
+}
+
+.timeline__content{
+
+    margin-top:8px;
+
+}
