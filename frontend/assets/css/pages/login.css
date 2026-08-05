@@ -312,3 +312,189 @@
 
 }
 
+/* ==========================================================
+   DIVIDER
+========================================================== */
+
+.login-divider{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin:35px 0;
+
+}
+
+.login-divider::before,
+
+.login-divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:var(--border);
+
+}
+
+.login-divider span{
+
+    color:var(--text-light);
+
+}
+
+/* ==========================================================
+   OPTIONS
+========================================================== */
+
+.login-options{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:18px;
+
+}
+
+.login-options a{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+
+/* ==========================================================
+   DEMO ACCOUNT
+========================================================== */
+
+.demo-account{
+
+    margin-top:40px;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    background:
+
+    rgba(37,99,235,.06);
+
+    border:1px solid
+
+    rgba(37,99,235,.15);
+
+}
+
+.demo-account__title{
+
+    font-weight:700;
+
+    margin-bottom:14px;
+
+}
+
+.demo-account code{
+
+    display:block;
+
+    margin-top:8px;
+
+}
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.login-footer{
+
+    margin-top:40px;
+
+    text-align:center;
+
+    color:var(--text-secondary);
+
+}
+
+.login-footer a{
+
+    color:var(--primary);
+
+}
+
+
+
+/* ==========================================================
+   FLOATING SHAPES
+========================================================== */
+
+.login-shapes{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+}
+
+.login-shape{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    animation:float 10s ease-in-out infinite;
+
+}
+
+.login-shape:nth-child(1){
+
+    width:140px;
+    height:140px;
+    top:8%;
+    left:10%;
+
+}
+
+.login-shape:nth-child(2){
+
+    width:90px;
+    height:90px;
+    bottom:12%;
+    left:20%;
+    animation-delay:2s;
+
+}
+
+.login-shape:nth-child(3){
+
+    width:180px;
+    height:180px;
+    right:10%;
+    top:20%;
+    animation-delay:4s;
+
+}
+
+.login-shape:nth-child(4){
+
+    width:70px;
+    height:70px;
+    bottom:25%;
+    right:18%;
+    animation-delay:6s;
+
+}
