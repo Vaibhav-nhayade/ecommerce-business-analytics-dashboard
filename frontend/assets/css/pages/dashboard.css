@@ -553,3 +553,307 @@
 
 }
 
+
+/* ==========================================================
+   SALES ANALYTICS
+========================================================== */
+
+.sales-analytics{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+.sales-analytics__header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.sales-analytics__chart{
+
+    height:380px;
+
+}
+
+.sales-analytics__summary{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+
+/* ==========================================================
+   CUSTOMER JOURNEY
+========================================================== */
+
+.customer-journey{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.customer-journey__timeline{
+
+    margin-top:10px;
+
+}
+
+.customer-journey__stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:16px;
+
+}
+
+
+/* ==========================================================
+   SALES MAP
+========================================================== */
+
+.sales-map{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+.sales-map__container{
+
+    height:420px;
+
+    border-radius:var(--radius-xl);
+
+    overflow:hidden;
+
+    background:var(--surface-2);
+
+}
+
+.sales-map__legend{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:24px;
+
+}
+
+
+/* ==========================================================
+   TOP PRODUCTS
+========================================================== */
+
+.top-products{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.top-products__list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+
+/* ==========================================================
+   REVENUE SOURCES
+========================================================== */
+
+.revenue-sources{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:24px;
+
+}
+
+.revenue-sources__chart{
+
+    height:300px;
+
+}
+
+.revenue-sources__details{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+
+/* ==========================================================
+   TEAM ACTIVITY
+========================================================== */
+
+.team-activity{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.team-activity__list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+
+/* ==========================================================
+   PERFORMANCE SCORE
+========================================================== */
+
+.performance{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+.performance__card{
+
+    text-align:center;
+
+}
+
+.performance__value{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+}
+
+.performance__label{
+
+    color:var(--text-secondary);
+
+}
+
+
+/* ==========================================================
+   EXECUTIVE SUMMARY
+========================================================== */
+
+.executive-summary{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+.executive-summary__grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:24px;
+
+}
+
+
+/* ==========================================================
+   SMART FILTERS
+========================================================== */
+
+.smart-filter{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.smart-filter__group{
+
+    display:flex;
+
+    gap:16px;
+
+    flex-wrap:wrap;
+
+}
+
+/* ==========================================================
+   EXPORT CENTER
+========================================================== */
+
+.export-center{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.export-center__actions{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+
