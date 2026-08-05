@@ -3,21 +3,21 @@
    Dashboard
 ========================================================== */
 
-.dashboard{
+.dashboard {
 
-    min-height:100vh;
+    min-height: 100vh;
 
-    background:var(--background);
+    background: var(--background);
 
 }
 
-.dashboard__container{
+.dashboard__container {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:32px;
+    gap: 32px;
 
 }
 
@@ -26,47 +26,47 @@
    HEADER
 ========================================================== */
 
-.dashboard-header{
+.dashboard-header {
 
-    display:flex;
+    display: flex;
 
-    justify-content:space-between;
+    justify-content: space-between;
 
-    align-items:center;
+    align-items: center;
 
-    margin-bottom:20px;
-
-}
-
-.dashboard-header__content{
-
-    display:flex;
-
-    flex-direction:column;
+    margin-bottom: 20px;
 
 }
 
-.dashboard-header__title{
+.dashboard-header__content {
 
-    font-size:2.4rem;
+    display: flex;
 
-    font-weight:700;
-
-}
-
-.dashboard-header__subtitle{
-
-    margin-top:8px;
-
-    color:var(--text-secondary);
+    flex-direction: column;
 
 }
 
-.dashboard-header__actions{
+.dashboard-header__title {
 
-    display:flex;
+    font-size: 2.4rem;
 
-    gap:16px;
+    font-weight: 700;
+
+}
+
+.dashboard-header__subtitle {
+
+    margin-top: 8px;
+
+    color: var(--text-secondary);
+
+}
+
+.dashboard-header__actions {
+
+    display: flex;
+
+    gap: 16px;
 
 }
 
@@ -75,15 +75,15 @@
    KPI GRID
 ========================================================== */
 
-.kpi-grid{
+.kpi-grid {
 
-    display:grid;
+    display: grid;
 
     grid-template-columns:
 
-        repeat(4,1fr);
+        repeat(4, 1fr);
 
-    gap:24px;
+    gap: 24px;
 
 }
 
@@ -91,25 +91,25 @@
    ANALYTICS GRID
 ========================================================== */
 
-.analytics-grid{
+.analytics-grid {
 
-    display:grid;
+    display: grid;
 
     grid-template-columns:
 
         2fr 1fr;
 
-    gap:28px;
+    gap: 28px;
 
 }
 
-.analytics-column{
+.analytics-column {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:28px;
+    gap: 28px;
 
 }
 
@@ -117,19 +117,19 @@
    REVENUE
 ========================================================== */
 
-.revenue{
+.revenue {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:24px;
+    gap: 24px;
 
 }
 
-.revenue__chart{
+.revenue__chart {
 
-    height:420px;
+    height: 420px;
 
 }
 
@@ -138,17 +138,166 @@
    AI PANEL
 ========================================================== */
 
-.ai-panel{
+.ai-panel {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+}
+
+.ai-panel__header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+.ai-panel__title {
+
+    font-size: 1.2rem;
+
+    font-weight: 700;
+
+}
+
+.ai-panel__content {
+
+    line-height: 1.8;
+
+}
+
+.ai-panel__actions {
+
+    display: flex;
+
+    gap: 12px;
+
+}
+
+/* ==========================================================
+   WIDGETS
+========================================================== */
+
+.widget-grid {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(2, 1fr);
+
+    gap: 24px;
+
+}
+
+.widget {
+
+    min-height: 260px;
+
+}
+
+/* ==========================================================
+   RECENT ORDERS
+========================================================== */
+
+.orders {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+}
+
+
+/* ==========================================================
+   RECENT ORDERS
+========================================================== */
+
+.orders {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+}
+
+/* ==========================================================
+   NOTIFICATIONS
+========================================================== */
+
+.dashboard-notifications {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+}
+
+/* ==========================================================
+   ACTIVITY
+========================================================== */
+
+.activity {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+}
+
+/* ==========================================================
+   QUICK ACTIONS
+========================================================== */
+
+.quick-actions {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.dashboard-footer {
+    margin-top: 50px;
+}
+
+/* ==========================================================
+   EXECUTIVE KPI
+========================================================== */
+
+.executive{
 
     display:flex;
 
     flex-direction:column;
 
-    gap:22px;
+    gap:28px;
 
 }
 
-.ai-panel__header{
+.executive__header{
 
     display:flex;
 
@@ -158,61 +307,127 @@
 
 }
 
-.ai-panel__title{
+.executive__title{
 
-    font-size:1.2rem;
+    font-size:1.6rem;
 
     font-weight:700;
 
 }
 
-.ai-panel__content{
+.executive__subtitle{
 
-    line-height:1.8;
-
-}
-
-.ai-panel__actions{
-
-    display:flex;
-
-    gap:12px;
+    color:var(--text-secondary);
 
 }
 
-/* ==========================================================
-   WIDGETS
-========================================================== */
-
-.widget-grid{
+.executive__grid{
 
     display:grid;
 
-    grid-template-columns:
-
-        repeat(2,1fr);
+    grid-template-columns:repeat(4,1fr);
 
     gap:24px;
 
 }
 
-.widget{
 
-    min-height:260px;
 
-}
 
 /* ==========================================================
-   RECENT ORDERS
+   REVENUE INTELLIGENCE
 ========================================================== */
 
-.orders{
+.revenue-intelligence{
 
     display:flex;
 
     flex-direction:column;
 
+    gap:24px;
+
+}
+
+.revenue-intelligence__header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.revenue-intelligence__chart{
+
+    height:420px;
+
+}
+
+.revenue-intelligence__footer{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+
+/* ==========================================================
+   CUSTOMER INTELLIGENCE
+========================================================== */
+
+.customer-intelligence{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+.customer-intelligence__chart{
+
+    height:340px;
+
+}
+
+.customer-intelligence__segments{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
     gap:18px;
 
 }
+
+
+/* ==========================================================
+   MARKETING INTELLIGENCE
+========================================================== */
+
+.marketing-intelligence{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+.marketing-intelligence__campaigns{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
 
