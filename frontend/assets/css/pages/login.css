@@ -108,3 +108,207 @@
 }
 
 
+/* ==========================================================
+   BRAND
+========================================================== */
+
+.login-brand{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:560px;
+
+}
+
+.login-brand__logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-bottom:40px;
+
+}
+
+.login-brand__icon{
+
+    width:70px;
+
+    height:70px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.15);
+
+    font-size:2rem;
+
+}
+
+.login-brand__title{
+
+    font-size:3.6rem;
+
+    line-height:1.1;
+
+    margin-bottom:30px;
+
+}
+
+.login-brand__text{
+
+    line-height:1.9;
+
+    opacity:.9;
+
+    font-size:1.05rem;
+
+}
+
+
+/* ==========================================================
+   BRAND
+========================================================== */
+
+.login-brand{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:560px;
+
+}
+
+.login-brand__logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-bottom:40px;
+
+}
+
+.login-brand__icon{
+
+    width:70px;
+
+    height:70px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.15);
+
+    font-size:2rem;
+
+}
+
+.login-brand__title{
+
+    font-size:3.6rem;
+
+    line-height:1.1;
+
+    margin-bottom:30px;
+
+}
+
+.login-brand__text{
+
+    line-height:1.9;
+
+    opacity:.9;
+
+    font-size:1.05rem;
+
+}
+
+
+/* ==========================================================
+   RIGHT PANEL
+========================================================== */
+
+.login__right{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:70px;
+
+}
+
+.login-card{
+
+    width:100%;
+
+    max-width:520px;
+
+}
+
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.login-header{
+
+    margin-bottom:40px;
+
+}
+
+.login-header__title{
+
+    font-size:2.4rem;
+
+    margin-bottom:10px;
+
+}
+
+.login-header__subtitle{
+
+    color:var(--text-secondary);
+
+}
+
+
+
+/* ==========================================================
+   SOCIAL
+========================================================== */
+
+.social-login{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:16px;
+
+    margin-bottom:30px;
+
+}
+
+.social-login .btn{
+
+    justify-content:center;
+
+}
+
