@@ -1124,3 +1124,22 @@
     animation:pulse 2s infinite;
 
 }
+
+
+/* ==========================================================
+   DASHBOARD LOADER
+========================================================== */
+
+.dashboard-loader{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:350px;
+
+}
+
+
