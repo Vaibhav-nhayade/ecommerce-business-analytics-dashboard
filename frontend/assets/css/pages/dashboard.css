@@ -287,47 +287,47 @@
    EXECUTIVE KPI
 ========================================================== */
 
-.executive{
+.executive {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:28px;
-
-}
-
-.executive__header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
+    gap: 28px;
 
 }
 
-.executive__title{
+.executive__header {
 
-    font-size:1.6rem;
+    display: flex;
 
-    font-weight:700;
+    justify-content: space-between;
 
-}
-
-.executive__subtitle{
-
-    color:var(--text-secondary);
+    align-items: center;
 
 }
 
-.executive__grid{
+.executive__title {
 
-    display:grid;
+    font-size: 1.6rem;
 
-    grid-template-columns:repeat(4,1fr);
+    font-weight: 700;
 
-    gap:24px;
+}
+
+.executive__subtitle {
+
+    color: var(--text-secondary);
+
+}
+
+.executive__grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 24px;
 
 }
 
@@ -338,39 +338,39 @@
    REVENUE INTELLIGENCE
 ========================================================== */
 
-.revenue-intelligence{
+.revenue-intelligence {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:24px;
-
-}
-
-.revenue-intelligence__header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
+    gap: 24px;
 
 }
 
-.revenue-intelligence__chart{
+.revenue-intelligence__header {
 
-    height:420px;
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
 
 }
 
-.revenue-intelligence__footer{
+.revenue-intelligence__chart {
 
-    display:grid;
+    height: 420px;
 
-    grid-template-columns:repeat(3,1fr);
+}
 
-    gap:20px;
+.revenue-intelligence__footer {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
 
 }
 
@@ -379,29 +379,29 @@
    CUSTOMER INTELLIGENCE
 ========================================================== */
 
-.customer-intelligence{
+.customer-intelligence {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:24px;
-
-}
-
-.customer-intelligence__chart{
-
-    height:340px;
+    gap: 24px;
 
 }
 
-.customer-intelligence__segments{
+.customer-intelligence__chart {
 
-    display:grid;
+    height: 340px;
 
-    grid-template-columns:repeat(3,1fr);
+}
 
-    gap:18px;
+.customer-intelligence__segments {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
 
 }
 
@@ -410,23 +410,23 @@
    MARKETING INTELLIGENCE
 ========================================================== */
 
-.marketing-intelligence{
+.marketing-intelligence {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:24px;
+    gap: 24px;
 
 }
 
-.marketing-intelligence__campaigns{
+.marketing-intelligence__campaigns {
 
-    display:grid;
+    display: grid;
 
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
 
-    gap:20px;
+    gap: 20px;
 
 }
 
@@ -435,23 +435,23 @@
    FINANCIAL INTELLIGENCE
 ========================================================== */
 
-.finance-intelligence{
+.finance-intelligence {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:24px;
+    gap: 24px;
 
 }
 
-.finance-intelligence__summary{
+.finance-intelligence__summary {
 
-    display:grid;
+    display: grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
 
-    gap:18px;
+    gap: 18px;
 
 }
 
@@ -460,29 +460,29 @@
    FORECAST CENTER
 ========================================================== */
 
-.forecast-center{
+.forecast-center {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:24px;
-
-}
-
-.forecast-center__chart{
-
-    height:360px;
+    gap: 24px;
 
 }
 
-.forecast-center__metrics{
+.forecast-center__chart {
 
-    display:grid;
+    height: 360px;
 
-    grid-template-columns:repeat(4,1fr);
+}
 
-    gap:20px;
+.forecast-center__metrics {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
 
 }
 
@@ -490,37 +490,37 @@
    AI INSIGHT CENTER
 ========================================================== */
 
-.ai-center{
+.ai-center {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:24px;
-
-}
-
-.ai-center__summary{
-
-    line-height:1.9;
+    gap: 24px;
 
 }
 
-.ai-center__actions{
+.ai-center__summary {
 
-    display:flex;
-
-    gap:14px;
+    line-height: 1.9;
 
 }
 
-.ai-center__recommendations{
+.ai-center__actions {
 
-    display:grid;
+    display: flex;
 
-    grid-template-columns:repeat(2,1fr);
+    gap: 14px;
 
-    gap:20px;
+}
+
+.ai-center__recommendations {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
 
 }
 
@@ -528,13 +528,13 @@
    OPERATIONS CENTER
 ========================================================== */
 
-.operations{
+.operations {
 
-    display:grid;
+    display: grid;
 
-    grid-template-columns:2fr 1fr;
+    grid-template-columns: 2fr 1fr;
 
-    gap:24px;
+    gap: 24px;
 
 }
 
@@ -543,13 +543,13 @@
    NOTIFICATION CENTER
 ========================================================== */
 
-.notification-center{
+.notification-center {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:18px;
+    gap: 18px;
 
 }
 
@@ -558,39 +558,39 @@
    SALES ANALYTICS
 ========================================================== */
 
-.sales-analytics{
+.sales-analytics {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:24px;
-
-}
-
-.sales-analytics__header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
+    gap: 24px;
 
 }
 
-.sales-analytics__chart{
+.sales-analytics__header {
 
-    height:380px;
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
 
 }
 
-.sales-analytics__summary{
+.sales-analytics__chart {
 
-    display:grid;
+    height: 380px;
 
-    grid-template-columns:repeat(3,1fr);
+}
 
-    gap:20px;
+.sales-analytics__summary {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
 
 }
 
@@ -599,29 +599,29 @@
    CUSTOMER JOURNEY
 ========================================================== */
 
-.customer-journey{
+.customer-journey {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:20px;
-
-}
-
-.customer-journey__timeline{
-
-    margin-top:10px;
+    gap: 20px;
 
 }
 
-.customer-journey__stats{
+.customer-journey__timeline {
 
-    display:grid;
+    margin-top: 10px;
 
-    grid-template-columns:repeat(4,1fr);
+}
 
-    gap:16px;
+.customer-journey__stats {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 16px;
 
 }
 
@@ -630,35 +630,35 @@
    SALES MAP
 ========================================================== */
 
-.sales-map{
+.sales-map {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:22px;
-
-}
-
-.sales-map__container{
-
-    height:420px;
-
-    border-radius:var(--radius-xl);
-
-    overflow:hidden;
-
-    background:var(--surface-2);
+    gap: 22px;
 
 }
 
-.sales-map__legend{
+.sales-map__container {
 
-    display:flex;
+    height: 420px;
 
-    justify-content:center;
+    border-radius: var(--radius-xl);
 
-    gap:24px;
+    overflow: hidden;
+
+    background: var(--surface-2);
+
+}
+
+.sales-map__legend {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 24px;
 
 }
 
@@ -667,23 +667,23 @@
    TOP PRODUCTS
 ========================================================== */
 
-.top-products{
+.top-products {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:20px;
+    gap: 20px;
 
 }
 
-.top-products__list{
+.top-products__list {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:16px;
+    gap: 16px;
 
 }
 
@@ -692,29 +692,29 @@
    REVENUE SOURCES
 ========================================================== */
 
-.revenue-sources{
+.revenue-sources {
 
-    display:grid;
+    display: grid;
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 
-    gap:24px;
-
-}
-
-.revenue-sources__chart{
-
-    height:300px;
+    gap: 24px;
 
 }
 
-.revenue-sources__details{
+.revenue-sources__chart {
 
-    display:flex;
+    height: 300px;
 
-    flex-direction:column;
+}
 
-    gap:18px;
+.revenue-sources__details {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
 
 }
 
@@ -723,23 +723,23 @@
    TEAM ACTIVITY
 ========================================================== */
 
-.team-activity{
+.team-activity {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:18px;
+    gap: 18px;
 
 }
 
-.team-activity__list{
+.team-activity__list {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:14px;
+    gap: 14px;
 
 }
 
@@ -748,35 +748,35 @@
    PERFORMANCE SCORE
 ========================================================== */
 
-.performance{
+.performance {
 
-    display:grid;
+    display: grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
 
-    gap:20px;
-
-}
-
-.performance__card{
-
-    text-align:center;
+    gap: 20px;
 
 }
 
-.performance__value{
+.performance__card {
 
-    font-size:2rem;
-
-    font-weight:700;
-
-    color:var(--primary);
+    text-align: center;
 
 }
 
-.performance__label{
+.performance__value {
 
-    color:var(--text-secondary);
+    font-size: 2rem;
+
+    font-weight: 700;
+
+    color: var(--primary);
+
+}
+
+.performance__label {
+
+    color: var(--text-secondary);
 
 }
 
@@ -785,23 +785,23 @@
    EXECUTIVE SUMMARY
 ========================================================== */
 
-.executive-summary{
+.executive-summary {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:24px;
+    gap: 24px;
 
 }
 
-.executive-summary__grid{
+.executive-summary__grid {
 
-    display:grid;
+    display: grid;
 
-    grid-template-columns:2fr 1fr;
+    grid-template-columns: 2fr 1fr;
 
-    gap:24px;
+    gap: 24px;
 
 }
 
@@ -810,27 +810,27 @@
    SMART FILTERS
 ========================================================== */
 
-.smart-filter{
+.smart-filter {
 
-    display:flex;
+    display: flex;
 
-    justify-content:space-between;
+    justify-content: space-between;
 
-    align-items:center;
+    align-items: center;
 
-    gap:20px;
+    gap: 20px;
 
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 
 }
 
-.smart-filter__group{
+.smart-filter__group {
 
-    display:flex;
+    display: flex;
 
-    gap:16px;
+    gap: 16px;
 
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 
 }
 
@@ -838,22 +838,289 @@
    EXPORT CENTER
 ========================================================== */
 
-.export-center{
+.export-center {
 
-    display:flex;
+    display: flex;
 
-    justify-content:space-between;
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+.export-center__actions {
+
+    display: flex;
+
+    gap: 12px;
+
+}
+
+/* ==========================================================
+   SECTION SPACING
+========================================================== */
+
+.dashboard-section {
+
+    margin-top: 50px;
+
+}
+
+.dashboard-section:first-child {
+
+    margin-top: 0;
+
+}
+
+
+/* ==========================================================
+   ACTIVITY TIMELINE
+========================================================== */
+
+.activity-feed {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+.activity-feed__item {
+
+    display: flex;
+
+    gap: 18px;
+
+    align-items: flex-start;
+
+    position: relative;
+
+}
+
+.activity-feed__item:not(:last-child)::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 17px;
+
+    top: 42px;
+
+    width: 2px;
+
+    height: calc(100% + 10px);
+
+    background: var(--border);
+
+}
+
+.activity-feed__icon {
+
+    width: 36px;
+
+    height: 36px;
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    background: rgba(37, 99, 235, .12);
+
+    color: var(--primary);
+
+    flex-shrink: 0;
+
+}
+
+.activity-feed__title {
+
+    font-weight: 600;
+
+}
+
+.activity-feed__time {
+
+    font-size: .82rem;
+
+    color: var(--text-secondary);
+
+    margin-top: 4px;
+
+}
+
+
+/* ==========================================================
+   COMMAND PALETTE
+========================================================== */
+
+.command {
+
+    position: fixed;
+
+    top: 15%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(760px, 90%);
+
+    background: var(--surface);
+
+    border-radius: 24px;
+
+    box-shadow: var(--shadow-xl);
+
+    border: 1px solid var(--border);
+
+    display: none;
+
+    z-index: var(--z-modal);
+
+}
+
+.command.active {
+
+    display: block;
+
+}
+
+.command__search {
+
+    padding: 24px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.command__results {
+
+    max-height: 420px;
+
+    overflow: auto;
+
+}
+
+.command__item {
+
+    padding: 18px 24px;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+.command__item:hover {
+
+    background: rgba(37, 99, 235, .06);
+
+}
+
+
+/* ==========================================================
+   GLOBAL SEARCH
+========================================================== */
+
+.search-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, .65);
+
+    backdrop-filter: blur(6px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: .3s;
+
+    z-index: calc(var(--z-modal) - 1);
+
+}
+
+.search-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+/* ==========================================================
+   DASHBOARD WIDGETS
+========================================================== */
+
+.widget-manager{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:24px;
+
+}
+
+.widget-manager__item{
+
+    border:1px dashed var(--border);
+
+    border-radius:18px;
+
+    padding:22px;
+
+    cursor:grab;
+
+    transition:.3s;
+
+}
+
+.widget-manager__item:hover{
+
+    border-color:var(--primary);
+
+    transform:translateY(-4px);
+
+}
+
+
+/* ==========================================================
+   LIVE STATUS
+========================================================== */
+
+.live-status{
+
+    display:inline-flex;
 
     align-items:center;
 
-}
+    gap:10px;
 
-.export-center__actions{
+    font-size:.9rem;
 
-    display:flex;
-
-    gap:12px;
+    font-weight:600;
 
 }
 
+.live-status__dot{
 
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:var(--success);
+
+    animation:pulse 2s infinite;
+
+}
