@@ -1143,3 +1143,99 @@
 }
 
 
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+
+.empty-state{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:80px 40px;
+
+}
+
+.empty-state__icon{
+
+    font-size:4rem;
+
+    color:var(--primary);
+
+    margin-bottom:20px;
+
+}
+
+.empty-state__title{
+
+    font-size:1.5rem;
+
+    font-weight:700;
+
+}
+
+.empty-state__text{
+
+    margin-top:12px;
+
+    color:var(--text-secondary);
+
+}
+
+
+
+/* ==========================================================
+   SECTION TITLE
+========================================================== */
+
+.section-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:24px;
+
+}
+
+.section-title h2{
+
+    font-size:1.45rem;
+
+}
+
+.section-title p{
+
+    color:var(--text-secondary);
+
+}
+
+
+/* ==========================================================
+   DASHBOARD ANIMATION
+========================================================== */
+
+.dashboard-widget{
+
+    animation:fadeIn .45s ease;
+
+}
+
+.dashboard-widget:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+
+
