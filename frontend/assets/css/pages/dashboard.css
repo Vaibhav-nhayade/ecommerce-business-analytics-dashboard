@@ -431,3 +431,96 @@
 }
 
 
+/* ==========================================================
+   FINANCIAL INTELLIGENCE
+========================================================== */
+
+.finance-intelligence{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+.finance-intelligence__summary{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+}
+
+
+/* ==========================================================
+   FORECAST CENTER
+========================================================== */
+
+.forecast-center{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+.forecast-center__chart{
+
+    height:360px;
+
+}
+
+.forecast-center__metrics{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+/* ==========================================================
+   AI INSIGHT CENTER
+========================================================== */
+
+.ai-center{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+.ai-center__summary{
+
+    line-height:1.9;
+
+}
+
+.ai-center__actions{
+
+    display:flex;
+
+    gap:14px;
+
+}
+
+.ai-center__recommendations{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
