@@ -8,480 +8,590 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     
+
+    <link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/css/pages/landing.css">
+
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-[#030712] dark:text-gray-100 antialiased transition-colors duration-300">
 
+    <script src="../assets/js/main.js"></script>
+<script src="../assets/js/landing.js"></script>
+
     <!-- Background Ambient Glows -->
-    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[150px] opacity-20 dark:opacity-10 pointer-events-none z-0"></div>
-    <div class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-accent-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[150px] opacity-20 dark:opacity-10 pointer-events-none z-0"></div>
+<div
+    class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[150px] opacity-20 dark:opacity-10 pointer-events-none z-0">
+</div>
+<div
+    class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-accent-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[150px] opacity-20 dark:opacity-10 pointer-events-none z-0">
+</div>
 
-    <!-- NAVBAR -->
-    <nav class="fixed w-full z-50 glass-panel transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0 flex items-center gap-2">
-                    <div class="w-8 h-8 rounded bg-gradient-to-br from-brand-400 to-accent-600 flex items-center justify-center font-bold text-white shadow-lg">EA</div>
-                    <span class="font-bold text-lg tracking-tight font-mono">SalesVision</span>
-                </div>
-                
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-center space-x-8 text-sm font-medium">
-                        <a href="#features" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 dark:hover:text-brand-400 transition-colors">Features</a>
-                        <a href="#architecture" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 dark:hover:text-brand-400 transition-colors">Architecture</a>
-                        <a href="https://github.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-accent-500 transition-colors">GitHub</a>
-                        <a href="#docs" class="text-gray-600 dark:text-gray-300 hover:text-accent-500 transition-colors">Documentation</a>
-                    </div>
-                </div>
+<!-- NAVBAR -->
+<nav class="fixed w-full z-50 glass-panel transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex-shrink-0 flex items-center gap-2">
+                <div
+                    class="w-8 h-8 rounded bg-gradient-to-br from-brand-400 to-accent-600 flex items-center justify-center font-bold text-white shadow-lg">
+                    EA</div>
+                <span class="font-bold text-lg tracking-tight font-mono">SalesVision</span>
+            </div>
 
-                <div class="flex items-center gap-4">
-                    <!-- Theme Toggle -->
-                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:ring-2 ring-brand-500 transition-all">
-                        <!-- Sun Icon -->
-                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 2.32a1 1 0 011.415 0l.708.708a1 1 0 01-1.414 1.414l-.708-.708a1 1 0 010-1.414zM17 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zm-2.78 4.68a1 1 0 010 1.415l-.708.708a1 1 0 01-1.414-1.414l.708-.708a1 1 0 011.415 0zM10 17a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4.22-2.32a1 1 0 01-1.415 0l-.708-.708a1 1 0 011.414-1.414l.708.708a1 1 0 010 1.415zM3 10a1 1 0 01-1 1H1a1 1 0 110-2h1a1 1 0 011 1zm2.78-4.68a1 1 0 010-1.415l.708-.708a1 1 0 011.414 1.414l-.708.708a1 1 0 01-1.415 0zM10 5a5 5 0 100 10 5 5 0 000-10z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                        <!-- Moon Icon -->
-                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                    </button>
-                    <!-- CTA -->
-                    <a href="login.html" class="px-5 py-2 rounded-md bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition-all duration-300 shadow-lg shadow-brand-500/30">
-                        Launch Demo
-                    </a>
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-center space-x-8 text-sm font-medium">
+                    <a href="#features"
+                        class="text-gray-600 dark:text-gray-300 hover:text-brand-500 dark:hover:text-brand-400 transition-colors">Features</a>
+                    <a href="#architecture"
+                        class="text-gray-600 dark:text-gray-300 hover:text-brand-500 dark:hover:text-brand-400 transition-colors">Architecture</a>
+                    <a href="https://github.com" target="_blank"
+                        class="text-gray-600 dark:text-gray-300 hover:text-accent-500 transition-colors">GitHub</a>
+                    <a href="#docs"
+                        class="text-gray-600 dark:text-gray-300 hover:text-accent-500 transition-colors">Documentation</a>
                 </div>
             </div>
-        </div>
-    </nav>
 
-    <!-- HERO SECTION -->
-    <section class="relative pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden bg-gradient-radial z-10 min-h-[70vh] flex flex-col justify-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-gray-900 dark:text-white">
-                Enterprise Analytics Platform
-            </h1>
-            <p class="mt-4 max-w-2xl text-lg md:text-2xl text-gray-600 dark:text-gray-400 mx-auto mb-10 font-medium">
-                Make faster business decisions with <br class="hidden md:block"/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-accent-500 glow-text font-bold">AI-powered insights.</span>
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="login.html" class="px-8 py-4 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold hover:scale-105 transition-all duration-300 shadow-xl">
-                    Explore Dashboard
-                </a>
-                <a href="#architecture" class="px-8 py-4 rounded-lg glass-panel font-bold hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300">
-                    View Architecture
+            <div class="flex items-center gap-4">
+                <!-- Theme Toggle -->
+                <button id="theme-toggle"
+                    class="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:ring-2 ring-brand-500 transition-all">
+                    <!-- Sun Icon -->
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 2.32a1 1 0 011.415 0l.708.708a1 1 0 01-1.414 1.414l-.708-.708a1 1 0 010-1.414zM17 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zm-2.78 4.68a1 1 0 010 1.415l-.708.708a1 1 0 01-1.414-1.414l.708-.708a1 1 0 011.415 0zM10 17a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4.22-2.32a1 1 0 01-1.415 0l-.708-.708a1 1 0 011.414-1.414l.708.708a1 1 0 010 1.415zM3 10a1 1 0 01-1 1H1a1 1 0 110-2h1a1 1 0 011 1zm2.78-4.68a1 1 0 010-1.415l.708-.708a1 1 0 011.414 1.414l-.708.708a1 1 0 01-1.415 0zM10 5a5 5 0 100 10 5 5 0 000-10z"
+                            fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                    <!-- Moon Icon -->
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+                <!-- CTA -->
+                <a href="login.html"
+                    class="px-5 py-2 rounded-md bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition-all duration-300 shadow-lg shadow-brand-500/30">
+                    Launch Demo
                 </a>
             </div>
         </div>
-    </section>
+    </div>
+</nav>
 
-    <!-- STATS COUNTER SECTION -->
-    <section class="py-12 border-y border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-gray-900/50 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center font-mono">
-                <div>
-                    <div class="text-4xl font-bold text-brand-600 dark:text-brand-400 mb-2 flex justify-center items-baseline">
-                        <span class="counter" data-target="1.2">0</span><span>M+</span>
-                    </div>
-                    <div class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider">Orders Processed</div>
-                    <div class="mt-4 border-b border-gray-300 dark:border-gray-700 w-1/2 mx-auto border-dashed"></div>
+<!-- HERO SECTION -->
+<section
+    class="relative pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden bg-gradient-radial z-10 min-h-[70vh] flex flex-col justify-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-gray-900 dark:text-white">
+            Enterprise Analytics Platform
+        </h1>
+        <p class="mt-4 max-w-2xl text-lg md:text-2xl text-gray-600 dark:text-gray-400 mx-auto mb-10 font-medium">
+            Make faster business decisions with <br class="hidden md:block" />
+            <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-accent-500 glow-text font-bold">AI-powered
+                insights.</span>
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="login.html"
+                class="px-8 py-4 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold hover:scale-105 transition-all duration-300 shadow-xl">
+                Explore Dashboard
+            </a>
+            <a href="#architecture"
+                class="px-8 py-4 rounded-lg glass-panel font-bold hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300">
+                View Architecture
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- STATS COUNTER SECTION -->
+<section class="py-12 border-y border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-gray-900/50 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center font-mono">
+            <div>
+                <div
+                    class="text-4xl font-bold text-brand-600 dark:text-brand-400 mb-2 flex justify-center items-baseline">
+                    <span class="counter" data-target="1.2">0</span><span>M+</span>
                 </div>
-                <div>
-                    <div class="text-4xl font-bold text-brand-600 dark:text-brand-400 mb-2 flex justify-center items-baseline">
-                        <span class="counter" data-target="96">0</span><span>%</span>
-                    </div>
-                    <div class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider">Forecast Accuracy</div>
-                    <div class="mt-4 border-b border-gray-300 dark:border-gray-700 w-1/2 mx-auto border-dashed"></div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider">Orders Processed</div>
+                <div class="mt-4 border-b border-gray-300 dark:border-gray-700 w-1/2 mx-auto border-dashed"></div>
+            </div>
+            <div>
+                <div
+                    class="text-4xl font-bold text-brand-600 dark:text-brand-400 mb-2 flex justify-center items-baseline">
+                    <span class="counter" data-target="96">0</span><span>%</span>
                 </div>
-                <div>
-                    <div class="text-4xl font-bold text-brand-600 dark:text-brand-400 mb-2 flex justify-center">
-                        <span class="counter" data-target="28">0</span>
-                    </div>
-                    <div class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider">Business KPIs</div>
-                    <div class="mt-4 border-b border-gray-300 dark:border-gray-700 w-1/2 mx-auto border-dashed"></div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider">Forecast Accuracy</div>
+                <div class="mt-4 border-b border-gray-300 dark:border-gray-700 w-1/2 mx-auto border-dashed"></div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold text-brand-600 dark:text-brand-400 mb-2 flex justify-center">
+                    <span class="counter" data-target="28">0</span>
                 </div>
-                <div>
-                    <div class="text-4xl font-bold text-brand-600 dark:text-brand-400 mb-2 flex justify-center items-baseline">
-                        <span class="counter" data-target="100">0</span><span>k+</span>
-                    </div>
-                    <div class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider">Customers</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider">Business KPIs</div>
+                <div class="mt-4 border-b border-gray-300 dark:border-gray-700 w-1/2 mx-auto border-dashed"></div>
+            </div>
+            <div>
+                <div
+                    class="text-4xl font-bold text-brand-600 dark:text-brand-400 mb-2 flex justify-center items-baseline">
+                    <span class="counter" data-target="100">0</span><span>k+</span>
                 </div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider">Customers</div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- REAL DASHBOARD PREVIEW -->
-    <section id="preview" class="relative py-24 z-10 bg-gray-50 dark:bg-[#030712]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4">Live Product Interface</h2>
-                <p class="text-gray-500 dark:text-gray-400">Stop looking at templates. Start analyzing real data flows.</p>
+<!-- REAL DASHBOARD PREVIEW -->
+<section id="preview" class="relative py-24 z-10 bg-gray-50 dark:bg-[#030712]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Live Product Interface</h2>
+            <p class="text-gray-500 dark:text-gray-400">Stop looking at templates. Start analyzing real data flows.</p>
+        </div>
+
+        <!-- Faux App Window -->
+        <div
+            class="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-2xl bg-white dark:bg-[#111827]">
+            <!-- Mac-style Window Header -->
+            <div
+                class="h-10 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center px-4 gap-2">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <div class="ml-4 text-xs font-mono text-gray-500 dark:text-gray-400">app.ecommanalytics.local/dashboard
+                </div>
             </div>
 
-            <!-- Faux App Window -->
-            <div class="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-2xl bg-white dark:bg-[#111827]">
-                <!-- Mac-style Window Header -->
-                <div class="h-10 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center px-4 gap-2">
-                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    <div class="ml-4 text-xs font-mono text-gray-500 dark:text-gray-400">app.ecommanalytics.local/dashboard</div>
+            <div class="p-6 md:p-8">
+                <!-- Top KPI Cards (Matching Image 3) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+
+                    <div class="glass-panel p-6 rounded-xl font-mono">
+                        <h3 class="text-brand-600 dark:text-brand-400 text-sm mb-4">Revenue</h3>
+                        <div class="text-2xl md:text-3xl font-bold text-accent-600 dark:text-accent-500 mb-4">$1,248,550
+                        </div>
+                        <div class="text-sm flex items-center gap-1 text-green-600 dark:text-green-400">
+                            &uarr; 18.6% <span class="text-gray-400 dark:text-gray-500 ml-2 text-xs font-sans">vs last
+                                month</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-xl font-mono">
+                        <h3 class="text-gray-700 dark:text-gray-300 text-sm mb-4">Orders</h3>
+                        <div class="text-2xl md:text-3xl font-bold text-accent-600 dark:text-accent-500 mb-4">18,921
+                        </div>
+                        <div class="text-sm flex items-center gap-1 text-green-600 dark:text-green-400">
+                            &uarr; 7.3% <span class="text-gray-400 dark:text-gray-500 ml-2 text-xs font-sans">vs last
+                                month</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-xl font-mono">
+                        <h3 class="text-gray-700 dark:text-gray-300 text-sm mb-4">Customers</h3>
+                        <div class="text-2xl md:text-3xl font-bold text-accent-600 dark:text-accent-500 mb-4">4,532
+                        </div>
+                        <div class="text-sm flex items-center gap-1 text-green-600 dark:text-green-400">
+                            &uarr; 12% <span class="text-gray-400 dark:text-gray-500 ml-2 text-xs font-sans">vs last
+                                month</span>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="p-6 md:p-8">
-                    <!-- Top KPI Cards (Matching Image 3) -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        
-                        <div class="glass-panel p-6 rounded-xl font-mono">
-                            <h3 class="text-brand-600 dark:text-brand-400 text-sm mb-4">Revenue</h3>
-                            <div class="text-2xl md:text-3xl font-bold text-accent-600 dark:text-accent-500 mb-4">$1,248,550</div>
-                            <div class="text-sm flex items-center gap-1 text-green-600 dark:text-green-400">
-                                &uarr; 18.6% <span class="text-gray-400 dark:text-gray-500 ml-2 text-xs font-sans">vs last month</span>
-                            </div>
-                        </div>
 
-                        <div class="glass-panel p-6 rounded-xl font-mono">
-                            <h3 class="text-gray-700 dark:text-gray-300 text-sm mb-4">Orders</h3>
-                            <div class="text-2xl md:text-3xl font-bold text-accent-600 dark:text-accent-500 mb-4">18,921</div>
-                            <div class="text-sm flex items-center gap-1 text-green-600 dark:text-green-400">
-                                &uarr; 7.3% <span class="text-gray-400 dark:text-gray-500 ml-2 text-xs font-sans">vs last month</span>
-                            </div>
-                        </div>
-
-                        <div class="glass-panel p-6 rounded-xl font-mono">
-                            <h3 class="text-gray-700 dark:text-gray-300 text-sm mb-4">Customers</h3>
-                            <div class="text-2xl md:text-3xl font-bold text-accent-600 dark:text-accent-500 mb-4">4,532</div>
-                            <div class="text-sm flex items-center gap-1 text-green-600 dark:text-green-400">
-                                &uarr; 12% <span class="text-gray-400 dark:text-gray-500 ml-2 text-xs font-sans">vs last month</span>
-                            </div>
+                <!-- Charts Area -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="lg:col-span-2 glass-panel p-6 rounded-xl h-[350px] relative">
+                        <h3 class="font-bold mb-4">Revenue Overview (Live)</h3>
+                        <canvas id="mainChart"></canvas>
+                    </div>
+                    <div class="glass-panel p-6 rounded-xl h-[200px] relative flex flex-col">
+                        <h3 class="font-bold mb-4">Traffic Sources</h3>
+                        <div class="flex-grow relative w-full flex justify-center">
+                            <canvas id="donutChart"></canvas>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Charts Area -->
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                        <div class="lg:col-span-2 glass-panel p-6 rounded-xl h-[350px] relative">
-                            <h3 class="font-bold mb-4">Revenue Overview (Live)</h3>
-                            <canvas id="mainChart"></canvas>
-                        </div>
-                        <div class="glass-panel p-6 rounded-xl h-[200px] relative flex flex-col">
-                            <h3 class="font-bold mb-4">Traffic Sources</h3>
-                            <div class="flex-grow relative w-full flex justify-center">
-                                <canvas id="donutChart"></canvas>
-                            </div>
-                        </div>
+                <!-- Tables Area -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="glass-panel p-6 rounded-xl overflow-x-auto">
+                        <h3 class="font-bold mb-4">Recent Transactions</h3>
+                        <table class="w-full text-left text-sm">
+                            <thead>
+                                <tr class="border-b border-gray-200 dark:border-gray-700 text-gray-500">
+                                    <th class="pb-2">Order ID</th>
+                                    <th class="pb-2">Customer</th>
+                                    <th class="pb-2">Status</th>
+                                    <th class="pb-2 text-right">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-mono text-xs">
+                                <tr class="border-b border-gray-100 dark:border-gray-800">
+                                    <td class="py-3 text-brand-500">#ORD-9021</td>
+                                    <td class="py-3">johndoe@email.com</td>
+                                    <td class="py-3"><span
+                                            class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 rounded">Paid</span>
+                                    </td>
+                                    <td class="py-3 text-right">$429.00</td>
+                                </tr>
+                                <tr class="border-b border-gray-100 dark:border-gray-800">
+                                    <td class="py-3 text-brand-500">#ORD-9020</td>
+                                    <td class="py-3">s.smith@corp.com</td>
+                                    <td class="py-3"><span
+                                            class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 rounded">Pending</span>
+                                    </td>
+                                    <td class="py-3 text-right">$1,250.50</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 text-brand-500">#ORD-9019</td>
+                                    <td class="py-3">alex.w@web.com</td>
+                                    <td class="py-3"><span
+                                            class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 rounded">Paid</span>
+                                    </td>
+                                    <td class="py-3 text-right">$89.99</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <!-- Tables Area -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <div class="glass-panel p-6 rounded-xl overflow-x-auto">
-                            <h3 class="font-bold mb-4">Recent Transactions</h3>
-                            <table class="w-full text-left text-sm">
-                                <thead>
-                                    <tr class="border-b border-gray-200 dark:border-gray-700 text-gray-500">
-                                        <th class="pb-2">Order ID</th>
-                                        <th class="pb-2">Customer</th>
-                                        <th class="pb-2">Status</th>
-                                        <th class="pb-2 text-right">Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="font-mono text-xs">
-                                    <tr class="border-b border-gray-100 dark:border-gray-800">
-                                        <td class="py-3 text-brand-500">#ORD-9021</td>
-                                        <td class="py-3">johndoe@email.com</td>
-                                        <td class="py-3"><span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 rounded">Paid</span></td>
-                                        <td class="py-3 text-right">$429.00</td>
-                                    </tr>
-                                    <tr class="border-b border-gray-100 dark:border-gray-800">
-                                        <td class="py-3 text-brand-500">#ORD-9020</td>
-                                        <td class="py-3">s.smith@corp.com</td>
-                                        <td class="py-3"><span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 rounded">Pending</span></td>
-                                        <td class="py-3 text-right">$1,250.50</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="py-3 text-brand-500">#ORD-9019</td>
-                                        <td class="py-3">alex.w@web.com</td>
-                                        <td class="py-3"><span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 rounded">Paid</span></td>
-                                        <td class="py-3 text-right">$89.99</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="glass-panel p-6 rounded-xl">
-                            <h3 class="font-bold mb-4">Top Performing Products</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded bg-gray-200 dark:bg-gray-700"></div>
-                                        <div>
-                                            <div class="font-semibold text-sm">Wireless Headphones Pro</div>
-                                            <div class="text-xs text-gray-500">Electronics</div>
-                                        </div>
+                    <div class="glass-panel p-6 rounded-xl">
+                        <h3 class="font-bold mb-4">Top Performing Products</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded bg-gray-200 dark:bg-gray-700"></div>
+                                    <div>
+                                        <div class="font-semibold text-sm">Wireless Headphones Pro</div>
+                                        <div class="text-xs text-gray-500">Electronics</div>
                                     </div>
-                                    <div class="font-mono text-sm font-bold text-accent-500">1,204 Sales</div>
                                 </div>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded bg-gray-200 dark:bg-gray-700"></div>
-                                        <div>
-                                            <div class="font-semibold text-sm">Ergonomic Chair V2</div>
-                                            <div class="text-xs text-gray-500">Furniture</div>
-                                        </div>
+                                <div class="font-mono text-sm font-bold text-accent-500">1,204 Sales</div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded bg-gray-200 dark:bg-gray-700"></div>
+                                    <div>
+                                        <div class="font-semibold text-sm">Ergonomic Chair V2</div>
+                                        <div class="text-xs text-gray-500">Furniture</div>
                                     </div>
-                                    <div class="font-mono text-sm font-bold text-accent-500">856 Sales</div>
                                 </div>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded bg-gray-200 dark:bg-gray-700"></div>
-                                        <div>
-                                            <div class="font-semibold text-sm">Mechanical Keyboard</div>
-                                            <div class="text-xs text-gray-500">Accessories</div>
-                                        </div>
+                                <div class="font-mono text-sm font-bold text-accent-500">856 Sales</div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded bg-gray-200 dark:bg-gray-700"></div>
+                                    <div>
+                                        <div class="font-semibold text-sm">Mechanical Keyboard</div>
+                                        <div class="text-xs text-gray-500">Accessories</div>
                                     </div>
-                                    <div class="font-mono text-sm font-bold text-accent-500">643 Sales</div>
                                 </div>
+                                <div class="font-mono text-sm font-bold text-accent-500">643 Sales</div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ARCHITECTURE SECTION -->
-    <section id="architecture" class="py-24 relative z-10 border-t border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold mb-4">System Architecture</h2>
-            <p class="text-gray-500 dark:text-gray-400 mb-16 max-w-2xl mx-auto">Built for scale, relying on industry-standard data engineering and machine learning pipelines.</p>
-            
-            <div class="flex flex-col items-center justify-center font-mono space-y-4 max-w-lg mx-auto bg-white/50 dark:bg-gray-900/50 p-8 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-lg">
-                <div class="text-yellow-600 dark:text-yellow-500 font-bold text-lg">CSV Dataset</div>
-                <div class="text-gray-400">&darr;</div>
-                
-                <div class="text-accent-600 dark:text-accent-500 font-bold text-lg">ETL Pipeline</div>
-                <div class="text-gray-400">&darr;</div>
-                
-                <div class="text-accent-600 dark:text-accent-500 font-bold text-lg">PostgreSQL</div>
-                <div class="text-gray-400">&darr;</div>
-                
-                <div class="text-accent-600 dark:text-accent-500 font-bold text-lg">FastAPI</div>
-                <div class="text-gray-400">&darr;</div>
-                
-                <div class="text-accent-600 dark:text-accent-500 font-bold text-lg">Machine Learning</div>
-                <div class="text-gray-400">&darr;</div>
-                
-                <div class="text-yellow-600 dark:text-yellow-500 font-bold text-lg">Power BI / React DB</div>
+<!-- ARCHITECTURE SECTION -->
+<section id="architecture" class="py-24 relative z-10 border-t border-gray-200 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold mb-4">System Architecture</h2>
+        <p class="text-gray-500 dark:text-gray-400 mb-16 max-w-2xl mx-auto">Built for scale, relying on
+            industry-standard data engineering and machine learning pipelines.</p>
+
+        <div
+            class="flex flex-col items-center justify-center font-mono space-y-4 max-w-lg mx-auto bg-white/50 dark:bg-gray-900/50 p-8 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-lg">
+            <div class="text-yellow-600 dark:text-yellow-500 font-bold text-lg">CSV Dataset</div>
+            <div class="text-gray-400">&darr;</div>
+
+            <div class="text-accent-600 dark:text-accent-500 font-bold text-lg">ETL Pipeline</div>
+            <div class="text-gray-400">&darr;</div>
+
+            <div class="text-accent-600 dark:text-accent-500 font-bold text-lg">PostgreSQL</div>
+            <div class="text-gray-400">&darr;</div>
+
+            <div class="text-accent-600 dark:text-accent-500 font-bold text-lg">FastAPI</div>
+            <div class="text-gray-400">&darr;</div>
+
+            <div class="text-accent-600 dark:text-accent-500 font-bold text-lg">Machine Learning</div>
+            <div class="text-gray-400">&darr;</div>
+
+            <div class="text-yellow-600 dark:text-yellow-500 font-bold text-lg">Power BI / React DB</div>
+        </div>
+    </div>
+</section>
+
+<!-- ROADMAP / WORKFLOW SECTION (Replaces Testimonials) -->
+<section class="py-24 relative z-10 bg-brand-50/50 dark:bg-brand-900/10 border-t border-gray-200 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold mb-12 text-center text-brand-600 dark:text-brand-400 font-mono">Project Roadmap
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+            <div class="glass-panel p-8 rounded-2xl border-l-4 border-l-brand-500">
+                <h3 class="text-xl font-bold mb-4 font-mono">Architecture Evolution</h3>
+                <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+                    <li class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-brand-500 mt-0.5 shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Migrate from monolith to microservices using Docker & Kubernetes.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-brand-500 mt-0.5 shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Implement Redis caching for sub-100ms dashboard queries.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-gray-300 dark:text-gray-600 mt-0.5 shrink-0" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Setup Snowflake data warehouse for historical ML model training (Planned).
+                    </li>
+                </ul>
+            </div>
+
+            <div class="glass-panel p-8 rounded-2xl border-l-4 border-l-accent-500">
+                <h3 class="text-xl font-bold mb-4 font-mono">Development Workflow</h3>
+                <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+                    <li class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-accent-500 mt-0.5 shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        CI/CD pipelines via GitHub Actions for automated testing.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-accent-500 mt-0.5 shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Strict branch protection rules and code-review prerequisites.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-gray-300 dark:text-gray-600 mt-0.5 shrink-0" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Integration of Prometheus and Grafana for backend monitoring (In Progress).
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ROADMAP / WORKFLOW SECTION (Replaces Testimonials) -->
-    <section class="py-24 relative z-10 bg-brand-50/50 dark:bg-brand-900/10 border-t border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center text-brand-600 dark:text-brand-400 font-mono">Project Roadmap</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-                <div class="glass-panel p-8 rounded-2xl border-l-4 border-l-brand-500">
-                    <h3 class="text-xl font-bold mb-4 font-mono">Architecture Evolution</h3>
-                    <ul class="space-y-3 text-gray-600 dark:text-gray-400">
-                        <li class="flex items-start gap-2">
-                            <svg class="w-5 h-5 text-brand-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Migrate from monolith to microservices using Docker & Kubernetes.
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <svg class="w-5 h-5 text-brand-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Implement Redis caching for sub-100ms dashboard queries.
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <svg class="w-5 h-5 text-gray-300 dark:text-gray-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Setup Snowflake data warehouse for historical ML model training (Planned).
-                        </li>
-                    </ul>
+
+<!-- BENEFITS SECTION -->
+<section id="benefits"
+    class="py-24 relative z-10 bg-white/50 dark:bg-gray-900/50 border-t border-gray-200 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Why SalesVision?</h2>
+            <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">Move beyond simple metrics. Drive actual
+                business growth with actionable intelligence.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Benefit 1 -->
+            <div class="glass-panel p-8 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="w-14 h-14 rounded-xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center mb-6 border border-brand-200 dark:border-brand-500/30 group-hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7 text-brand-600 dark:text-brand-400" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
                 </div>
-                
-                <div class="glass-panel p-8 rounded-2xl border-l-4 border-l-accent-500">
-                    <h3 class="text-xl font-bold mb-4 font-mono">Development Workflow</h3>
-                    <ul class="space-y-3 text-gray-600 dark:text-gray-400">
-                        <li class="flex items-start gap-2">
-                            <svg class="w-5 h-5 text-accent-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            CI/CD pipelines via GitHub Actions for automated testing.
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <svg class="w-5 h-5 text-accent-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Strict branch protection rules and code-review prerequisites.
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <svg class="w-5 h-5 text-gray-300 dark:text-gray-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Integration of Prometheus and Grafana for backend monitoring (In Progress).
-                        </li>
-                    </ul>
+                <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white font-mono">Eliminate Data Silos</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    Stop exporting CSVs across five different platforms. We centralize your marketing, sales, and
+                    inventory data into a single, unified source of truth.
+                </p>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div class="glass-panel p-8 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="w-14 h-14 rounded-xl bg-accent-100 dark:bg-accent-900/30 flex items-center justify-center mb-6 border border-accent-200 dark:border-accent-500/30 group-hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7 text-accent-600 dark:text-accent-400" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                        </path>
+                    </svg>
                 </div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white font-mono">Optimize Ad Spend</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    Automatically identify which campaigns drive the highest Lifetime Value (LTV) customers, allowing
+                    you to reallocate marketing budgets efficiently.
+                </p>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div class="glass-panel p-8 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="w-14 h-14 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-6 border border-blue-200 dark:border-blue-500/30 group-hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                        </path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white font-mono">Reduce Churn</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    Our ML algorithms flag at-risk cohorts before they abandon your brand, triggering automated win-back
+                    webhooks directly to your CRM.
+                </p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
+<!-- INTEGRATIONS SECTION -->
+<section
+    class="py-24 relative z-10 bg-gray-50 dark:bg-[#030712] border-t border-gray-200 dark:border-gray-800 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-10 font-mono">
+            Seamlessly connects with your stack</h2>
 
-    <!-- BENEFITS SECTION -->
-    <section id="benefits" class="py-24 relative z-10 bg-white/50 dark:bg-gray-900/50 border-t border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Why SalesVision?</h2>
-                <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">Move beyond simple metrics. Drive actual business growth with actionable intelligence.</p>
+        <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 max-w-4xl mx-auto">
+            <!-- Integration Cards -->
+            <div
+                class="glass-panel px-6 py-4 rounded-xl flex items-center gap-3 hover:border-brand-500 transition-colors cursor-pointer">
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <span class="font-bold text-gray-800 dark:text-gray-200">Shopify</span>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Benefit 1 -->
-                <div class="glass-panel p-8 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center mb-6 border border-brand-200 dark:border-brand-500/30 group-hover:scale-110 transition-transform">
-                        <svg class="w-7 h-7 text-brand-600 dark:text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white font-mono">Eliminate Data Silos</h3>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                        Stop exporting CSVs across five different platforms. We centralize your marketing, sales, and inventory data into a single, unified source of truth.
-                    </p>
-                </div>
-                
-                <!-- Benefit 2 -->
-                <div class="glass-panel p-8 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-xl bg-accent-100 dark:bg-accent-900/30 flex items-center justify-center mb-6 border border-accent-200 dark:border-accent-500/30 group-hover:scale-110 transition-transform">
-                        <svg class="w-7 h-7 text-accent-600 dark:text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white font-mono">Optimize Ad Spend</h3>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                        Automatically identify which campaigns drive the highest Lifetime Value (LTV) customers, allowing you to reallocate marketing budgets efficiently.
-                    </p>
-                </div>
-
-                <!-- Benefit 3 -->
-                <div class="glass-panel p-8 rounded-2xl group hover:-translate-y-2 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-6 border border-blue-200 dark:border-blue-500/30 group-hover:scale-110 transition-transform">
-                        <svg class="w-7 h-7 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white font-mono">Reduce Churn</h3>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                        Our ML algorithms flag at-risk cohorts before they abandon your brand, triggering automated win-back webhooks directly to your CRM.
-                    </p>
-                </div>
+            <div
+                class="glass-panel px-6 py-4 rounded-xl flex items-center gap-3 hover:border-accent-500 transition-colors cursor-pointer">
+                <div class="w-3 h-3 rounded-full bg-purple-500"></div>
+                <span class="font-bold text-gray-800 dark:text-gray-200">WooCommerce</span>
+            </div>
+            <div
+                class="glass-panel px-6 py-4 rounded-xl flex items-center gap-3 hover:border-blue-500 transition-colors cursor-pointer">
+                <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                <span class="font-bold text-gray-800 dark:text-gray-200">Stripe</span>
+            </div>
+            <div
+                class="glass-panel px-6 py-4 rounded-xl flex items-center gap-3 hover:border-yellow-500 transition-colors cursor-pointer">
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <span class="font-bold text-gray-800 dark:text-gray-200">Amazon Seller API</span>
+            </div>
+            <div
+                class="glass-panel px-6 py-4 rounded-xl flex items-center gap-3 hover:border-red-500 transition-colors cursor-pointer">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <span class="font-bold text-gray-800 dark:text-gray-200">Google Ads</span>
+            </div>
+            <div
+                class="glass-panel px-6 py-4 rounded-xl flex items-center gap-3 hover:border-brand-500 transition-colors cursor-pointer">
+                <div class="w-3 h-3 rounded-full bg-brand-500"></div>
+                <span class="font-bold text-gray-800 dark:text-gray-200">REST API</span>
             </div>
         </div>
-    </section>
 
-    <!-- INTEGRATIONS SECTION -->
-    <section class="py-24 relative z-10 bg-gray-50 dark:bg-[#030712] border-t border-gray-200 dark:border-gray-800 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-10 font-mono">Seamlessly connects with your stack</h2>
-            
-            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 max-w-4xl mx-auto">
-                <!-- Integration Cards -->
-                <div class="glass-panel px-6 py-4 rounded-xl flex items-center gap-3 hover:border-brand-500 transition-colors cursor-pointer">
-                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    <span class="font-bold text-gray-800 dark:text-gray-200">Shopify</span>
-                </div>
-                <div class="glass-panel px-6 py-4 rounded-xl flex items-center gap-3 hover:border-accent-500 transition-colors cursor-pointer">
-                    <div class="w-3 h-3 rounded-full bg-purple-500"></div>
-                    <span class="font-bold text-gray-800 dark:text-gray-200">WooCommerce</span>
-                </div>
-                <div class="glass-panel px-6 py-4 rounded-xl flex items-center gap-3 hover:border-blue-500 transition-colors cursor-pointer">
-                    <div class="w-3 h-3 rounded-full bg-blue-500"></div>
-                    <span class="font-bold text-gray-800 dark:text-gray-200">Stripe</span>
-                </div>
-                <div class="glass-panel px-6 py-4 rounded-xl flex items-center gap-3 hover:border-yellow-500 transition-colors cursor-pointer">
-                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <span class="font-bold text-gray-800 dark:text-gray-200">Amazon Seller API</span>
-                </div>
-                <div class="glass-panel px-6 py-4 rounded-xl flex items-center gap-3 hover:border-red-500 transition-colors cursor-pointer">
-                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                    <span class="font-bold text-gray-800 dark:text-gray-200">Google Ads</span>
-                </div>
-                <div class="glass-panel px-6 py-4 rounded-xl flex items-center gap-3 hover:border-brand-500 transition-colors cursor-pointer">
-                    <div class="w-3 h-3 rounded-full bg-brand-500"></div>
-                    <span class="font-bold text-gray-800 dark:text-gray-200">REST API</span>
-                </div>
+        <div class="mt-12">
+            <a href="#docs" class="text-brand-600 dark:text-brand-400 font-mono text-sm hover:underline">View full
+                integration docs &rarr;</a>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- PROFESSIONAL FOOTER -->
+<footer class="bg-gray-900 text-gray-300 font-mono text-sm py-12 border-t border-gray-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Footer Header -->
+        <div class="mb-10 pb-6 border-b border-gray-700">
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-6 h-6 rounded bg-white text-gray-900 flex items-center justify-center font-bold text-xs">
+                    EA</div>
+                <span class="font-bold text-lg text-white">Ecommerce Analytics Dashboard</span>
             </div>
-            
-            <div class="mt-12">
-                <a href="#docs" class="text-brand-600 dark:text-brand-400 font-mono text-sm hover:underline">View full integration docs &rarr;</a>
+            <p class="text-gray-400">Empowering data-driven decision-making for modern retail.</p>
+        </div>
+
+        <!-- Columns -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10 pb-10 border-b border-gray-700">
+            <!-- Col 1 -->
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Platform</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">&bull; Overview</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">&bull; Sales Analytics</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">&bull; Customer Insights</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">&bull; Inventory</a></li>
+                </ul>
+            </div>
+            <!-- Col 2 -->
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Data & Docs</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">&bull; API Docs</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">&bull; Schema Docs</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">&bull; User Guide</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">&bull; Changelog</a></li>
+                </ul>
+            </div>
+            <!-- Col 3 -->
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Project & Code</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">&bull; GitHub Repo</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">&bull; Release Notes</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">&bull; Issue Tracker</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">&bull; License (MIT)</a></li>
+                </ul>
+            </div>
+            <!-- Col 4 -->
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider">System Status</h4>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span> Data Pipeline: Operational
+                    </li>
+                    <li>&bull; Last Sync: 2 mins ago</li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span> Server Status: Healthy
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
 
-
-
-    <!-- PROFESSIONAL FOOTER -->
-    <footer class="bg-gray-900 text-gray-300 font-mono text-sm py-12 border-t border-gray-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Footer Header -->
-            <div class="mb-10 pb-6 border-b border-gray-700">
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="w-6 h-6 rounded bg-white text-gray-900 flex items-center justify-center font-bold text-xs">EA</div>
-                    <span class="font-bold text-lg text-white">Ecommerce Analytics Dashboard</span>
-                </div>
-                <p class="text-gray-400">Empowering data-driven decision-making for modern retail.</p>
+        <!-- Footer Bottom -->
+        <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+            <div class="mb-4 md:mb-0">
+                &copy; 2026 Ecommerce Analytics Team &bull; Internal Project B.Tech &bull; Built with React & Python
             </div>
-
-            <!-- Columns -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10 pb-10 border-b border-gray-700">
-                <!-- Col 1 -->
-                <div>
-                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Platform</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-white transition-colors">&bull; Overview</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">&bull; Sales Analytics</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">&bull; Customer Insights</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">&bull; Inventory</a></li>
-                    </ul>
-                </div>
-                <!-- Col 2 -->
-                <div>
-                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Data & Docs</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-white transition-colors">&bull; API Docs</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">&bull; Schema Docs</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">&bull; User Guide</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">&bull; Changelog</a></li>
-                    </ul>
-                </div>
-                <!-- Col 3 -->
-                <div>
-                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Project & Code</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-white transition-colors">&bull; GitHub Repo</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">&bull; Release Notes</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">&bull; Issue Tracker</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">&bull; License (MIT)</a></li>
-                    </ul>
-                </div>
-                <!-- Col 4 -->
-                <div>
-                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">System Status</h4>
-                    <ul class="space-y-2">
-                        <li class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-green-500"></span> Data Pipeline: Operational
-                        </li>
-                        <li>&bull; Last Sync: 2 mins ago</li>
-                        <li class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-green-500"></span> Server Status: Healthy
-                        </li>
-                    </ul>
-                </div>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                <span class="text-gray-700">|</span>
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <span class="text-gray-700">|</span>
+                <a href="#" class="hover:text-white transition-colors">Security</a>
+                <span class="text-gray-700">|</span>
+                <span class="text-white">v1.0.0</span>
             </div>
-
-            <!-- Footer Bottom -->
-            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-                <div class="mb-4 md:mb-0">
-                    &copy; 2026 Ecommerce Analytics Team &bull; Internal Project B.Tech &bull; Built with React & Python
-                </div>
-                <div class="flex space-x-4">
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                    <span class="text-gray-700">|</span>
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <span class="text-gray-700">|</span>
-                    <a href="#" class="hover:text-white transition-colors">Security</a>
-                    <span class="text-gray-700">|</span>
-                    <span class="text-white">v1.0.0</span>
-                </div>
-            </div>
-
         </div>
-    </footer>
+
+    </div>
+</footer>
 
 </body>
+
 </html> -->
