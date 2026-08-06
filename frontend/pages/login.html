@@ -1,56 +1,73 @@
 <!doctype html>
 <html lang="en" class="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="CommerceIQ Analytics secure sign-in page">
   <title>Sign in | CommerceIQ Analytics</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config={darkMode:"class"}</script>
-  
-<link rel="stylesheet" href="../assets/css/main.css">
-<link rel="stylesheet" href="../assets/css/pages/login.css">
+  <script>tailwind.config = { darkMode: "class" }</script>
+
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/pages/login.css">
 
 </head>
 
 <body class="min-h-screen bg-slate-50 text-slate-900 transition-colors dark:bg-slate-950 dark:text-white">
- 
- 
- <script src="../assets/js/main.js"></script>
-<script src="../assets/js/login.js"></script>
- 
+
+
   <main class="relative min-h-screen overflow-hidden lg:grid lg:grid-cols-2">
     <div class="grid pointer-events-none absolute inset-0 opacity-50"></div>
     <div class="orb pointer-events-none absolute -left-24 top-16 h-72 w-72 rounded-full bg-cyan-500/20"></div>
-    <div class="orb pointer-events-none absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-indigo-500/20" style="animation-delay:-4s"></div>
+    <div class="orb pointer-events-none absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-indigo-500/20"
+      style="animation-delay:-4s"></div>
 
     <!-- Product preview -->
-    <section class="relative hidden min-h-screen flex-col justify-between border-r border-slate-200/10 px-12 py-10 lg:flex">
+    <section
+      class="relative hidden min-h-screen flex-col justify-between border-r border-slate-200/10 px-12 py-10 lg:flex">
       <a href="#" class="flex items-center gap-3">
-        <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 shadow-lg shadow-cyan-500/30">
-          <svg viewBox="0 0 24 24" class="h-6 w-6 fill-none stroke-white" stroke-width="2.5"><path d="M4 19V10m5 9V5m5 14v-7m5 7V3" stroke-linecap="round"/></svg>
+        <span
+          class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 shadow-lg shadow-cyan-500/30">
+          <svg viewBox="0 0 24 24" class="h-6 w-6 fill-none stroke-white" stroke-width="2.5">
+            <path d="M4 19V10m5 9V5m5 14v-7m5 7V3" stroke-linecap="round" />
+          </svg>
         </span>
-        <span><b class="block text-lg">CommerceIQ</b><small class="block tracking-widest text-slate-400">ANALYTICS PLATFORM</small></span>
+        <span><b class="block text-lg">CommerceIQ</b><small class="block tracking-widest text-slate-400">ANALYTICS
+            PLATFORM</small></span>
       </a>
 
       <div class="mx-auto w-full max-w-xl">
         <p class="mb-3 text-sm font-bold tracking-[.2em] text-cyan-300">ECOMMERCE INTELLIGENCE</p>
         <h1 class="max-w-lg text-5xl font-bold leading-tight">Turn every sale into your next smart decision.</h1>
-        <p class="mt-5 max-w-lg text-base leading-7 text-slate-300">Track revenue, customer behaviour and inventory performance in one focused view.</p>
+        <p class="mt-5 max-w-lg text-base leading-7 text-slate-300">Track revenue, customer behaviour and inventory
+          performance in one focused view.</p>
 
         <div class="mt-10 rounded-2xl border border-white/10 bg-slate-900/75 p-5 shadow-2xl backdrop-blur-xl">
           <div class="mb-5 flex items-center justify-between">
-            <div><p class="text-xs text-slate-400">Overview</p><b>Performance dashboard</b></div>
+            <div>
+              <p class="text-xs text-slate-400">Overview</p><b>Performance dashboard</b>
+            </div>
             <span class="rounded-lg bg-emerald-400/10 px-3 py-1 text-xs font-bold text-emerald-300">● Live data</span>
           </div>
           <div class="grid grid-cols-3 gap-3">
-            <div class="rounded-xl bg-white/5 p-3"><small class="text-slate-400">Revenue</small><b class="mt-1 block text-lg">$84.2k</b><small class="text-emerald-300">↑ 18.4%</small></div>
-            <div class="rounded-xl bg-white/5 p-3"><small class="text-slate-400">Orders</small><b class="mt-1 block text-lg">1,284</b><small class="text-emerald-300">↑ 12.8%</small></div>
-            <div class="rounded-xl bg-white/5 p-3"><small class="text-slate-400">Conversion</small><b class="mt-1 block text-lg">4.86%</b><small class="text-emerald-300">↑ 0.6%</small></div>
+            <div class="rounded-xl bg-white/5 p-3"><small class="text-slate-400">Revenue</small><b
+                class="mt-1 block text-lg">$84.2k</b><small class="text-emerald-300">↑ 18.4%</small></div>
+            <div class="rounded-xl bg-white/5 p-3"><small class="text-slate-400">Orders</small><b
+                class="mt-1 block text-lg">1,284</b><small class="text-emerald-300">↑ 12.8%</small></div>
+            <div class="rounded-xl bg-white/5 p-3"><small class="text-slate-400">Conversion</small><b
+                class="mt-1 block text-lg">4.86%</b><small class="text-emerald-300">↑ 0.6%</small></div>
           </div>
           <div class="mt-4 rounded-xl bg-white/[.04] p-4">
-            <div class="mb-3 flex justify-between text-xs"><span>Revenue trend</span><span class="text-slate-500">Last 7 days</span></div>
-            <div class="flex h-24 items-end gap-2"><i class="bar h-[35%] flex-1 rounded-t bg-cyan-500"></i><i class="bar h-[52%] flex-1 rounded-t bg-cyan-500"></i><i class="bar h-[45%] flex-1 rounded-t bg-cyan-400"></i><i class="bar h-[70%] flex-1 rounded-t bg-cyan-400"></i><i class="bar h-[57%] flex-1 rounded-t bg-cyan-500"></i><i class="bar h-[84%] flex-1 rounded-t bg-cyan-300"></i><i class="bar h-[76%] flex-1 rounded-t bg-cyan-400"></i></div>
+            <div class="mb-3 flex justify-between text-xs"><span>Revenue trend</span><span class="text-slate-500">Last 7
+                days</span></div>
+            <div class="flex h-24 items-end gap-2"><i class="bar h-[35%] flex-1 rounded-t bg-cyan-500"></i><i
+                class="bar h-[52%] flex-1 rounded-t bg-cyan-500"></i><i
+                class="bar h-[45%] flex-1 rounded-t bg-cyan-400"></i><i
+                class="bar h-[70%] flex-1 rounded-t bg-cyan-400"></i><i
+                class="bar h-[57%] flex-1 rounded-t bg-cyan-500"></i><i
+                class="bar h-[84%] flex-1 rounded-t bg-cyan-300"></i><i
+                class="bar h-[76%] flex-1 rounded-t bg-cyan-400"></i></div>
           </div>
         </div>
       </div>
@@ -61,43 +78,72 @@
     <section class="relative flex min-h-screen items-center justify-center px-5 py-10">
       <div class="w-full max-w-md">
         <div class="mb-8 flex items-center justify-between lg:justify-end">
-          <div class="flex items-center gap-2 lg:hidden"><span class="grid h-9 w-9 place-items-center rounded-lg bg-cyan-500">▥</span><b>CommerceIQ</b></div>
-          <button id="theme" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200" aria-label="Toggle theme">☀ Theme</button>
+          <div class="flex items-center gap-2 lg:hidden"><span
+              class="grid h-9 w-9 place-items-center rounded-lg bg-cyan-500">▥</span><b>CommerceIQ</b></div>
+          <button id="theme"
+            class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+            aria-label="Toggle theme">☀ Theme</button>
         </div>
 
-        <div class="rounded-3xl border border-slate-200 bg-white/90 p-7 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/80 sm:p-9">
+        <div
+          class="rounded-3xl border border-slate-200 bg-white/90 p-7 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/80 sm:p-9">
           <p class="text-sm font-bold tracking-wider text-cyan-500">WELCOME BACK</p>
           <h2 class="mt-2 text-3xl font-bold">Sign in to your workspace</h2>
           <p class="mt-2 text-sm leading-6 text-slate-500">Enter your details to continue to CommerceIQ Analytics.</p>
-        
+
 
           <form id="form" class="mt-7 space-y-5" novalidate>
             <div>
               <label for="email" class="mb-2 block text-sm font-semibold">Work email</label>
-              <div class="relative"><span class="absolute left-4 top-3 text-slate-400">✉</span><input id="email" type="email" autocomplete="email" placeholder="you@company.com" class="w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pl-10 pr-4 text-sm outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 dark:border-slate-700 dark:bg-slate-950"></div>
+              <div class="relative"><span class="absolute left-4 top-3 text-slate-400">✉</span><input id="email"
+                  type="email" autocomplete="email" placeholder="you@company.com"
+                  class="w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pl-10 pr-4 text-sm outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 dark:border-slate-700 dark:bg-slate-950">
+              </div>
               <p id="emailError" class="mt-1 hidden text-xs text-rose-500" role="alert"></p>
             </div>
             <div>
-              <div class="mb-2 flex justify-between"><label for="password" class="text-sm font-semibold">Password</label><a href="#" class="text-xs font-bold text-cyan-500">Forgot password?</a></div>
-              <div class="relative"><span class="absolute left-4 top-3 text-slate-400">🔒</span><input id="password" type="password" autocomplete="current-password" placeholder="Enter your password" class="w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pl-10 pr-12 text-sm outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 dark:border-slate-700 dark:bg-slate-950"><button id="show" type="button" class="absolute right-3 top-2 rounded p-1.5 text-slate-500" aria-label="Show password">◉</button></div>
+              <div class="mb-2 flex justify-between"><label for="password"
+                  class="text-sm font-semibold">Password</label><a href="#"
+                  class="text-xs font-bold text-cyan-500">Forgot password?</a></div>
+              <div class="relative"><span class="absolute left-4 top-3 text-slate-400">🔒</span><input id="password"
+                  type="password" autocomplete="current-password" placeholder="Enter your password"
+                  class="w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pl-10 pr-12 text-sm outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 dark:border-slate-700 dark:bg-slate-950"><button
+                  id="show" type="button" class="absolute right-3 top-2 rounded p-1.5 text-slate-500"
+                  aria-label="Show password">◉</button></div>
               <p id="passwordError" class="mt-1 hidden text-xs text-rose-500" role="alert"></p>
             </div>
 
-            <label class="flex items-center gap-2 text-sm text-slate-500"><input type="checkbox" class="accent-cyan-500"> Remember me for 30 days</label>
-            <button id="submit" class="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-3.5 font-bold text-white shadow-lg shadow-cyan-500/25 transition hover:brightness-110 disabled:opacity-70">Sign in to dashboard <span>→</span></button>
+            <label class="flex items-center gap-2 text-sm text-slate-500"><input type="checkbox"
+                class="accent-cyan-500"> Remember me for 30 days</label>
+            <button id="submit"
+              class="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-3.5 font-bold text-white shadow-lg shadow-cyan-500/25 transition hover:brightness-110 disabled:opacity-70">Sign
+              in to dashboard <span>→</span></button>
             <p id="status" class="hidden text-center text-sm text-cyan-500" role="status" aria-live="polite"></p>
           </form>
 
-          <div class="my-7 flex items-center gap-3 text-xs text-slate-400"><i class="h-px flex-1 bg-slate-200 dark:bg-slate-700"></i>OR TRY THE DEMO<i class="h-px flex-1 bg-slate-200 dark:bg-slate-700"></i></div>
+          <div class="my-7 flex items-center gap-3 text-xs text-slate-400"><i
+              class="h-px flex-1 bg-slate-200 dark:bg-slate-700"></i>OR TRY THE DEMO<i
+              class="h-px flex-1 bg-slate-200 dark:bg-slate-700"></i></div>
           <div class="flex items-start justify-between rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4">
-            <p class="text-xs leading-5 text-slate-500"><b class="block text-sm text-slate-800 dark:text-slate-200">Demo workspace</b>admin@analytics.com<br>Password: Admin@123</p>
-            <button id="demo" type="button" class="rounded-lg bg-cyan-500/15 px-3 py-2 text-xs font-bold text-cyan-600 dark:text-cyan-300">Use demo</button>
+            <p class="text-xs leading-5 text-slate-500"><b class="block text-sm text-slate-800 dark:text-slate-200">Demo
+                workspace</b>admin@analytics.com<br>Password: Admin@123</p>
+            <button id="demo" type="button"
+              class="rounded-lg bg-cyan-500/15 px-3 py-2 text-xs font-bold text-cyan-600 dark:text-cyan-300">Use
+              demo</button>
           </div>
         </div>
-        <footer class="mt-6 text-center text-xs text-slate-500"><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Support</a></footer>
+        <footer class="mt-6 text-center text-xs text-slate-500"><a href="#">Privacy</a> · <a href="#">Terms</a> · <a
+            href="#">Support</a></footer>
       </div>
     </section>
   </main>
 
+
+  
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/login.js"></script>
+
+  
 </body>
+
 </html>
