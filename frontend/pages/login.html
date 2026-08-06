@@ -7,16 +7,11 @@
   <title>Sign in | CommerceIQ Analytics</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config={darkMode:"class"}</script>
-  <style>
-    body{font-family:Inter,system-ui,sans-serif}
-    .grid{background-image:linear-gradient(#94a3b818 1px,transparent 1px),linear-gradient(90deg,#94a3b818 1px,transparent 1px);background-size:42px 42px}
-    .orb{filter:blur(75px);animation:float 8s ease-in-out infinite}
-    @keyframes float{50%{transform:translate(25px,-20px) scale(1.08)}}
-    @keyframes grow{from{transform:scaleY(.2)}to{transform:scaleY(1)}}
-    .bar{transform-origin:bottom;animation:grow .8s both}
-    .bar:nth-child(2){animation-delay:.1s}.bar:nth-child(3){animation-delay:.2s}.bar:nth-child(4){animation-delay:.3s}.bar:nth-child(5){animation-delay:.4s}.bar:nth-child(6){animation-delay:.5s}.bar:nth-child(7){animation-delay:.6s}
-  </style>
+  
+
+
 </head>
+
 <body class="min-h-screen bg-slate-50 text-slate-900 transition-colors dark:bg-slate-950 dark:text-white">
   <main class="relative min-h-screen overflow-hidden lg:grid lg:grid-cols-2">
     <div class="grid pointer-events-none absolute inset-0 opacity-50"></div>
@@ -98,33 +93,5 @@
     </section>
   </main>
 
-  <script>
-    const $=id=>document.getElementById(id),email=$("email"),password=$("password");
-    $("year").textContent=new Date().getFullYear();
-
-    $("theme").onclick=()=>document.documentElement.classList.toggle("dark");
-    $("show").onclick=()=>{let shown=password.type==="text";password.type=shown?"password":"text";$("show").setAttribute("aria-label",shown?"Show password":"Hide password")};
-    $("demo").onclick=()=>{email.value="admin@analytics.com";password.value="Admin@123";password.focus()};
-
-    function error(input,message){
-      let el=$(input.id+"Error");el.textContent=message;el.classList.remove("hidden");
-      input.classList.add("border-rose-500");input.setAttribute("aria-invalid","true");
-    }
-    function clear(input){
-      $(input.id+"Error").classList.add("hidden");input.classList.remove("border-rose-500");input.removeAttribute("aria-invalid");
-    }
-    [email,password].forEach(x=>x.oninput=()=>clear(x));
-
-    $("form").onsubmit=e=>{
-      e.preventDefault();let ok=true;
-      if(!email.value.trim()){error(email,"Enter your work email address.");ok=false}
-      else if(!email.validity.valid){error(email,"Enter a valid email address.");ok=false}
-      if(!password.value){error(password,"Enter your password.");ok=false}
-      if(!ok)return;
-      let button=$("submit");button.disabled=true;button.innerHTML="Signing you in… <span class='animate-spin'>◌</span>";
-      $("status").textContent="Verifying your secure workspace…";$("status").classList.remove("hidden");
-      setTimeout(()=>location.href="dashboard.html",1000);
-    };
-  </script>
 </body>
 </html>
